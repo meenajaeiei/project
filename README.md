@@ -10,7 +10,7 @@
 หลังจากติดตั้งแล้วก็pull projectนี้ลงมา จบ
 
 
-คำสั่งต่างๆ
-  python manage.py runserver = เปิดport (defaultคือ 8000)
-  django-admin.py startproject <ชื่อไฟล์โปรเจค> = เป็นการสร้างโปรเจคใหม่(ณ ตอนนี้โปรเจคชื่อ bookmark)
+คำสั่งต่างๆ <br>
+  python manage.py runserver = เปิดport (defaultคือ 8000)<br>
+  django-admin.py startproject <ชื่อไฟล์โปรเจค> = เป็นการสร้างโปรเจคใหม่(ณ ตอนนี้โปรเจคชื่อ bookmark)<br>
   python manage.py syncdb = สร้างตารางDB
