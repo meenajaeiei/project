@@ -1,28 +1,28 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
+from django.contrib.auth.decorators import login_required
 
+# @login_required
+# def dashboard(request):
+#     return render(request,'dashboard.html',{'section': 'dashboard'})
+#
 def home_page(request):
-    return render(request, "home_page.html" , {})
-
-def user_login(request):
     if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            user = authenticate(request,
-                                username=cd['username'],
-                                password=cd['password'])
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return HttpResponse('Authenticated '\
-                                        'successfully')
-                else:
-                    return HttpResponse('Disabled account')
-            else:
-                return HttpResponse('Invalid login')
+        username = request.POST['username']
+        password = request.POST['password']
+        print(username)
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            # Redirect to a success page.
+            return redirect('home')
+        else:
+            # Return an 'invalid login' error message.
+            return redirect('login')
     else:
-        form = LoginForm()
-    return render(request, 'login.html', {'form': form})
+        return render(request, 'blog/login.html', {})
+
+def mainhome(request):
+    return render(request, "blog/home.html" , {})

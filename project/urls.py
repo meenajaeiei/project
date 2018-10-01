@@ -15,15 +15,28 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from .views import home_page,user_login
+# from .views import home_page,user_login
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
+from . import views
+
+
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    #path('bookmarks/', include('bookmarks.urls')),
-    path(r'', home_page),
-    path(r'login/', user_login, name='login'),
+path('admin/', admin.site.urls),
+path('login/',views.home_page, name = 'login'),
+path('home/',views.mainhome, name = 'home'),
+path('blog/', include('blog.urls', namespace='blog')),
+
+
+#path('bookmarks/', include('bookmarks.urls')),
+#path(r'', home_page),
+#path(r'login/', user_login, name='login'),
+# path('login/', auth_views.LoginView.as_view(), name='login'),
+# path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+#path('', views.dashboard, name='dashboard'),
 ]
 
 if settings.DEBUG:
