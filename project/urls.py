@@ -27,16 +27,19 @@ from . import views
 urlpatterns = [
 path('admin/', admin.site.urls),
 path('login/',views.home_page, name = 'login'),
-path('home/',views.mainhome, name = 'home'),
+path('',views.mainhome, name = 'home'),
+path('logout/', auth_views.LogoutView.as_view, name='logout'),
 path('blog/', include('blog.urls', namespace='blog')),
 
+path('password_change/',
+views.changepass,
+name='password_change'),
 
-#path('bookmarks/', include('bookmarks.urls')),
-#path(r'', home_page),
-#path(r'login/', user_login, name='login'),
-# path('login/', auth_views.LoginView.as_view(), name='login'),
-# path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-#path('', views.dashboard, name='dashboard'),
+path('password_change/done/',
+auth_views.PasswordChangeDoneView.as_view(),
+name='password_change_done'),
+
+
 ]
 
 if settings.DEBUG:

@@ -8,6 +8,45 @@ class PublishedManager(models.Manager):
     def get_queryset(self):
         return super(PublishedManager,self).get_queryset().filter(status='published')
 
+class Employee(models.Model):
+    ROLE = (('student' , 'student') , ('staff' , 'staff') , ('teacher' , 'teacher') )
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    firstname = models.CharField(max_length=100 , default='name')
+    lastname = models.CharField(max_length=100 , default = 'lastname')
+    role = models.CharField(max_length=100 , default = 'Student', choices=ROLE)
+
+    def getname(self):
+        return self.firstname
+
+
+
+
+# class Person(models.Model):
+#     first_name = models.CharField(
+#         max_length=140)
+#     last_name = models.CharField(
+#         max_length=140)
+#     born = models.DateField()
+#     died = models.DateField(null=True,
+#                             blank=True)
+#
+#
+#     class Meta:
+#         ordering = (
+#             'last_name', 'first_name')
+#
+#     def __str__(self):
+#         if self.died:
+#             return '{}, {} ({}-{})'.format(
+#                 self.last_name,
+#                 self.first_name,
+#                 self.born,
+#                 self.died)
+#         return '{}, {} ({})'.format(
+#                 self.last_name,
+#                 self.first_name,
+#                 self.born)
+
 
 class Post(models.Model):
     STATUS_CHOICES = (('draft', 'Draft'),('published', 'Published'),)
@@ -35,3 +74,12 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+class room(models.Model):
+    #roomid = models.AutoField()
+    roomname = models.CharField(max_length=100 , default = 'roomname')
+    isavaliable = (('yes','yes') , ('no','no'))
+    status = models.CharField(max_length = 10 , default = 'yes', choices=isavaliable)
+
+
+#class reservation(models.Model):
