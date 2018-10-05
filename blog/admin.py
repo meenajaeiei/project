@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post,Employee
+from .models import *
 # Register your models here.
 
 @admin.register(Post)
@@ -17,4 +17,4 @@ class PostAdmin(admin.ModelAdmin):
 class EmployeeAdmin(admin.ModelAdmin):
     list_display = ('firstname','lastname' , 'role')
 
-#admin.site.register(Person)
+admin.site.register(room)

@@ -28,8 +28,9 @@ urlpatterns = [
 path('admin/', admin.site.urls),
 path('login/',views.home_page, name = 'login'),
 path('',views.mainhome, name = 'home'),
-path('logout/', auth_views.LogoutView.as_view, name='logout'),
+path('logout/', views.logout_view, name='logout'),
 path('blog/', include('blog.urls', namespace='blog')),
+path('test/', views.test, name='test'),
 
 path('password_change/',
 views.changepass,
@@ -39,6 +40,7 @@ path('password_change/done/',
 auth_views.PasswordChangeDoneView.as_view(),
 name='password_change_done'),
 
+path('rentroom/' , views.room_detail , name= 'rentroom')
 
 ]
 
