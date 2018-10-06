@@ -14,3 +14,6 @@
   python manage.py runserver = เปิดport (defaultคือ 8000)<br>
   django-admin.py startproject <ชื่อไฟล์โปรเจค> = เป็นการสร้างโปรเจคใหม่(ณ ตอนนี้โปรเจคชื่อ blog)<br>
   python manage.py syncdb = สร้างตารางDB
+
+
+<img src="usecase.png" alt="xxx">
