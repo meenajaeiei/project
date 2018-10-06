@@ -4,7 +4,7 @@
 
 {% if user.is_authenticated %}
 
-  <h1> Hello {{user.username}} Your role is   {{emp.role}}   click  <a href="{% url "logout" %}">Logout</a> </h1>
+  <h1> Hello {{user.username}}    click  <a href="{% url "logout" %}">Logout</a> </h1>
 {% else %}
   <h1> Hello guest Click <a href="{% url "login" %}">Login</a> </h1>
 {% endif %}
