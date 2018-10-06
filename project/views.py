@@ -13,7 +13,7 @@ def logout_view(request):
     logout(request)
     return render(request , "blog/logout.html" , {})
 
-
+#Post.objects.filter
 
 def home_page(request):
     if request.method == 'POST':
@@ -34,7 +34,11 @@ def home_page(request):
         return render(request, 'blog/login.html', {})
 
 def mainhome(request):
-    return render(request, "blog/home.html" , {})
+
+    context = {
+    "student":"student"
+    }
+    return render(request, "blog/home.html" , context)
 
 def room_detail(request):
     rooms = room.q.all()
