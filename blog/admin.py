@@ -15,6 +15,10 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(Employee)
 class EmployeeAdmin(admin.ModelAdmin):
-    list_display = ('firstname','lastname' , 'role')
+    list_display = ('firstname','lastname' , 'role' , 'id')
 
 admin.site.register(room)
+
+@admin.register(reservation)
+class reservationAdmin(admin.ModelAdmin):
+    list_display = ('student' ,'room', 'day_of_reserve'  , 'teacher')

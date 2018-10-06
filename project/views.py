@@ -26,7 +26,7 @@ def home_page(request):
             # Redirect to a success page.
             emp_id = User.objects.get(username = usernamex)
             emp = Employee.objects.get(id = emp_id.id)
-            return render(request, 'blog/home.html' , {'emp' : emp})
+            return render(request, 'blog/home.html' , {})
         else:
             # Return an 'invalid login' error message.
             return redirect('login')
@@ -35,10 +35,11 @@ def home_page(request):
 
 def mainhome(request):
 
-    context = {
-    "student":"student"
-    }
-    return render(request, "blog/home.html" , context)
+    # context = {
+    # "student":"student"
+    # }
+    #return render(request, "blog/home.html" , {context})
+    return render(request, "blog/home.html" , {})
 
 def room_detail(request):
     rooms = room.q.all()

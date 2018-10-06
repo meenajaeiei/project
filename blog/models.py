@@ -91,4 +91,11 @@ class room(models.Model):
     def __str__(self):
         return self.roomname
 
-#class reservation(models.Model):
+class reservation(models.Model):
+    student = models.ForeignKey(Employee, related_name = "student" , on_delete=models.CASCADE)
+    teacher = models.ForeignKey(Employee, related_name = "teacher" , on_delete=models.CASCADE)
+    room = models.ForeignKey(room , related_name = "room" , on_delete=models.CASCADE)
+    status = (("pending" , "pending"), ("accepted" , "accepted") , ("denied" , "denied") )
+    day_of_reserve = models.DateTimeField(default=timezone.now)
+    duration_begin =  models.DateTimeField(default=timezone.now)
+    duration_end =  models.DateTimeField(default=timezone.now)
