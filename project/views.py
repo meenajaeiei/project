@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login , logout
 from .forms import LoginForm
 from django.contrib.auth.decorators import login_required
 from blog.models import room , Employee , User
+from django.contrib import messages
 
 @login_required
 def changepass(request):
@@ -26,10 +27,12 @@ def home_page(request):
             # Redirect to a success page.
             emp_id = User.objects.get(username = usernamex)
             emp = Employee.objects.get(id = emp_id.id)
-            return render(request, 'blog/home.html' , {})
+
+
+            return render(request, 'blog/home.html' , {emp})
         else:
             # Return an 'invalid login' error message.
-            return redirect('login')
+            return HttpResponse('Invalid login')
     else:
         return render(request, 'blog/login.html', {})
 

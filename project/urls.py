@@ -40,7 +40,7 @@ path('password_change/done/',
 auth_views.PasswordChangeDoneView.as_view(),
 name='password_change_done'),
 
-path('rentroom/' , views.room_detail , name= 'rentroom')
+path('reservation_room/' , views.room_detail , name= 'reervation_room')
 
 ]
 
