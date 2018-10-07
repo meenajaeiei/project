@@ -18,6 +18,9 @@ class Employee(models.Model):
     def getempid(self):
         return self.id
 
+    def __str__(self):
+        return self.user.username
+
 
 
 
@@ -88,11 +91,24 @@ class room(models.Model):
     def __str__(self):
         return self.roomname
 
+class BookManager(models.Manager):
+    def create_book(self, student ,  room):
+        book = self.create(
+        student = student , #Employee.objects.get(username = "mhee") ,
+        #teacher = teacher , #Employee.objects.get(username = "mhee2") ,
+        room = room , #room.objects.get(roomname = "M16"),
+        status = "pending"
+        )
+        # do something with the book
+        return reservation
+
 class reservation(models.Model):
-    student = models.ForeignKey(Employee, related_name = "student" , on_delete=models.CASCADE)
-    teacher = models.ForeignKey(Employee, related_name = "teacher" , on_delete=models.CASCADE)
+    student = models.ForeignKey(Employee, related_name = "student" , on_delete=models.CASCADE ,blank = True,null=True)
+    teacher = models.ForeignKey(Employee, related_name = "teacher" , on_delete=models.CASCADE ,blank = True,null=True)
     room = models.ForeignKey(room , related_name = "room" , on_delete=models.CASCADE)
-    status = (("pending" , "pending"), ("accepted" , "accepted") , ("denied" , "denied") )
+    status_list = (("pending" , "pending"), ("accepted" , "accepted") , ("denied" , "denied") )
+    status = models.CharField(max_length = 10 , default = 'pending', choices=status_list)
     day_of_reserve = models.DateTimeField(default=timezone.now)
     duration_begin =  models.DateTimeField(default=timezone.now)
     duration_end =  models.DateTimeField(default=timezone.now)
+    objects = BookManager()

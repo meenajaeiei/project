@@ -41,7 +41,7 @@ auth_views.PasswordChangeDoneView.as_view(),
 name='password_change_done'),
 
 path('reservation_room/' , views.room_detail , name= 'reservation_room'),
-#path('reservation_status/' , views.reservation_status , name= 'reervation_status'),
+path('reservation_status/' , views.getreservation , name= 'reservation_status'),
 #path('reservation_room/<slug:roomname>/' , views.getreservation , name = "xxx") ,
 
 ]

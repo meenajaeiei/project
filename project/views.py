@@ -3,7 +3,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth import authenticate, login , logout
 from .forms import LoginForm
 from django.contrib.auth.decorators import login_required
-from blog.models import room , Employee , User
+from blog.models import room , Employee , User , reservation
 from django.contrib import messages
 
 @login_required
@@ -48,10 +48,12 @@ def mainhome(request):
 def room_detail(request):
     rooms = room.objects.all()
     if 'room' in request.GET:
+
         print(request.GET['room'])
         o_room = room.objects.get(roomname = request.GET['room'])
         o_room.status = "pending"
         o_room.save()
+
 
 
     else:
@@ -65,4 +67,4 @@ def test(request):
     return render(request, "blog/test.html" , {})
 
 def getreservation(request):
-    print("kuy")
+    print("asdasd")
