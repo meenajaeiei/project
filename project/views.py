@@ -18,6 +18,7 @@ def logout_view(request):
 
 def home_page(request):
     if request.method == 'POST':
+        print("login")
         usernamex = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=usernamex, password=password)
@@ -29,7 +30,7 @@ def home_page(request):
             emp = Employee.objects.get(id = emp_id.id)
 
 
-            return render(request, 'blog/home.html' , {emp})
+            return render(request, 'blog/home.html' , {"emp":emp})
         else:
             # Return an 'invalid login' error message.
             return HttpResponse('Invalid login')
@@ -45,8 +46,23 @@ def mainhome(request):
     return render(request, "blog/home.html" , {})
 
 def room_detail(request):
-    rooms = room.q.all()
-    return render(request , 'blog/rentroom.html' , {'rooms' : rooms})
+    rooms = room.objects.all()
+    if 'room' in request.GET:
+        print(request.GET['room'])
+        o_room = room.objects.get(roomname = request.GET['room'])
+        o_room.status = "pending"
+        o_room.save()
+
+
+    else:
+        print("ihere")
+
+
+
+    return render(request , 'blog/reservation_room.html' , {'rooms' : rooms})
 
 def test(request):
     return render(request, "blog/test.html" , {})
+
+def getreservation(request):
+    print("kuy")

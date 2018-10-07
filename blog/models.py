@@ -75,9 +75,6 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-class roomManager(models.Manager):
-    def get_queryset(self):
-        return super(roomManager,self).get_queryset()
 
 class room(models.Model):
     #roomid = models.AutoField()
@@ -86,7 +83,7 @@ class room(models.Model):
     status = models.CharField(max_length = 10 , default = 'yes', choices=isavaliable)
     width = models.IntegerField(default = 0)
     height = models.IntegerField(default = 0)
-    q  =  roomManager()
+    slug = models.SlugField(max_length=100 , default = 'roomname')
 
     def __str__(self):
         return self.roomname
