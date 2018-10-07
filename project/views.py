@@ -47,11 +47,15 @@ def mainhome(request):
 
 def room_detail(request):
     rooms = room.objects.all()
-    if 'room' in request.GET:
+    if 'room' in request.GET and 'username' in request.GET:
 
         print(request.GET['room'])
         o_room = room.objects.get(roomname = request.GET['room'])
         o_room.status = "pending"
+        
+        user_obj = User.objects.get(username = request.GET['username'])
+        user_obj = Employee.objects.get(id = user_obj.id)
+        reservation.objects.create_book(user_obj , o_room)
         o_room.save()
 
 
@@ -67,4 +71,5 @@ def test(request):
     return render(request, "blog/test.html" , {})
 
 def getreservation(request):
-    print("asdasd")
+    reservation_list = reservation.objects.filter(status="pending")
+    return render(request, "blog/reservation_status.html" , {"reservation_list":reservation_list})

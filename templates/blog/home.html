@@ -5,7 +5,7 @@
 {% if user.is_authenticated %}
 
   <h1> Hello {{user.username}}    click  <a href="{% url "logout" %}">Logout</a> </h1>
-  <h1> reservation_list Click >xxxx</a>
+  <h1> reservation_list Click    <a href="{% url "reservation_status" %}">Check your reservation</a> </a>
     <h1> reservation_room Click <a href="{% url "reservation_room" %}">reservation_room</a>
 {% else %}
   <h1> Hello guest Click <a href="{% url "login" %}">Login</a> </h1>

@@ -3,5 +3,17 @@
 
 {% block content %}
 
+    <h1>list of your reservation</h1> 
+    {% for res in reservation_list %}
+
+    <h2>
+    room : {{res.room}}
+    status:{{res.status}}
+    teacher : {{res.teacher}}
+
+    </h2>
+
+    {% endfor %}
+
 
 {% endblock %}

@@ -12,6 +12,7 @@
   {% if request.user.is_authenticated and room.status == 'yes' %}
   <form action=""   method="GET">
     <button type="submit" value="{{room.roomname}}" name = "room" >{{ room.roomname }}</button>
+    <input type="hidden" name="username" value="{{user.username}}" />
   </form>
   {% endif %}
 
