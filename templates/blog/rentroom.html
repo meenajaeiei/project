@@ -7,7 +7,7 @@
 
 <h5>  <li> room_height {{room.height}} </li>
   <li> room_width {{room.width}} </li>
-  <li>rent_status {{room.status}} </li> </h5>
+  <li>reservation_status {{room.status}} </li> </h5>
   {% if request.user.is_authenticated and room.status == 'yes' %}
   <button type="button">Rent</button>
   {% endif %}

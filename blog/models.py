@@ -2,6 +2,8 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.conf import settings
+
 
 
 class PublishedManager(models.Manager):
@@ -10,7 +12,7 @@ class PublishedManager(models.Manager):
 
 class Employee(models.Model):
     ROLE = (('student' , 'student') , ('staff' , 'staff') , ('teacher' , 'teacher') )
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     firstname = models.CharField(max_length=100 , default='name')
     lastname = models.CharField(max_length=100 , default = 'lastname')
     role = models.CharField(max_length=100 , default = 'Student', choices=ROLE)
