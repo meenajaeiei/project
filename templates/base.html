@@ -7,43 +7,31 @@
   <link href="{% static "css/blog.css" %}" rel="stylesheet">
 </head>
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 <body>
-  <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">{% if user.is_authenticated %}  {{user.username}} {{emp.role}}  {% else %}  Guest {% endif %} </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="">Reservation</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="{% url "reservation_manage" %}">manage</a></li>
+      <li><a href="{% url "reservation_room" %}"> reserve room</a></li>
+      <li><a href="{% url "reservation_status" %}">your reservation</a></li>
+      {% if user.is_authenticated %}
+        <li> <button class="btn btn-danger navbar-btn">  <a href="{% url "logout" %}"> Logout</a></button></li>
+      {% else %}
+      <li> <button class="btn btn-success">  <a href="{% url "login" %}"> Login</a></button></li>
+      {% endif %}
 
-        <div class="collapse navbar-collapse" id="navbarsExample01">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown01">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
-          </ul>
-          <form class="form-inline my-2 my-md-0">
-            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-          </form>
-        </div>
-      </nav>
+    </ul>
+    
+  </div>
+</nav>
 
 
     {% block content %}
