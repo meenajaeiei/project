@@ -28,6 +28,7 @@ def home_page(request):
             # Redirect to a success page.
             emp_id = User.objects.get(username = usernamex)
             emp = Employee.objects.get(id = emp_id.id)
+            request.session['username'] = usernamex 
 
 
             return render(request, 'blog/home.html' , {"emp":emp})
@@ -71,5 +72,7 @@ def test(request):
     return render(request, "blog/test.html" , {})
 
 def getreservation(request):
-    reservation_list = reservation.objects.filter(status="pending")
+    #reservation_list = reservation.objects.filter(status="pending")
+    #print(request.session['username'])
+    reservation_list = reservation.objects.get_booklist(User.objects.get(username = request.session['username'] ))
     return render(request, "blog/reservation_status.html" , {"reservation_list":reservation_list})

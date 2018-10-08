@@ -93,7 +93,7 @@ class room(models.Model):
 
 class BookManager(models.Manager):
     def create_book(self, student ,  room):
-        book = self.create(
+        reservation = self.create(
         student = student , #Employee.objects.get(username = "mhee") ,
         #teacher = teacher , #Employee.objects.get(username = "mhee2") ,
         room = room , #room.objects.get(roomname = "M16"),
@@ -101,6 +101,16 @@ class BookManager(models.Manager):
         )
         # do something with the book
         return reservation
+
+
+    def get_booklist(self , student_id):
+
+        user_a = User.objects.get(username = student_id)
+        emp = Employee.objects.get(id = user_a.id)
+        reservation_list = reservation.objects.filter(student = emp)
+        
+        return reservation_list
+
 
 class reservation(models.Model):
     student = models.ForeignKey(Employee, related_name = "student" , on_delete=models.CASCADE ,blank = True,null=True)
