@@ -73,9 +73,15 @@ def test(request):
 
 
 def managereservation(request):
-    if (Employee.objects.get(id = User.objects.get(username = request.session['username']).id).role is not "student" ):
 
-        return render(request , "res": reservation.objects.filter(status = "pending"))
+    temp_role = str (Employee.objects.get(id = User.objects.get(username = request.session['username']).id).role)
+
+    ei1 = "teacher"
+    ei2 = "staff"
+    if (temp_role == ei1 or temp_role == ei2 ):
+
+        
+        return render(request , "blog/reservation_manage.html",  {"res": reservation.objects.filter(status = "pending")} )
     else:
         return render(request, "blog/home.html" , {})
 

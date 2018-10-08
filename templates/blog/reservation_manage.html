@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+        {% for re in res %}
+            <h1>{{ re.room }} </h1>
+            <h4> <li> reservator : {{ re.student }} </li>
+                <li> day_of_reserve : {{ re.day_of_reserve }} </li>
+
+            </h4>
+        {% endfor %}
+
+
+
+{% endblock %}
