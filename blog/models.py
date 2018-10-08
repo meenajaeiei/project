@@ -110,6 +110,10 @@ class BookManager(models.Manager):
         reservation_list = reservation.objects.filter(student = emp)
         
         return reservation_list
+    
+
+        
+
 
 
 class reservation(models.Model):
@@ -122,3 +126,13 @@ class reservation(models.Model):
     duration_begin =  models.DateTimeField(default=timezone.now)
     duration_end =  models.DateTimeField(default=timezone.now)
     objects = BookManager()
+
+    # def __str__(self):
+    #     return str(self.id)
+
+    def cancel_book(self):
+        room_obj = self.room
+        room_obj.status = "yes"
+        room_obj.save()
+        self.delete()
+        print("hi")

@@ -72,6 +72,10 @@ def test(request):
     return render(request, "blog/test.html" , {})
 
 def getreservation(request):
+    if "reservation" in request.GET:
+        res_obj = reservation.objects.get(id = int(request.GET['reservation']) )
+        res_obj.cancel_book()
+
     #reservation_list = reservation.objects.filter(status="pending")
     #print(request.session['username'])
     reservation_list = reservation.objects.get_booklist(User.objects.get(username = request.session['username'] ))

@@ -2,16 +2,21 @@
 
 
 {% block content %}
+    reservation_list of {{user.username}}
 
-    <h1>list of your reservation</h1> 
     {% for res in reservation_list %}
 
-    <h2>
-    room : {{res.room}}
-    status:{{res.status}}
-    teacher : {{res.teacher}}
-
-    </h2>
+    <h1> room : {{res.room}} </h1>
+    <h5>
+    
+    <li> status : {{res.status}}</li>
+   <li>  teacher : {{res.teacher}}</li>
+      <li>  reserving date : {{res.day_of_reserve}}</li>
+    {% if request.user.is_authenticated and res.status == 'pending' %}
+  <form action=""   method="GET">
+    <button type="submit" value="{{res.id}}" name = "reservation" > CANCEL </button>
+    {% endif %}
+    </h5>
 
     {% endfor %}
 
