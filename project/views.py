@@ -71,12 +71,18 @@ def room_detail(request):
 def test(request):
     return render(request, "blog/test.html" , {})
 
+
+def managereservation(request):
+    if (Employee.objects.get(id = User.objects.get(username = request.session['username']).id).role is not "student" ):
+
+        return render(request , "res": reservation.objects.filter(status = "pending"))
+    else:
+        return render(request, "blog/home.html" , {})
+
+
 def getreservation(request):
     if "reservation" in request.GET:
         res_obj = reservation.objects.get(id = int(request.GET['reservation']) )
         res_obj.cancel_book()
-
-    #reservation_list = reservation.objects.filter(status="pending")
-    #print(request.session['username'])
     reservation_list = reservation.objects.get_booklist(User.objects.get(username = request.session['username'] ))
     return render(request, "blog/reservation_status.html" , {"reservation_list":reservation_list})
