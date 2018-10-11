@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>it reservation</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+	<nav>
+		<a href="#welcome">HOME</a>
+		<a href="#view-floor">ROOM</a>
+	</nav>
+	<section id="welcome"></section>
+
+	<section id="view-floor">
+		<div id="floor-side">
+			<div class="floor-number active" id="floor1" onclick="showFloor(this.id)">1</div>
+			<div class="floor-number" id="floorM" onclick="showFloor(this.id)">M</div>
+			<div class="floor-number" id="floor2" onclick="showFloor(this.id)">2</div>
+			<div class="floor-number" id="floor3" onclick="showFloor(this.id)">3</div>
+		</div>
+		<div>
+			<div id="floor">
+				<h1 id="demo">NUMBER OF FLOOR</h1>
+				<div id="detail-box">
+					<div id="close-detail" onclick="exit()">X</div>
+					<!-- <div id="room-number">ROOM1</div>
+					<div id="name-taken">ppishappy</div>
+					<div id="time-taken">16.00-17.00</div>
+					<div id="status">unavilable</div>
+					<div id="BOOKING"></div> -->
+				</div>
+				<div id="floor1-map">
+					<div class="room" id="f1r1" onclick="showDetail(this.id)">ROOM1</div>
+					<div class="room" id="f1r2" onclick="showDetail(this.id)">ROOM2</div>
+					<div class="room" id="f1r3" onclick="showDetail(this.id)">ROOM3</div>
+					<div class="room" id="f1r4" onclick="showDetail(this.id)">ROOM4</div>
+					<div class="room" id="f1r5" onclick="showDetail(this.id)">ROOM5</div>
+				</div>
+
+				<div id="floorM-map">
+					<!-- <div class="room" id="f2r1"></div>
+					<div class="room" id="f2r2"></div>
+					<div class="room" id="f2r3"></div>
+					<div class="room" id="f2r4"></div>
+					<div class="room" id="f2r5"></div> -->
+				</div>
+
+				<div id="floor2-map">
+					<!-- <div class="room" id="f2r1"></div>
+					<div class="room" id="f2r2"></div>
+					<div class="room" id="f2r3"></div>
+					<div class="room" id="f2r4"></div>
+					<div class="room" id="f2r5"></div> -->
+				</div>
+
+				<div id="floor3-map">
+					<!-- <div class="room" id="f2r1"></div>
+					<div class="room" id="f2r2"></div>
+					<div class="room" id="f2r3"></div>
+					<div class="room" id="f2r4"></div>
+					<div class="room" id="f2r5"></div> -->
+				</div>
+
+
+			</div>
+		</div>
+	</section>
+
+	<section class="room-example">
+		<div class="example-left"></div>
+		<div class="example-right"></div>
+	</section>
+	<section class="room-example">
+		<div class="example-left"></div>
+		<div class="example-right"></div>
+	</section>
+	<section class="room-example">
+		<div class="example-left"></div>
+		<div class="example-right"></div>
+	</section>
+
+	<footer>
+		
+	</footer>
+	<!-- <div id="home">
+		<a href="#welcome">HOME</a>
+	</div> -->
+
+	<script type="text/javascript">
+		var header = document.getElementById("floor-side");
+		var floorSelected = header.getElementsByClassName("floor-number");
+		for (var i = 0; i < floorSelected.length; i++) {
+			floorSelected[i].addEventListener("click", function() {
+				var current = document.getElementsByClassName("active");
+				if (current.length > 0) { 
+					current[0].className = current[0].className.replace(" active", "");
+					floorja = this.id;
+				}
+				this.className += " active";
+
+			});
+		}
+
+		function showFloor(floorNumber) {
+
+			document.getElementById(floorNumber).style.display = "block";
+			if (floorNumber=="floor1") {
+				document.getElementById("floor1-map").style.display = "block";
+				document.getElementById("floorM-map").style.display = "none";
+				document.getElementById("floor2-map").style.display = "none";
+				document.getElementById("floor3-map").style.display = "none";
+			} else if (floorNumber=="floorM") {
+				document.getElementById("floor1-map").style.display = "none";
+				document.getElementById("floorM-map").style.display = "block";
+				document.getElementById("floor2-map").style.display = "none";
+				document.getElementById("floor3-map").style.display = "none";
+			} else if (floorNumber=="floor2") {
+				document.getElementById("floor1-map").style.display = "none";
+				document.getElementById("floorM-map").style.display = "none";
+				document.getElementById("floor2-map").style.display = "block";
+				document.getElementById("floor3-map").style.display = "none";
+			} else {
+				document.getElementById("floor1-map").style.display = "none";
+				document.getElementById("floorM-map").style.display = "none";
+				document.getElementById("floor2-map").style.display = "none";
+				document.getElementById("floor3-map").style.display = "block";
+			}
+
+	}
+	function showDetail(roomNumber) {
+		document.getElementById("close-detail").style.display = "block";
+		document.getElementById("detail-box").style.width = "80%";
+		document.getElementById("detail-box").style.height = "70vh";
+	}
+
+	function exit() {
+		document.getElementById("close-detail").style.display = "none";
+		document.getElementById("detail-box").style.width = "0%";
+		document.getElementById("detail-box").style.height = "0%";
+	}
+
+</script>
+</body>
+</html>

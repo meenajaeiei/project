@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css?family=Kanit');
+
+body, html {
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	font-family: 'Kanit', sans-serif;
+}
+
+nav {
+	position: fixed;
+	width: 100%;
+	background-color: rgba(0,0,0,80%);
+	padding: 1em;
+	text-align: center;
+	z-index: 1;
+}
+nav a {
+	color: #FFF;
+	padding: 2em;
+}
+
+nav a:hover {
+	color: #a2a1a1;
+}
+
+
+a:link {
+	text-decoration: none;
+}
+
+#welcome {
+	background: url("img/it_background.jpeg") no-repeat;
+    height: 100%;
+    background-size: cover;
+}
+
+#floor-side {
+	width: 100px;
+	height: 100%;
+	background: #000;
+	position: absolute;
+	z-index: 2;
+	padding-top: 56px;
+}
+
+.floor-number {
+	width: 100px;
+	height: 100px;
+	font-size: 3em;
+	text-align: center;
+	color: #FFF;
+}
+
+.active, .floor-number:hover {
+	background: pink;
+}
+
+#floor {
+	position: relative;
+	top: 90px;
+	left: 18%;
+	width: 80%;
+	height: 82vh;
+}
+#floor1-map {
+	background: url("img/map-1.png") no-repeat;
+	height: 100%;
+	/*display: none;*/
+}
+
+#floorM-map {
+	background: url("img/map-M.png") no-repeat;
+	height: 100%;
+	display: none;
+}
+
+#floor2-map {
+	background: url("img/map-2.png") no-repeat;
+	height: 100%;
+	display: none;
+}
+
+#floor3-map {
+	background: url("img/map-3.png") no-repeat;
+	height: 100%;
+	display: none;
+}
+
+.room {
+	position: relative;
+	background: pink;
+	border:1px solid white;
+}
+
+.room:hover {
+	background: #ea899a;
+}
+
+#detail-box {
+	top:15%;
+	left: 5%;
+	width: 0%;
+	height: 0%;
+	background: blue;
+	position: absolute;
+	z-index: 1;
+	background: rgba(0,0,0,80%);
+	transition: 1s;
+}
+
+#close-detail {
+	font-size: 3em;
+	color: white;
+	text-align: right;
+	padding-right: 20px;
+	right: 50px;
+	display: none;
+}
+
+#f1r1 {
+	width: 107px;
+    height: 99px;
+    top: 59px;
+    left: 123px;
+	
+}
+
+#f1r2 {
+	width: 61px;
+    height: 133px;
+    top: 58px;
+    left: 162px;
+}
+
+#f1r3 {
+	width: 110px;
+    height: 110px;
+    top: -37px;
+    left: 844px;
+}
+
+#f1r4 {
+	width: 61px;
+    height: 68px;
+    top: -69px;
+    left: 380px;
+}
+
+#f1r5 {
+    width: 61px;
+    height: 140px;
+    top: -105px;
+    left: 893px;
+}
+
+#f2r1 {
+	background: blue;
+	width: 113px;
+	height: 106px;
+	top:46px;
+	left: 610px;
+	
+}
+
+#f2r2 {
+	background: blue;
+	width: 111px;
+	height: 104px;
+	top:-50px;
+	left: 119px;
+}
+
+#f2r3 {
+	background: blue;
+	width: 109px;
+	height: 100px;
+	bottom: 14px;
+	left: 856px;
+}
+
+#f2r4 {
+	background: blue;
+	width: 111px;
+	height: 276px;
+	top:-141px;
+	left: 116px;
+}
+
+#f2r5 {
+	background: blue;
+    width: 186px;
+    height: 80px;
+    top: -116px;
+    left: 200px;
+}
+
+
+/*#home {
+	width: 70px;
+	height: 70px;
+	background: pink;
+	color: #FFF;
+	right: 20px;
+	bottom: 20px;
+	text-align: center;
+	position: fixed;
+}*/
