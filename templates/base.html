@@ -11,7 +11,17 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<style>
+.navbar-nav>li>a {
+    padding-top: 0;
+    padding-bottom: 0;
+}
 
+.navbar-nav{
+  display:flex;
+  align-items:center;
+}
+</style>
 <body>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -23,9 +33,9 @@
       <li><a href="{% url "reservation_room" %}"> reserve room</a></li>
       <li><a href="{% url "reservation_status" %}">your reservation</a></li>
       {% if user.is_authenticated %}
-        <li> <button class="btn btn-danger navbar-btn">  <a href="{% url "logout" %}"> Logout</a></button></li>
+        <li><a href="{% url "logout" %}"> <button class="btn btn-danger navbar-btn">   Logout</button></a></li>
       {% else %}
-      <li> <button class="btn btn-success">  <a href="{% url "login" %}"> Login</a></button></li>
+      <li> <a href="{% url "login" %}"> <button class="btn btn-success navbar-btn">   Login</button></a></li>
       {% endif %}
 
     </ul>
