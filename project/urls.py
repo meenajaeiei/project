@@ -42,7 +42,8 @@ name='password_change_done'),
 
 path('reservation_room/' , views.room_detail , name= 'reservation_room'),
 path('reservation_status/' , views.getreservation , name= 'reservation_status'),
-path('reservation_manage/' , views.managereservation , name = "reservation_manage") ,
+path('reservation_manage/' , views.managereservation , name = "reservation_manage"), 
+path('reservation_map/', views.showmap , name = "reservation_map"),
 
 
 ]

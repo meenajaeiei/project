@@ -1,0 +1,7 @@
+path:hover{
+  fill:yellow;
+}
+
+path{
+  transition:all .5s ease;
+}

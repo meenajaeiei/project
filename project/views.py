@@ -51,13 +51,18 @@ def room_detail(request):
     if 'room' in request.GET and 'username' in request.GET:
 
         print(request.GET['room'])
-        o_room = room.objects.get(roomname = request.GET['room'])
-        o_room.status = "pending"
-        
+        o_room = room.objects.get(roomname = request.GET['room']) #ดึงค่าสถานะห้อง\
         user_obj = User.objects.get(username = request.GET['username'])
         user_obj = Employee.objects.get(id = user_obj.id)
-        reservation.objects.create_book(user_obj , o_room)
-        o_room.save()
+
+        
+        
+        if(o_room.status  == "pending"):
+            print("anti - double transaction")
+        else:
+            o_room.status = "pending" #ตั้งสถานะห้องเป็นpending
+            reservation.objects.create_book(user_obj , o_room)
+            o_room.save()
 
 
 
@@ -69,7 +74,10 @@ def room_detail(request):
     return render(request , 'blog/reservation_room.html' , {'rooms' : rooms})
 
 def test(request):
-    return render(request, "blog/test.html" , {})
+    return render(request, "blog/test.html" , {"range" : range(0, 100 , 1)})
+
+def showmap(request):
+    return render(request , "blog/reservation_map.html" , {})
 
 
 def managereservation(request):
