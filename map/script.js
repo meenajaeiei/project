@@ -40,14 +40,26 @@ for (var i = 0; i < floorSelected.length; i++) {
 // }
 
 function showDetail(roomNumber) {
-	console.log(roomNumber);
-	document.getElementById("room-number").innerHTML = roomNumber;
 	document.getElementById("close-detail").style.display = "block";
-	document.getElementById("room-number").style.display = "block";
-	document.getElementById("status").style.display = "block";
-	document.getElementById("reservation").style.display = "block";
+	var roomNumberID = document.getElementById("room-number");
+	var statusID = document.getElementById("status");
+	var reservationID = document.getElementById("reservation");
+	
+	roomNumberID.innerHTML = roomNumber;
+	roomNumberID.style.display = "block";
+	statusID.style.display = "block";
+	reservationID.style.display = "block";
+
+	var status = statusID.innerText;
+	if(status == "unavilable") {
+		reservationID.disabled = true;
+	}
+	
 	document.getElementById("detail-box").style.width = "40%";
 	document.getElementById("detail-box").style.height = "50vh";
+	
+
+
 
 }
 
@@ -59,17 +71,3 @@ function exit() {
 	document.getElementById("detail-box").style.width = "0%";
 	document.getElementById("detail-box").style.height = "0%";
 }
-
-// $("path, circle").hover(function(e) {
-//   $('#info-box').css('display','block');
-//   $('#info-box').html($(this).data('info'));
-// });
-
-// $("path, circle").mouseleave(function(e) {
-//   $('#info-box').css('display','none');
-// });
-
-// $(document).mousemove(function(e) {
-//   $('#info-box').css('top',e.pageY-$('#info-box').height()-30);
-//   $('#info-box').css('left',e.pageX-($('#info-box').width())/2);
-// }).mouseover();
