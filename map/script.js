@@ -1,45 +1,51 @@
-
 var header = document.getElementById("floor-side");
 var floorSelected = header.getElementsByClassName("floor-number");
+var allRooms = document.querySelectorAll("g")[0];
 for (var i = 0; i < floorSelected.length; i++) {
 	floorSelected[i].addEventListener("click", function() {
 		var current = document.getElementsByClassName("active");
 		if (current.length > 0) { 
 			current[0].className = current[0].className.replace(" active", "");
-			floorja = this.id;
 		}
 		this.className += " active";
 
 	});
 }
 
-// function showFloor(floorNumber) {
-// 	console.log(floorNumber);
-	// document.getElementById(floorNumber).style.display = "block";
-	// if (floorNumber=="floor1") {
-	// 	document.getElementById("floor1-map").style.display = "block";
-	// 	document.getElementById("floorM-map").style.display = "none";
-	// 	document.getElementById("floor2-map").style.display = "none";
-	// 	document.getElementById("floor3-map").style.display = "none";
-	// } else if (floorNumber=="floorM") {
-	// 	document.getElementById("floor1-map").style.display = "none";
-	// 	document.getElementById("floorM-map").style.display = "block";
-	// 	document.getElementById("floor2-map").style.display = "none";
-	// 	document.getElementById("floor3-map").style.display = "none";
-	// } else if (floorNumber=="floor2") {
-	// 	document.getElementById("floor1-map").style.display = "none";
-	// 	document.getElementById("floorM-map").style.display = "none";
-	// 	document.getElementById("floor2-map").style.display = "block";
-	// 	document.getElementById("floor3-map").style.display = "none";
-	// } else {
-	// 	document.getElementById("floor1-map").style.display = "none";
-	// 	document.getElementById("floorM-map").style.display = "none";
-	// 	document.getElementById("floor2-map").style.display = "none";
-	// 	document.getElementById("floor3-map").style.display = "block";
-	// }
-// }
+function showFloor(floorNumber) {
+	console.log(floorNumber);
+
+	//set all block map to gray
+	for(i=0; i<allRooms.childElementCount; i++){
+		allRooms.children[i].style.fill = "gray";
+		allRooms.children[i].style.pointerEvents = "none";
+	}
+
+	//set selected floor to change color active
+	var floor = document.getElementsByClassName(floorNumber);
+	for(i=0; i<floor.length; i++) {
+		floor[i].style.fill = "#ffbacd";
+		floor[i].style.pointerEvents = "auto";
+	}
+
+	if(floorNumber == "floor-1" || floorNumber == "floor-m") {
+		document.getElementById("floor-1-m-map").style.display = "block";
+		document.getElementById("floor-2-map").style.display = "none";
+		document.getElementById("floor-3-map").style.display = "none";
+	} else if (floorNumber == "floor-2") {
+		document.getElementById("floor-2-map").style.display = "block";
+		document.getElementById("floor-1-m-map").style.display = "none";
+		document.getElementById("floor-3-map").style.display = "none";
+	} else {
+		document.getElementById("floor-3-map").style.display = "block";
+		document.getElementById("floor-1-m-map").style.display = "none";
+		document.getElementById("floor-2-map").style.display = "none";
+	}
+
+}
 
 function showDetail(roomNumber) {
+
 	document.getElementById("close-detail").style.display = "block";
 	var roomNumberID = document.getElementById("room-number");
 	var statusID = document.getElementById("status");
@@ -52,7 +58,7 @@ function showDetail(roomNumber) {
 
 	var status = statusID.innerText;
 	if(status == "unavilable") {
-		reservationID.disabled = true;
+		reservationID.click(false);
 	}
 	
 	document.getElementById("detail-box").style.width = "40%";

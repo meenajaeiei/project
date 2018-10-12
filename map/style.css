@@ -65,31 +65,19 @@ a:link {
 
 .not-active {
 	pointer-events: none;
+	/*fill: orange;*/
 }
 
-#floor1-map {
-	width: 100%;
-	height: 80%;
-	/*background: url("img/map-1.png") no-repeat;
-	height: 100%;
-	display: none;*/
-}
-
-#floorM-map {
-	background: url("img/map-M.png") no-repeat;
-	height: 100%;
+#floor1-m-map {
 	display: none;
 }
 
+
 #floor2-map {
-	background: url("img/map-2.png") no-repeat;
-	height: 100%;
 	display: none;
 }
 
 #floor3-map {
-	background: url("img/map-3.png") no-repeat;
-	height: 100%;
 	display: none;
 }
 
