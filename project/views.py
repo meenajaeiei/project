@@ -76,9 +76,9 @@ def room_detail(request):
 def test(request):
     return render(request, "blog/test.html" , {"range" : range(0, 100 , 1)})
 
-def showmap(request):
+def showmap_1(request):
     
-    return render(request , "blog/reservation_map.html" , {"rooms" : room.objects.all()})
+    return render(request , "blog/reservation_map_1.html" , {"rooms" : room.objects.all()})
 
 
 def managereservation(request):
