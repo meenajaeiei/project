@@ -91,11 +91,11 @@
 
 					<div id="detail-box">
 						<div id="close-detail" onclick="exit()">X</div>
-						<p id="room-number">Room Number</p>
-						<p id="status">cc</p><br>
+						<div id="room-number">Room Number</div>
+						<div id="status">cc</div><br>
 						<p> status: <div id="status">cc</div></p>
-						<p class="datetime">Begin Reserve : <input type="datetime-local" name="beginreservation" value=""></p>
-						<p class="datetime">End Reserve : <input type="datetime-local" name="endreservation" value=""></p>
+						<p class="datetime">Begin Reserve : <br><input type="datetime-local" name="beginreservation" value=""><br><br></p>
+						<p class="datetime">End Reserve : <br><input type="datetime-local" name="endreservation" value=""></p>
 						<form action=""   method="GET">
 							<button  id = "eiei" type="submit" value="test" name = "room" >Reserve</button>
 							<input type="hidden" name="username" value="{{user.username}}" />

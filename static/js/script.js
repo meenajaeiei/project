@@ -36,7 +36,7 @@ function showDetail(roomNumber , roomstatus) {
 	var roomNumberID = document.getElementById("room-number");
 	var statusID = document.getElementById("status");
 	var datetime = document.getElementsByClassName("datetime");
-	
+	var buttonID = document.getElementById("eiei");
 	roomNumberID.innerHTML = roomNumber;
 	statusID.innerHTML = roomstatus;
 	
@@ -45,12 +45,12 @@ function showDetail(roomNumber , roomstatus) {
 	}
 	roomNumberID.style.display = "block";
 	statusID.style.display = "block";
-
+	buttonID.style.display = "block";
 	var status = statusID.innerText;
 	
-	document.getElementById("eiei").value = roomNumber;
-	document.getElementById("detail-box").style.width = "40%";
-	document.getElementById("detail-box").style.height = "55vh";
+	buttonID = roomNumber;
+	document.getElementById("detail-box").style.width = "45%";
+	document.getElementById("detail-box").style.height = "65vh";
 	
 
 
@@ -62,9 +62,10 @@ function exit() {
 	document.getElementById("room-number").style.display = "none";
 	var datetime = document.getElementsByClassName("datetime");
 	for(i=0;i<datetime.length; i++) {
-		datetime[i].style.display = "block";
+		datetime[i].style.display = "none";
 	}
 	document.getElementById("status").style.display = "none";
+	document.getElementById("eiei").style.display = "none";
 	document.getElementById("detail-box").style.width = "0%";
 	document.getElementById("detail-box").style.height = "0%";
 }
