@@ -159,9 +159,13 @@ button[type="submit"] {
 	border: 12px;
 	color: #000;
 	padding: 20px;
+<<<<<<< Updated upstream
 	display: none;
 	font-size: 16px;
 
+=======
+	display: block;
+>>>>>>> Stashed changes
 }
 
 path {

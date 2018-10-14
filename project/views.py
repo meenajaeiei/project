@@ -78,6 +78,9 @@ def test(request):
 
 def showmap_1(request):
     
+    if 'beginreservation' in request.GET and 'username' in request.GET and 'room' in request.GET and 'endreservation' in request.GET:
+        print((request.GET["beginreservation"]))
+    
     return render(request , "blog/reservation_map_1.html" , {"rooms" : room.objects.all()})
 
 
