@@ -1,15 +1,18 @@
-var header = document.getElementById("floor-side");
-var allRooms = document.querySelectorAll("g")[0];
-for (var i = 0; i < floorSelected.length; i++) {
-	floorSelected[i].addEventListener("click", function() {
-		var current = document.getElementsByClassName("active");
-		if (current.length > 0) { 
-			current[0].className = current[0].className.replace(" active", "");
-		}
-		this.className += " active";
+//set global variable
 
-	});
-}
+
+// var header = document.getElementById("floor-side");
+// var allRooms = document.querySelectorAll("g")[0];
+// for (var i = 0; i < floorSelected.length; i++) {
+// 	floorSelected[i].addEventListener("click", function() {
+// 		var current = document.getElementsByClassName("active");
+// 		if (current.length > 0) { 
+// 			current[0].className = current[0].className.replace(" active", "");
+// 		}
+// 		this.className += " active";
+
+// 	});
+// }
 
 function showFloor(floorNumber) {
 
@@ -36,7 +39,7 @@ function showDetail(roomNumber , roomstatus) {
 	var statusID = document.getElementById("status");
 	var datetime = document.getElementsByClassName("datetime");
 	var buttonID = document.getElementById("eiei");
-	document.getElementById("demo").attributes = "SADSADSAd";
+	document.getElementById("demo").value =  roomNumber;
 	roomNumberID.innerHTML = roomNumber;
 	statusID.innerHTML = roomstatus;
 	
