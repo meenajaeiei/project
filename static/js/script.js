@@ -1,5 +1,4 @@
 var header = document.getElementById("floor-side");
-var floorSelected = header.getElementsByClassName("floor-number");
 var allRooms = document.querySelectorAll("g")[0];
 for (var i = 0; i < floorSelected.length; i++) {
 	floorSelected[i].addEventListener("click", function() {
@@ -37,6 +36,7 @@ function showDetail(roomNumber , roomstatus) {
 	var statusID = document.getElementById("status");
 	var datetime = document.getElementsByClassName("datetime");
 	var buttonID = document.getElementById("eiei");
+	document.getElementById("demo").attributes = "SADSADSAd";
 	roomNumberID.innerHTML = roomNumber;
 	statusID.innerHTML = roomstatus;
 	
@@ -48,7 +48,9 @@ function showDetail(roomNumber , roomstatus) {
 	buttonID.style.display = "block";
 	var status = statusID.innerText;
 	
-	buttonID = roomNumber;
+
+
+
 	document.getElementById("detail-box").style.width = "45%";
 	document.getElementById("detail-box").style.height = "65vh";
 	

@@ -93,12 +93,15 @@ class room(models.Model):
         return self.roomname
 
 class BookManager(models.Manager):
-    def create_book(self, student ,  room):
+    def create_book(self, student ,  room ,begin_reserve , end_reserve):
         reservation = self.create(
         student = student , #Employee.objects.get(username = "mhee") ,
         #teacher = teacher , #Employee.objects.get(username = "mhee2") ,
         room = room , #room.objects.get(roomname = "M16"),
-        status = "pending"
+        status = "pending",
+        duration_begin = begin_reserve,
+        duration_end = end_reserve,
+        day_of_reserve =  timezone.now()
         )
         # do something with the book
         return reservation
