@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+
 {% load static %}
 
 {% block content %}
@@ -16,15 +16,12 @@
 
 
 <body>
+		{% include "base.html" %}
 
 	
+		
+		{% include "blog/nav_side.html" %}  <!--  <<< this line is navbar  -->
 
-		<div class="row">
-			<div id="floor-side">
-				<a href="../reservation_map_1.html"><div class="floor-number active">1</div></a>
-				<a href="../reservation_map_2.html"><div class="floor-number">2</div></a>
-				<a href="../reservation_map_3.html"><div class="floor-number">3</div></a>
-			</div>
 			<div id="floor" class="col">
 
 				<div id="floor-1-m-map">
@@ -76,34 +73,19 @@
 						</g>
 					
 						<text transform="matrix(0.9388 0 0 1 444.5 117.0723)" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="45.7116">Auditorium</text>
-<text transform="matrix(1.0632 0 0 1 752.5078 456.752)" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="51.3583">Hall</text>
-<text transform="matrix(1 0 0 1 427.9736 717.5)" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="36">M23</text>
-<text transform="matrix(1 0 0 1 248.9736 717.5)" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="36">M22</text>
-<text transform="matrix(1 0 0 1 76.9736 717.5)" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="36">M21</text>
-<text transform="matrix(1.1771 0 0 1 248.9736 289.2051)" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="36">M03</text>
-<text transform="matrix(1.138 0 0 1 76.9736 288.4351)" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="36">M04</text>
-<text transform="matrix(0.9493 0 0 1 401 276.5)" enable-background="new    "><tspan x="0" y="0" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="30.495">register</tspan><tspan x="0" y="36.594" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="30.495">room</tspan></text>
-<text transform="matrix(1.0178 0 0 1 733 90.9438)"><tspan x="0" y="0" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="35.8665">Auditorium</tspan><tspan x="0" y="43.04" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="35.8665">  Entrance</tspan></text>
-<text transform="matrix(1.4356 0 0 1 583 286.5107)" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="32.9592">111</text>
-<text transform="matrix(1.0619 0 0 1 979.5 353.0996)" enable-background="new    "><tspan x="0" y="0" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="31.2754">Common</tspan><tspan x="0" y="37.53" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="31.2754">Room</tspan></text>
+						<text transform="matrix(1.0632 0 0 1 752.5078 456.752)" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="51.3583">Hall</text>
+						<text transform="matrix(1 0 0 1 427.9736 717.5)" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="36">M23</text>
+						<text transform="matrix(1 0 0 1 248.9736 717.5)" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="36">M22</text>
+						<text transform="matrix(1 0 0 1 76.9736 717.5)" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="36">M21</text>
+						<text transform="matrix(1.1771 0 0 1 248.9736 289.2051)" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="36">M03</text>
+						<text transform="matrix(1.138 0 0 1 76.9736 288.4351)" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="36">M04</text>
+						<text transform="matrix(0.9493 0 0 1 401 276.5)" enable-background="new    "><tspan x="0" y="0" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="30.495">register</tspan><tspan x="0" y="36.594" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="30.495">room</tspan></text>
+						<text transform="matrix(1.0178 0 0 1 733 90.9438)"><tspan x="0" y="0" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="35.8665">Auditorium</tspan><tspan x="0" y="43.04" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="35.8665">  Entrance</tspan></text>
+						<text transform="matrix(1.4356 0 0 1 583 286.5107)" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="32.9592">111</text>
+						<text transform="matrix(1.0619 0 0 1 979.5 353.0996)" enable-background="new    "><tspan x="0" y="0" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="31.2754">Common</tspan><tspan x="0" y="37.53" fill="#00F284" font-family="'MyriadPro-Regular'" font-size="31.2754">Room</tspan></text>
 					</svg>
 
-					<div id="detail-box">
-						<div id="close-detail" onclick="exit()">X</div>
-						<div id="room-number">Room Number</div>
-						<div id="status">cc</div><br>
-						<p> status: <div id="status">cc</div></p>
-						
-						<form action=""   method="GET">
-							<input type="hidden" id ="demo" name="room" value="" />
-							<p class="datetime">Begin Reserve : <br><input type="datetime-local" name="beginreservation"  value="" ><br><br></p>
-							<p class="datetime">End Reserve : <br><input type="datetime-local" name="endreservation" value=""></p>
-							<button  id = "eiei" type="submit" value="test"  >Reserve</button>
-							<input type="hidden" name="username" value="{{user.username}}" />
 
-							
-						</form>
-					</div>
 
 				</div>
 

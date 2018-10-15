@@ -88,6 +88,7 @@ class room(models.Model):
     height = models.IntegerField(default = 0)
     slug = models.SlugField(max_length=100 , default = 'roomname')
     svgpath = models.CharField(max_length = 3000 , default = "PATH")
+    floor = models.IntegerField(default = 1)
 
     def __str__(self):
         return self.roomname
