@@ -14,23 +14,23 @@
 // 	});
 // }
 
-function showFloor(floorNumber) {
+// function showFloor(floorNumber) {
 
-	if(floorNumber == "floor-1" || floorNumber == "floor-m") {
-		document.getElementById("floor-1-m-map").style.display = "block";
-		document.getElementById("floor-2-map").style.display = "none";
-		document.getElementById("floor-3-map").style.display = "none";
-	} else if (floorNumber == "floor-2") {
-		document.getElementById("floor-2-map").style.display = "block";
-		document.getElementById("floor-1-m-map").style.display = "none";
-		document.getElementById("floor-3-map").style.display = "none";
-	} else {
-		document.getElementById("floor-3-map").style.display = "block";
-		document.getElementById("floor-1-m-map").style.display = "none";
-		document.getElementById("floor-2-map").style.display = "none";
-	}
+// 	if(floorNumber == "floor-1" || floorNumber == "floor-m") {
+// 		document.getElementById("floor-1-m-map").style.display = "block";
+// 		document.getElementById("floor-2-map").style.display = "none";
+// 		document.getElementById("floor-3-map").style.display = "none";
+// 	} else if (floorNumber == "floor-2") {
+// 		document.getElementById("floor-2-map").style.display = "block";
+// 		document.getElementById("floor-1-m-map").style.display = "none";
+// 		document.getElementById("floor-3-map").style.display = "none";
+// 	} else {
+// 		document.getElementById("floor-3-map").style.display = "block";
+// 		document.getElementById("floor-1-m-map").style.display = "none";
+// 		document.getElementById("floor-2-map").style.display = "none";
+// 	}
 
-}
+// }
 
 function showDetail(roomNumber , roomstatus) {
 
