@@ -1,6 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Kanit');
 
 
+
+.floor-1-pending{
+	fill:#FF0000;
+}
+.floor-1-pending:hover{
+	fill: #FF0000;
+}
+
 svg{ 
 	width: 1000px;
 	position: absolute;

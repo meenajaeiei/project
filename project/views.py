@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from blog.models import room , Employee , User , reservation
 from django.contrib import messages
 from datetime import datetime
+import pytz
 
 @login_required
 def changepass(request):
@@ -101,7 +102,7 @@ def reserve_room(STDusername , roomarg , period_s , period_n): #period_s = begin
 def showmap_1(request):
     
     if 'beginreservation' in request.GET and 'username' in request.GET and 'room' in request.GET and 'endreservation' in request.GET:
-        reserve_room(request.GET["username"] , request.GET['room'] , request.GET['beginreservation'] , request.GET['endreservation'] )
+        reserve_room(request.GET["username"] , request.GET['room'] , strtodate(request.GET['beginreservation']) , strtodate(request.GET['endreservation']) )
         # o_room = room.objects.get(roomname = request.GET['room']) #ดึงค่าสถานะห้อง\
         # user_obj = User.objects.get(username = request.GET['username'])
         # user_obj = Employee.objects.get(id = user_obj.id)
@@ -113,8 +114,25 @@ def showmap_1(request):
         #     reservation.objects.create_book(user_obj , o_room , strtodate(request.GET['beginreservation']) , strtodate(request.GET['endreservation'])) 
         #     #def create_book(self, student ,  room ,begin_reserve , end_reserve):
         #     o_room.save()
-
     
+    r_check = []
+    if 'start_time' in request.GET and 'end_time' in request.GET:
+        start_time = strtodate(request.GET["start_time"]).replace(tzinfo = pytz.UTC)
+        end_time = strtodate(request.GET["end_time"]).replace(tzinfo = pytz.UTC)
+        #datetime.datetime.now().strftime("%y-%m-%d--%H:%M")
+        for r_obj in reservation.objects.all():
+            print("we_rent on" , r_obj.duration_begin , "|| you finding start " , start_time , " end" ,end_time)
+            if(r_obj.duration_begin > start_time and r_obj.duration_begin < end_time and r_obj.room.floor == 1):
+                r_check.append(r_obj.room)
+        
+        print(r_check)
+
+        return render(request , "blog/reservation_map_1.html" , 
+        {"end_time" : end_time ,
+        "start_time":start_time,
+        "rooms" : room.objects.filter(floor=1) , 
+        "r_check": r_check })
+
     return render(request , "blog/reservation_map_1.html" , {"rooms" : room.objects.filter(floor=1)})
 
 
