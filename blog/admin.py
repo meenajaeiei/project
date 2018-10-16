@@ -22,3 +22,6 @@ admin.site.register(room)
 @admin.register(reservation)
 class reservationAdmin(admin.ModelAdmin):
     list_display = ('id' , 'student' ,'room', 'day_of_reserve' , 'duration_begin' ,'duration_end' ,'status'  , 'teacher')
+
+
+//test
