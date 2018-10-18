@@ -7,6 +7,8 @@ from blog.models import room , Employee , User , reservation
 from django.contrib import messages
 from datetime import datetime
 
+username = ""
+
 @login_required
 def changepass(request):
      return render(request, 'blog/password_change_form.html', {})
@@ -22,6 +24,8 @@ def home_page(request):
         print("login")
         usernamex = request.POST['username']
         password = request.POST['password']
+        global username
+        username = usernamex
         user = authenticate(request, username=usernamex, password=password)
 
         if user is not None:
@@ -30,8 +34,6 @@ def home_page(request):
             emp_id = User.objects.get(username = usernamex)
             emp = Employee.objects.get(id = emp_id.id)
             request.session['username'] = usernamex 
-
-
             return render(request, 'blog/home.html' , {"emp":emp})
         else:
             # Return an 'invalid login' error message.
@@ -134,17 +136,31 @@ def showmap_3(request):
 
 
 def managereservation(request):
+    u = request.session['username']
 
-    temp_role = str (Employee.objects.get(id = User.objects.get(username = request.session['username']).id).role)
-
-    ei1 = "teacher"
-    ei2 = "staff"
-    if (temp_role == ei1 or temp_role == ei2 ):
-
+    if request.method == 'POST':
+        teacher = Employee.objects.get(id = User.objects.get(username = u).id)
+        reserve_id = int(request.POST['action'].split()[0])
+        action = request.POST['action'].split()[1]
+        reserve = reservation.objects.get(id = reserve_id)
         
+        if (action == "a"):
+            reserve.status = "accepted"
+            reserve.teacher = teacher
+            reserve.save()
+        elif (action == "d"):
+            reserve.status = "denied"
+            reserve.teacher = teacher
+            reserve.save()
+
+    temp_role = str (Employee.objects.get(id = User.objects.get(username = u).id).role)
+    teacher_role = "teacher"
+    staff_role = "staff"
+    if (temp_role == teacher_role or temp_role == staff_role ):        
         return render(request , "blog/reservation_manage.html",  {"res": reservation.objects.filter(status = "pending")} )
     else:
         return render(request, "blog/home.html" , {})
+    
 
 
 def getreservation(request):

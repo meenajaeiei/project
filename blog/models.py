@@ -137,7 +137,7 @@ class reservation(models.Model):
 
     def cancel_book(self):
         room_obj = self.room
-        room_obj.status = "yes"
+        room_obj.status = "denied"
         room_obj.save()
         self.delete()
         print("hi")
