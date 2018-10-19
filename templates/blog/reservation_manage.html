@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
         {% for re in res %}
         <form action="#" method="POST">
@@ -11,9 +10,13 @@
                 <li> Date : {{ re.day_of_reserve }} </li>
                 <li>{{ re.status }}</li>
             </h4>
-            {{ re.id }}
-            <button onclick="acceptButton" value="{{ re.id }} a" name="action">Accept</button>
+            <button onclick="acceptButton()" value="{{ re.id }} a" name="action">Accept</button>
             <button value="{{ re.id }} d" name="action">Denied</button>
         </form>
         {% endfor %}
+    <script>
+        function acceptButton(){
+            alert('Are you sure ?');
+        }
+    </script>
 {% endblock %}

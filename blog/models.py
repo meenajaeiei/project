@@ -124,6 +124,8 @@ class BookManager(models.Manager):
 class reservation(models.Model):
     student = models.ForeignKey(Employee, related_name = "student" , on_delete=models.CASCADE ,blank = True,null=True)
     teacher = models.ForeignKey(Employee, related_name = "teacher" , on_delete=models.CASCADE ,blank = True,null=True)
+    # staff = models.ForeignKey(Employee, related_name = "staff" , on_delete=models.CASCADE ,blank = True,null=True)
+    
     room = models.ForeignKey(room , related_name = "room" , on_delete=models.CASCADE)
     status_list = (("pending" , "pending"), ("accepted" , "accepted") , ("denied" , "denied") )
     status = models.CharField(max_length = 10 , default = 'pending', choices=status_list)

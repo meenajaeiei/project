@@ -7,7 +7,6 @@ from blog.models import room , Employee , User , reservation
 from django.contrib import messages
 from datetime import datetime
 
-username = ""
 
 @login_required
 def changepass(request):
@@ -24,8 +23,6 @@ def home_page(request):
         print("login")
         usernamex = request.POST['username']
         password = request.POST['password']
-        global username
-        username = usernamex
         user = authenticate(request, username=usernamex, password=password)
 
         if user is not None:
@@ -139,17 +136,18 @@ def managereservation(request):
     u = request.session['username']
 
     if request.method == 'POST':
-        teacher = Employee.objects.get(id = User.objects.get(username = u).id)
+        teacher = Employee.objects.get(user = User.objects.get(username = u))
+        print("Teacher",teacher.firstname)
         reserve_id = int(request.POST['action'].split()[0])
         action = request.POST['action'].split()[1]
         reserve = reservation.objects.get(id = reserve_id)
         
         if (action == "a"):
-            reserve.status = "accepted"
+            # reserve.status = "accepted"
             reserve.teacher = teacher
             reserve.save()
         elif (action == "d"):
-            reserve.status = "denied"
+            # reserve.status = "denied"
             reserve.teacher = teacher
             reserve.save()
 
