@@ -165,11 +165,11 @@ h2.slide-right {
 
 #detail-box {
 	top: 20%;
-	left: 25%;
+	left: 30%;
 	width: 0;
 	height: 0;
 	position: relative;
-	z-index: 1;
+	z-index: 2;
 	background: rgba(0,0,0,80%);
 	transition: 1s;
 	padding-left: 2%;
@@ -205,7 +205,7 @@ h2.slide-right {
 #detail-box input[type=date], #detail-box input[type=time] {
 	display: none;
 }
-button#eiei {
+button#reserve {
 	margin: 30px 0;
 	background-color: #fae39c;
 	border: 12px;

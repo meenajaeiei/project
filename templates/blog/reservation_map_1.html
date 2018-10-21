@@ -23,7 +23,7 @@
 		<a href="#welcome">HOME</a>
 		<a href="#view-floor">RESERVE ROOM</a>
 		<a href="">YOUR RESERVE</a>
-		<a href="login.html">LOGIN</a>
+		<a href="../login">LOGIN</a>
 	</nav>
 
 	<div name="header">
@@ -149,9 +149,7 @@
 			</svg>
 				</div>
 			</div>
-		</div>
-
-			<div id="detail-box">
+	<div id="detail-box">
 				<div id="close-detail" onclick="exit()">X</div>
 				<div id="room-number">Room Number</div><br>
 				<p> status: <div id="status">status here</div></p><br>
@@ -164,14 +162,11 @@
 					<p>End Reserve : </p><br>
 					<input class="datetime" type="date" value="2018-12-25" name="date-end">
 					<input class="datetime" type="time" value="17:00" name="time-end"><br>
-					<button id="eiei" type="submit" value="">Reserve</button>
+					<button id="reserve" type="submit" value="">Reserve</button>
 					<input type="hidden" name="username" value="{{user.username}}" />
 
 				</form>
 			</div>
-
-		</div>
-	</div>
 </section>
 
 </body>
