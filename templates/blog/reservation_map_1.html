@@ -65,12 +65,12 @@
 				<h1>FLOOR <div id="floor-number">1 <!-- ตรงนี้คือถ้าเปลี่ยนหน้าเลขก็จะเปลี่ยน --></div> </h1>
 				<form action=""   method="GET">	
 					<div class="start-time">
-						<input type="date" value="2018-12-25" name="date-start">
-						<input type="time" value="16:00" name="time-start">
+						<input type="date" value="2018-12-25" name="check-date-start">
+						<input type="time" value="16:00" name="check-time-start">
 					</div>
 					<div class="end-time">
-						<input type="date" value="2018-12-25" name="date-end">
-						<input type="time" value="17:00" name="time-end">
+						<input type="date" value="2018-12-25" name="check-date-end">
+						<input type="time" value="17:00" name="check-time-end">
 						<button id="checking_btn" type="submit" value="">check</button>
 						{% if start_time != end_time %}
 						You search reservation time between {{start_time}} to {{end_time}}
@@ -88,6 +88,7 @@
 			
 			
 			<div class="map-image">
+				
 				<div id="floor-1-m-map">
 					<svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid meet">
 				<g transform="translate(0.000000,800.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="#FFF">
@@ -157,11 +158,11 @@
 				<form action="" method="GET">
 					<input type="hidden" id ="demo" name="room" value="" />
 					<p>Begin Reserve : </p><br>
-					<input class="datetime" type="date" value="2018-12-25" name="date-start">
-					<input class="datetime"type="time" value="16:00" name="time-start"><br>
+					<input class="datetime" type="date" value="2018-1-1" name="res-date-start">
+					<input class="datetime"type="time" value="16:00" name="res-time-start"><br>
 					<p>End Reserve : </p><br>
-					<input class="datetime" type="date" value="2018-12-25" name="date-end">
-					<input class="datetime" type="time" value="17:00" name="time-end"><br>
+					<input class="datetime" type="date" value="2018-12-25" name="res-date-end">
+					<input class="datetime" type="time" value="17:00" name="res-time-end"><br>
 					<button id="reserve" type="submit" value="">Reserve</button>
 					<input type="hidden" name="username" value="{{user.username}}" />
 

@@ -1,23 +1,17 @@
+{% extends 'blog/mainhead.html' %}
 {% load static %}
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-<head>
-    <link rel="stylesheet"  href="{% static "css/reservation_map_1.css" %}">
-	<script  src="{% static "js/script.js" %}"></script>
-</head>
+{% block content %}
 <body>
-        {% include "base.html" %}
-        {% include "blog/nav_side.html" %}  <!--  <<< this line is navbar  -->
-
-    <div id="floor-2-map">
+    
+        
     
         <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1000" preserveAspectRatio="xMidYMid meet">
             <g transform="translate(0.000000,800.000000) scale(0.100000,-0.100000)"
             fill="#000000" stroke="none">
-
+            
         {% for room in rooms %}
             
             {% if room.status  == "no" %}
@@ -89,32 +83,5 @@
         <text transform="matrix(1 0 0 1 367 639)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="36">225</text>
         <text transform="matrix(1 0 0 1 487 639)" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="36">226</text>
     </svg>
-
-    <div id="detail-box">
-            <div id="close-detail" onclick="exit()">X</div>
-            <div id="room-number">Room Number</div>
-            <div id="status">cc</div><br>
-            <p> status: <div id="status">cc</div></p>
-            
-            <form action=""   method="GET">
-                <input type="hidden" id ="demo" name="room" value="" />
-                <p class="datetime">Begin Reserve : <br><input type="datetime-local" name="beginreservation"  value="" ><br><br></p>
-                <p class="datetime">End Reserve : <br><input type="datetime-local" name="endreservation" value=""></p>
-                <button  id = "eiei" type="submit" value="test"  >Reserve</button>
-                <input type="hidden" name="username" value="{{user.username}}" />
-
-                
-            </form>
-        </div>
-    </div>
+    {% endblock %}
 </body>
-
-<style>
-    #f2 { 
-    background-color: #fae39c;
-}
-.active {
-	background: none;
-}
-
-</style>
