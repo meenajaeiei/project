@@ -19,12 +19,7 @@
 
 <body>
 	<!-- {% include "base.html" %} -->
-	<nav>
-		<a href="#welcome">HOME</a>
-		<a href="#view-floor">RESERVE ROOM</a>
-		<a href="">YOUR RESERVE</a>
-		<a href="../login">LOGIN</a>
-	</nav>
+	{% include "blog/nav_side.html" %} 
 
 	<div name="header">
 		<section id="welcome">
@@ -62,7 +57,7 @@
 	<div name="map">
 		<section id="view-floor">
 			<div class="map-header">
-				<h1>FLOOR <div id="floor-number">1 <!-- ตรงนี้คือถ้าเปลี่ยนหน้าเลขก็จะเปลี่ยน --></div> </h1>
+					<!-- <h1>FLOOR <div id="floor-number">1 </div> </h1> -->
 				<form action=""   method="GET">	
 					<div class="start-time">
 						<input type="date" value="2018-12-25" name="check-date-start">
@@ -80,8 +75,8 @@
 			</div>
 
 			<div class="select-map">
-				<h2 class="slide-left"> < </h2>
-				<h2 class="slide-right"> > </h2>
+				<h2 class="slide-left"> <a href="{% url "reservation_map_3" %}"><</a>  </h2>
+				<h2 class="slide-right"><a href="{% url "reservation_map_2" %}">></a> </h2>
 				<div class="select-map"></div>
 			</div>
 

@@ -17,14 +17,7 @@
 
 
 <body>
-	<!-- {% include "base.html" %} -->
-	<nav>
-		<a href="#welcome">HOME</a>
-		<a href="#view-floor">RESERVE ROOM</a>
-		<a href="">YOUR RESERVE</a>
-		<a href="../login">LOGIN</a>
-	</nav>
-
+	 {% include "blog/nav_side.html" %} 
 	<div name="header">
 		<section id="welcome">
 			<img id="welcome" src="{% static "/img/it_background_black.png" %}">
@@ -63,7 +56,7 @@
 	<div name="map">
 		<section id="view-floor">
 			<div class="map-header">
-				
+				 <!-- <h1>FLOOR <div id="floor-number">1  </div> </h1>  -->
 				<form action=""   method="GET">	
 					<div class="start-time">
 						<input type="date" value="2018-12-25" name="check-date-start">
