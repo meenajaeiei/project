@@ -8,15 +8,18 @@
             <h4>
                 <li> Name : {{ re.student }} </li>
                 <li> Date : {{ re.day_of_reserve }} </li>
-                <li>{{ re.status }}</li>
+                <li>Status : {{ re.status }}</li>
             </h4>
-            <button onclick="acceptButton()" value="{{ re.id }} a" name="action">Accept</button>
-            <button value="{{ re.id }} d" name="action">Denied</button>
+            <button onclick="acceptButton()" value="{{ re.id }} accepted" name="action">Accept</button>
+            <button value="{{ re.id }} denied" name="action">Denied</button>
         </form>
         {% endfor %}
     <script>
         function acceptButton(){
-            alert('Are you sure ?');
+            confirm('Are you sure ?');
+        }
+        function deniedButton(){
+            
         }
     </script>
 {% endblock %}

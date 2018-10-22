@@ -24,12 +24,12 @@ def home_page(request):
         usernamex = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=usernamex, password=password)
-
+        print(usernamex)
         if user is not None:
             login(request, user)
             # Redirect to a success page.
             emp_id = User.objects.get(username = usernamex)
-            emp = Employee.objects.get(id = emp_id.id)
+            emp = Employee.objects.get(user = emp_id) #(id = emp_id.id)
             request.session['username'] = usernamex 
             return render(request, 'blog/home.html' , {"emp":emp})
         else:
@@ -136,26 +136,20 @@ def managereservation(request):
     u = request.session['username']
 
     if request.method == 'POST':
-        teacher = Employee.objects.get(user = User.objects.get(username = u))
-        print("Teacher",teacher.firstname)
-        reserve_id = int(request.POST['action'].split()[0])
-        action = request.POST['action'].split()[1]
-        reserve = reservation.objects.get(id = reserve_id)
-        
-        if (action == "a"):
-            # reserve.status = "accepted"
-            reserve.teacher = teacher
-            reserve.save()
-        elif (action == "d"):
-            # reserve.status = "denied"
-            reserve.teacher = teacher
-            reserve.save()
+        staff_obj = Employee.objects.get(user = User.objects.get(username = u)) #get user object teacher/staff
+        reserve_id = int(request.POST['action'].split()[0]) #reservation id
+        action = request.POST['action'].split()[1] #a or d (accepted or denied)
+        reserve = reservation.objects.get(id = reserve_id) #get reservation object that user selected
 
-    temp_role = str (Employee.objects.get(id = User.objects.get(username = u).id).role)
+        if action:
+            actionReserve(action, reserve, staff_obj)
+
+    temp_role = str (Employee.objects.get(user = User.objects.get(username = u)).role) #(id = User.objects.get(username = u).id).role)
     teacher_role = "teacher"
     staff_role = "staff"
     if (temp_role == teacher_role or temp_role == staff_role ):        
-        return render(request , "blog/reservation_manage.html",  {"res": reservation.objects.filter(status = "pending")} )
+        return render(request , "blog/reservation_manage.html",  {"res": reservation.objects.filter(status = "pending") | reservation.objects.filter(status = "accepted-pending") | 
+                                                                        reservation.objects.filter(status = "denied-pending")} )
     else:
         return render(request, "blog/home.html" , {})
     
@@ -167,3 +161,17 @@ def getreservation(request):
         res_obj.cancel_book()
     reservation_list = reservation.objects.get_booklist(User.objects.get(username = request.session['username'] ))
     return render(request, "blog/reservation_status.html" , {"reservation_list":reservation_list})
+
+
+def actionReserve(action, reserve, staff_obj):
+    if (reserve.staff is None and staff_obj.role == 'staff' and reserve.status != action):
+        reserve.staff = staff_obj
+        reserve.status = action + "-pending"
+        reserve.save()
+    elif (reserve.teacher is None and staff_obj.role == 'teacher' and reserve.status != action):
+        reserve.teacher = staff_obj
+        reserve.status = action + "-pending"
+        reserve.save()
+    else:
+        reserve.status = action
+        reserve.save()
