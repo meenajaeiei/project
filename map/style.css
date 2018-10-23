@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Kanit');
 @import url('https://fonts.googleapis.com/css?family=Lobster');
+
 body, html{
 	margin: 0;
 	width: 100%;
@@ -7,7 +8,7 @@ body, html{
 	font-family: 'Kanit', sans-serif;
 	scroll-behavior: smooth;
 	transition: all 0.3s ease-in;
-	background-image: url("img/zig.png");
+	background-image: url("img/circle_bg.png");
 	color: #FFF;
 }
 
@@ -60,7 +61,6 @@ text, tspan{
     background-size: cover;
 }
 
-
 h1.header-text {
 	font-size: 7vw;
 	position: absolute;
@@ -69,12 +69,14 @@ h1.header-text {
 	border-bottom: 5px solid #FFF;
 	font-family: 'Lobster', sans-serif;
 	animation: textUp 0.9s ease-out;
+	text-shadow: -3px 3px 3px #171515ad;
 }
 
 @keyframes textUp {
     from {top: 50%;}
     to {top:45%;}
 }
+
 
 .tutorial-step {
 	background-image: linear-gradient(-90deg, #9ebabb, #6a9395, #9ebabb);
@@ -203,7 +205,7 @@ h2.slide-right {
 #detail-box input[type=date], #detail-box input[type=time] {
 	display: none;
 }
-button[type="submit"] {
+#detail-box button[type="submit"] {
 	margin: 30px 0;
 	background-color: #fae39c;
 	border: 12px;
@@ -212,10 +214,6 @@ button[type="submit"] {
 	display: none;
 	font-size: 16px;
 }
-
-/*path:hover {
-	fill: pink;
-}*/
 
 .not-active {
 	pointer-events: none;
@@ -230,4 +228,63 @@ button[type="submit"] {
 }
 .floor-1-yes:hover{
 	fill: #3867ce;
+}
+
+.floor-1-pending{
+	fill:#FF0000;
+}
+.floor-1-pending:hover{
+	fill: #FF0000;
+}
+
+
+/*-----------verify page-----------*/
+.image-subheader {
+	width: 100vw;
+}
+
+h1.text-subheader {
+	font-size: 6vw;
+	width: 50%;
+	position: relative;
+	top: -50px;
+	left: 55px;
+	margin: 0;
+	line-height: 5vw;
+	text-shadow: 1px 1px #FFF;
+	color: #000;
+	animation: textUpSub 1s ease-out;
+}
+
+@keyframes textUpSub {
+    from {top: -30px;}
+    to {top:-50px;}
+}
+
+.verify-block {
+	background: #f1ecec;
+	color: #000;
+	margin: 5% 15%;
+	padding: 5%;
+}
+
+.verify-block p {
+	font-size: 18px;
+}
+
+.confirmBtn {
+	margin: 1em;
+	padding: 10px 40px;
+	background-color: gray;
+	color: #FFF;
+	pointer-events: none;
+
+}
+
+.cancelBtn {
+	margin: 1em;
+	padding: 10px 40px;
+	background-color: #e22626;
+	color: #FFF;
+
 }

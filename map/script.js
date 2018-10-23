@@ -39,3 +39,15 @@ function exit() {
 	document.getElementById("detail-box").style.width = "0%";
 	document.getElementById("detail-box").style.height = "0%";
 }
+
+function clickAccept() {
+	var checkBox = document.getElementById("acceptCondition");
+	var confirmBtn = document.getElementById("confirmReserve");
+	if (checkBox.checked == false){
+    	confirmBtn.style.pointerEvents = "none";
+    	confirmBtn.style.background = "gray";
+  	} else {
+  		confirmBtn.style.pointerEvents = "visible";
+    	confirmBtn.style.background = "#28a745";
+  	}
+}
