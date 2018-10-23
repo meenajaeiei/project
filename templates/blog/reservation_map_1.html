@@ -105,15 +105,19 @@
 								<path id="g25" class="floor-1 not-active" d="M5370 640 l0 -240 230 0 230 0 0 240 0 240 -230 0 -230 0 0 -240z"></path>
 								<path class="stage floor-1 not-active" d="M6490 590 l0 -280 310 0 310 0 0 280 0 280 -310 0 -310 0 0 -280z"></path>
 								{% for room in rooms %}
-								{% if room.status  == "no" %}
-								<path id="{{room.roomname}}" class="floor-1-no" d="{{room.svgpath}}"></path>
-								{% else %}
-								<path id="{{room.roomname}}" class="floor-1-yes" onclick="showDetail(this.id , '{{room.status}}')" d="{{room.svgpath}}"></path>
-								{% endif %}							
+									{% if room.floor == 1 %}
+										{% if room.status  == "no" %}
+										<path id="{{room.roomname}}" class="floor-1-no" d="{{room.svgpath}}"></path>
+										{% else %}
+										<path id="{{room.roomname}}" class="floor-1-yes" onclick="showDetail(this.id , '{{room.status}}')" d="{{room.svgpath}}"></path>
+										{% endif %}
+									{% endif %}							
 								{% endfor %}
 
 								{% for room in r_check %}
-								<path id="{{room.roomname}}" class="floor-1-pending" onclick="showDetail(this.id , '{{room.status}}')" d="{{room.svgpath}}"></path>
+									{% if room.floor == 1 %}				
+										<path id="{{room.roomname}}" class="floor-1-pending" onclick="showDetail(this.id , '{{room.status}}')" d="{{room.svgpath}}"></path>
+									{% endif %}
 								{% endfor %}
 
 							</g>
@@ -139,15 +143,21 @@
             <g transform="translate(0.000000,800.000000) scale(0.100000,-0.100000)"
             fill="#000000" stroke="none">
 
-        {% for room in rooms %}
-            
-            {% if room.status  == "no" %}
-                <path id="{{room.roomname}}" class="floor-1-no" d="{{room.svgpath}}"></path>
-            {% else %}
-                <path id="{{room.roomname}}" class="floor-1-yes" onclick="showDetail(this.id , '{{room.status}}')" d="{{room.svgpath}}"></path>
-            {% endif %}
-            
-        {% endfor %}
+			{% for room in rooms %}
+			{% if room.floor == 2 %}
+				{% if room.status  == "no" %}
+				<path id="{{room.roomname}}" class="floor-1-no" d="{{room.svgpath}}"></path>
+				{% else %}
+				<path id="{{room.roomname}}" class="floor-1-yes" onclick="showDetail(this.id , '{{room.status}}')" d="{{room.svgpath}}"></path>
+				{% endif %}
+			{% endif %}							
+		{% endfor %}
+
+		{% for room in r_check %}
+			{% if room.floor == 2 %}				
+				<path id="{{room.roomname}}" class="floor-1-pending" onclick="showDetail(this.id , '{{room.status}}')" d="{{room.svgpath}}"></path>
+			{% endif %}
+		{% endfor %}
             
             <path d="M9690 5550 l0 -520 405 0 405 0 0 520 0 520 -405 0 -405 0 0 -520z"/>
             <path d="M10530 5550 l0 -520 405 0 405 0 0 520 0 520 -405 0 -405 0 0 -520z"/>
@@ -218,15 +228,21 @@
                 width="1125px" height="597px" viewBox="0 0 1125 597" enable-background="new 0 0 1125 597" xml:space="preserve">
            <g transform="translate(0.000000,597.000000) scale(0.100000,-0.100000)">
 
-                {% for room in rooms %}
-            
-                {% if room.status  == "no" %}
-                    <path id="{{room.roomname}}" class="floor-1-no" d="{{room.svgpath}}"></path>
-                {% else %}
-                    <path id="{{room.roomname}}" class="floor-1-yes" onclick="showDetail(this.id , '{{room.status}}')" d="{{room.svgpath}}"></path>
-                {% endif %}
-                
-            {% endfor %}
+			{% for room in rooms %}
+			{% if room.floor == 3 %}
+				{% if room.status  == "no" %}
+				<path id="{{room.roomname}}" class="floor-1-no" d="{{room.svgpath}}"></path>
+				{% else %}
+				<path id="{{room.roomname}}" class="floor-1-yes" onclick="showDetail(this.id , '{{room.status}}')" d="{{room.svgpath}}"></path>
+				{% endif %}
+			{% endif %}							
+		{% endfor %}
+
+		{% for room in r_check %}
+			{% if room.floor == 3 %}				
+			<path id="{{room.roomname}}" class="floor-1-pending" onclick="showDetail(this.id , '{{room.status}}')" d="{{room.svgpath}}"></path>
+			{% endif %}
+		{% endfor %}
 
                <path d="M8208.798,5470.869c-2.07-2.026-4.15-106.479-4.15-231.221v-226.152h82.939h81.895l3.076,119.658l3.115,118.662
                    l117.139,3.037l116.104,3.047v108.516v108.516h-197.969C8302.089,5474.931,8210.878,5472.9,8208.798,5470.869z"/>

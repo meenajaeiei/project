@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,12 +15,7 @@
 	<script type="text/javascript" src="script.js"></script>
 </head>
 <body>
-	<nav>
-		<a href="homepage.html#welcome">HOME</a>
-		<a href="homepage.html#view-floor">RESERVE ROOM</a>
-		<a href="">YOUR RESERVE</a>
-		<a href="login.html">LOGIN</a>
-	</nav>
+	{% include "blog/nav_side.html" %} 
 	<div name="header">
 		<img src="img/verify_bg.jpg" class="image-subheader">
 		<h1 class="text-subheader">VERIFY<br><small>your reservation.</small></h1>

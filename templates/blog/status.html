@@ -1,0 +1,44 @@
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>IT Reservation</title>
+
+	<link rel="shortcut icon" href="{% static "img/itkmitl.jpg" %}" />
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="{% static "css/status_style.css" %}">
+	<script type="text/javascript" src="{% static "js/status_script.js" %}"></script> 
+</head>
+<body>
+		{% include "blog/nav_side.html" %} 
+	<div name="header">
+		<img src="{% static "img/check_status_bg.jpg" %}" class="image-subheader">
+		<h1 class="text-subheader">STATUS<br><small>your reservation.</small></h1>
+	</div>
+
+	<div id="checkstatus">
+		{% for res in reservation_list %}
+			<div class="check-status-block">
+				<h1 class="status-room">{{ res.room.roomname }}</h1>
+				{% if res.status == "accepted" %}
+					<div class="status-reservation approved">approved</div>
+				{% elif res.status == "denied" %}
+					<div class="status-reservation disapproved">disapproved</div>
+				{% else %}
+					<div class="status-reservation waiting">waiting</div>
+				{% endif %}
+				<a href="verify.html" class="status-detail">view detail</a>
+			</div>
+		{% endfor %}
+
+
+	</div>
+</body>
+</html>
+{% endblock %}
