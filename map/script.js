@@ -6,7 +6,6 @@ function showDetail(roomNumber) {
 	var datetime = document.getElementsByClassName("datetime");
 	var buttonID = document.getElementById("reserve");
 	roomNumberID.innerHTML = roomNumber;
-	// statusID.innerHTML = roomstatus;
 	
 	for(i=0;i<datetime.length; i++) {
 		datetime[i].style.display = "inline-block";
@@ -15,14 +14,9 @@ function showDetail(roomNumber) {
 	statusID.style.display = "inline-block";
 	buttonID.style.display = "block";
 	var status = statusID.innerText;
-	
 
-
-	// document.getElementById("detail-box").style.display = "block";
 	document.getElementById("detail-box").style.width = "45%";
 	document.getElementById("detail-box").style.height = "62vh";
-	
-
 
 
 }
