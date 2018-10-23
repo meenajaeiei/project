@@ -130,21 +130,19 @@ def showmap_3(request):
     return render(request , "blog/reservation_map_3.html" , {"rooms" : room.objects.filter(floor=3)})
 
 
-
-
 def managereservation(request):
     u = request.session['username']
 
     if request.method == 'POST':
         staff_obj = Employee.objects.get(user = User.objects.get(username = u)) #get user object teacher/staff
         reserve_id = int(request.POST['action'].split()[0]) #reservation id
-        action = request.POST['action'].split()[1] #a or d (accepted or denied)
+        action = request.POST['action'].split()[1] #accepted or denied
         reserve = reservation.objects.get(id = reserve_id) #get reservation object that user selected
 
         if action:
             actionReserve(action, reserve, staff_obj)
 
-    temp_role = str (Employee.objects.get(user = User.objects.get(username = u)).role) #(id = User.objects.get(username = u).id).role)
+    temp_role = str (Employee.objects.get(user = User.objects.get(username = u)).role)
     teacher_role = "teacher"
     staff_role = "staff"
     if (temp_role == teacher_role or temp_role == staff_role ):        
@@ -164,14 +162,36 @@ def getreservation(request):
 
 
 def actionReserve(action, reserve, staff_obj):
-    if (reserve.staff is None and staff_obj.role == 'staff' and reserve.status != action):
-        reserve.staff = staff_obj
-        reserve.status = action + "-pending"
+    role = staff_obj.role
+    if reserve.status == 'pending':
+        if action == 'accepted':
+            print(role)
+            reserve.status = 'accepted-pending'
+        elif action == 'denied':
+            reserve.status = 'denied-pending'
+
+        if role == 'staff':
+            reserve.staff = staff_obj
+        elif role == 'teacher':
+            reserve.teacher = staff_obj
+
         reserve.save()
-    elif (reserve.teacher is None and staff_obj.role == 'teacher' and reserve.status != action):
-        reserve.teacher = staff_obj
-        reserve.status = action + "-pending"
+    elif reserve.status == 'accepted-pending':
+        if action == 'accepted':
+            reserve.status = 'accepted'
+        elif action == 'denied':
+            reserve.status = 'denied'
+
+        if role == 'staff':
+            reserve.staff = staff_obj
+        elif role == 'teacher':
+            reserve.teacher = staff_obj
         reserve.save()
-    else:
-        reserve.status = action
+    elif reserve.status == 'denied-pending':
+        reserve.status = 'denied'
+
+        if role == 'staff':
+            reserve.staff = staff_obj
+        elif role == 'teacher':
+            reserve.teacher = staff_obj
         reserve.save()
