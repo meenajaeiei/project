@@ -10,16 +10,30 @@
                 <li> Date : {{ re.day_of_reserve }} </li>
                 <li>Status : {{ re.status }}</li>
             </h4>
-            <button onclick="acceptButton()" value="{{ re.id }} accepted" name="action">Accept</button>
-            <button value="{{ re.id }} denied" name="action">Denied</button>
+            <button id="acceptBtn" onclick="acceptButton('{{re.id}}')" value="" name="action">Accept</button> 
+            <button id="deniedBtn" onclick="deniedButton('{{re.id}}')" value="" name="action">Denied</button>
         </form>
         {% endfor %}
     <script>
-        function acceptButton(){
-            confirm('Are you sure ?');
+        function acceptButton(reserveId){
+            var val;
+            var action = confirm("Accepted?");
+            if (action){
+                val = reserveId + " accepted";
+            } else {
+                val = reserveId + " cancel";
+            }
+            document.getElementById("acceptBtn").value = val;
         }
-        function deniedButton(){
-            
+        function deniedButton(reserveId){
+            var val;
+            var action = confirm("Denied?");
+            if (action){
+                val = reserveId + " denied";
+            } else {
+                val = reserveId + " cancel";
+            }
+            document.getElementById("deniedBtn").value = val;
         }
     </script>
 {% endblock %}

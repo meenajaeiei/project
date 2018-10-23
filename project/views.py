@@ -137,10 +137,14 @@ def managereservation(request):
         staff_obj = Employee.objects.get(user = User.objects.get(username = u)) #get user object teacher/staff
         reserve_id = int(request.POST['action'].split()[0]) #reservation id
         action = request.POST['action'].split()[1] #accepted or denied
+        print(reserve_id, action)
         reserve = reservation.objects.get(id = reserve_id) #get reservation object that user selected
 
-        if action:
+        if action != "cancel":
             actionReserve(action, reserve, staff_obj)
+        elif action == 'cancel':
+            return render(request , "blog/reservation_manage.html",  {"res": reservation.objects.filter(status = "pending") | reservation.objects.filter(status = "accepted-pending") | 
+                                                                        reservation.objects.filter(status = "denied-pending")} )
 
     temp_role = str (Employee.objects.get(user = User.objects.get(username = u)).role)
     teacher_role = "teacher"
@@ -165,33 +169,26 @@ def actionReserve(action, reserve, staff_obj):
     role = staff_obj.role
     if reserve.status == 'pending':
         if action == 'accepted':
-            print(role)
             reserve.status = 'accepted-pending'
         elif action == 'denied':
             reserve.status = 'denied-pending'
+        addWhoDoAction(role, staff_obj, reserve)
 
-        if role == 'staff':
-            reserve.staff = staff_obj
-        elif role == 'teacher':
-            reserve.teacher = staff_obj
-
-        reserve.save()
     elif reserve.status == 'accepted-pending':
-        if action == 'accepted':
-            reserve.status = 'accepted'
-        elif action == 'denied':
-            reserve.status = 'denied'
-
-        if role == 'staff':
-            reserve.staff = staff_obj
-        elif role == 'teacher':
-            reserve.teacher = staff_obj
-        reserve.save()
+        if (reserve.staff is None and role == 'staff') or (reserve.teacher is None and role == 'teacher'):
+            if action == 'accepted':
+                reserve.status = 'accepted'
+            elif action == 'denied':
+                reserve.status = 'denied'
+            addWhoDoAction(role, staff_obj, reserve)
     elif reserve.status == 'denied-pending':
-        reserve.status = 'denied'
+        if (reserve.staff is None and role == 'staff') or (reserve.teacher is None and role == 'teacher'):
+            reserve.status = 'denied'
+            addWhoDoAction(role, staff_obj, reserve)
 
-        if role == 'staff':
-            reserve.staff = staff_obj
-        elif role == 'teacher':
-            reserve.teacher = staff_obj
-        reserve.save()
+def addWhoDoAction(role, staff_obj, reserve):
+    if role == 'staff':
+        reserve.staff = staff_obj
+    elif role == 'teacher':
+        reserve.teacher = staff_obj
+    reserve.save()
