@@ -150,7 +150,7 @@ input[type=date], input[type=time] {
 }
 
 .map {
-	top: 20%;
+	top: 15%;
 	position: relative;
 	z-index: 1;
 }
