@@ -30,8 +30,16 @@ nav a:hover {
 }
 
 
+a {
+	color: #FFF;
+}
+
+a:hover {
+	color: gray;
+}
 a:link {
 	text-decoration: none;
+	color: #FFF;
 }
 
 svg{ 
@@ -39,7 +47,7 @@ svg{
 	height: 70vh;
 	position: absolute;
 	left: 11%;
-	margin-top: 10%;
+	margin: 0;
 }
 
 path {
@@ -141,15 +149,24 @@ input[type=date], input[type=time] {
 	padding: 5px 15px;
 }
 
-.select-map {
-	top: 40%;
+.map {
+	top: 20%;
 	position: relative;
 	z-index: 1;
+}
+
+.select-floor {
+	position: relative;
+	height: 70vh;
+	z-index: -1;
+	/*line-height: 1vw;*/
 }
 
 h2.slide-left {
 
 	display: inline-block;
+	position: relative;
+	top: -350px;
 	clear: left;
 	float: left;
 	font-size: 5em;
@@ -158,18 +175,20 @@ h2.slide-left {
 h2.slide-right {
 	
 	display: inline-block;
+	position: relative;
+	top: -350px;
 	clear: right;
 	float: right;
 	font-size: 5em;
 }
 
 #detail-box {
-	top: 20%;
+	top: -65%;
 	left: 30%;
 	width: 0;
 	height: 0;
 	position: relative;
-	z-index: 2;
+	z-index: 5;
 	background: rgba(0,0,0,80%);
 	transition: 1s;
 	padding-left: 2%;
@@ -236,3 +255,9 @@ button#reserve {
 .floor-1-pending:hover{
 	fill: #FF0000;
 }
+
+
+/*---------------test css------------------*/
+.mySlides {display:none}
+.w3-left, .w3-right, .w3-badge {cursor:pointer}
+.w3-badge {height:13px;width:13px;padding:0}
