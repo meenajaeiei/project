@@ -145,3 +145,4 @@ class reservation(models.Model):
         room_obj.save()
         self.delete()
         print("hi")
+        #hello
