@@ -1,12 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Kanit');
-
-
-svg{ 
-	width: 1000px;
-	position: absolute;
-	left: 200px;
-}
-
+@import url('https://fonts.googleapis.com/css?family=Lobster');
 
 body, html{
 	margin: 0;
@@ -14,7 +7,9 @@ body, html{
 	height: 100%;
 	font-family: 'Kanit', sans-serif;
 	scroll-behavior: smooth;
-	transition: all 0.3s;
+	transition: all 0.3s ease-in;
+	/*background-image: url("img/zig.png");*/
+	color: #FFF;
 }
 
 nav {
@@ -35,132 +30,24 @@ nav a:hover {
 }
 
 
+a {
+	color: #FFF;
+}
+
+a:hover {
+	color: gray;
+}
 a:link {
 	text-decoration: none;
-}
-
-#floor-side {
-	width: 100px;
-	height: 100%;
-	background: #000;
-	position: absolute;
-	z-index: 2;
-	padding-top: 56px;
-}
-
-.floor-number {
-	width: 100px;
-	height: 100px;
-	font-size: 3em;
-	text-align: center;
 	color: #FFF;
 }
 
-.active, .floor-number:hover {
-	background: #fae39c;
-}
-
-#floor {
-	margin-top: 100px;
-	margin-left: 100px;
-}
-
-.not-active {
-	pointer-events: none;
-}
-
-#floor1-m-map {
-	display: none;
-}
-
-
-#floor2-map {
-	display: none;
-}
-
-#floor3-map {
-	display: none;
-}
-
-
-.floor-1-no{
-	fill:#FAC381;
-}
-
-.floor-1-yes{
-	fill:#7491d0;
-}
-.floor-1-yes:hover{
-	fill: #3867ce;
-}
-
-#detail-box {
-	top:10%;
-	left: 35%;
-	width: 0%;
-	height: 0%;
-	background: blue;
+svg{ 
+	width: 80vw;
+	height: 70vh;
 	position: absolute;
-	z-index: 1;
-	background: rgba(0,0,0,80%);
-	transition: 1s;
-	padding-left: 2%;
-	color: #FFF;
-}
-
-#detail-box p {
-	display: none;
-	font-size: 16px;
-}
-
-#close-detail {
-	font-size: 3em;
-	color: white;
-	text-align: right;
-	padding-right: 20px;
-	right: 50px;
-	display: none;
-}
-
-#room-number {
-	font-size: 5vw;
-	display: none;
+	left: 11%;
 	margin: 0;
-}
-
-#status {
-	font-size: 2vw;
-	display: none;
-}
-
-/*#reservation {
-	font-size: 1vw;
-	text-align: center;
-	width: 10vw;
-	height: 6vh;
-	background-color: ##FFF;
-	color: #000;
-	border: none;
-	display: none;
-}*/
-
-input[type=datetime-local] {
-	border: 0;
-  border-radius: 3px;
-  margin: 2px;
-  padding:5px;
-  font-size: 16px;
-  color: #000;
-}
-
-button[type="submit"] {
-	margin: 60px 0;
-	background-color: #fae39c;
-	border: 12px;
-	color: #000;
-	padding: 20px;
-	display: none;
-	font-size: 16px;
 }
 
 path {
@@ -175,14 +62,202 @@ text, tspan{
 	font-size: 25px;
 }
 
+#welcome {
+	/*background: url("img/it_background_black.png") no-repeat;*/
+	width: 100vw;
+    height: 100vh;
+    background-size: cover;
+}
 
-/*#home {
-	width: 70px;
-	height: 70px;
-	background: pink;
-	color: #FFF;
-	right: 20px;
-	bottom: 20px;
+
+h1.header-text {
+	font-size: 7vw;
+	position: absolute;
+	top: 45%;
+	left: 30%;
+	border-bottom: 5px solid #FFF;
+	font-family: 'Lobster', sans-serif;
+	animation: textUp 0.9s ease-out;
+	text-shadow: -3px 3px 3px #171515ad;
+}
+
+@keyframes textUp {
+    from {top: 50%;}
+    to {top:45%;}
+}
+
+.tutorial-step {
+	background-image: linear-gradient(-90deg, #9ebabb, #6a9395, #9ebabb);
+	height: 220px;
+	margin-top: 3%;
+	margin-bottom: 3%;
+}
+
+.step-img {
+	display: inline-block;
 	text-align: center;
-	position: fixed;
-}*/
+	color: #FFF;
+	font-size: 21px;
+	margin: 20px;
+}
+
+#view-floor {
+	background-color: #292929;
+	height: 100vh;
+	padding: 5em 2em;
+}
+
+input[type=date], input[type=time] {
+	border: 0;
+ 	border-radius: 3px;
+	margin: 2px;
+	padding:5px;
+	font-size: 16px;
+	display: inline-block;
+	/*position: relative;*/
+	color: #000;
+}
+
+.map-header h1{
+	left: 40%;
+	position: absolute;
+	font-size: 4em;
+}
+
+#floor-number {
+	display: inline-block;
+}
+
+.start-time {
+	float: left;
+	padding-top: 15px;
+	padding-left: 10%;
+}
+
+.end-time {
+	float: right;
+	padding-top: 15px;
+	padding-right: 10%;
+}
+
+#checking_btn {
+	border: 0;
+	border-radius: 5px;
+	background-color: green;
+	color: #FFF;
+	margin: 5px;
+	padding: 5px 15px;
+}
+
+.map {
+	top: 15%;
+	position: relative;
+	z-index: 1;
+}
+
+.select-floor {
+	position: relative;
+	height: 70vh;
+	z-index: -1;
+	/*line-height: 1vw;*/
+}
+
+h2.slide-left {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	top: -350px;
+	clear: left;
+	float: left;
+	font-size: 5em;
+}
+
+h2.slide-right {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	top: -350px;
+	clear: right;
+	float: right;
+	font-size: 5em;
+}
+
+#detail-box {
+	top: -65%;
+	left: 30%;
+	width: 0;
+	height: 0;
+	position: relative;
+	z-index: 5;
+	background: rgba(0,0,0,80%);
+	transition: 1s;
+	padding-left: 2%;
+	color: #FFF;
+}
+
+#detail-box p {
+	display: none;
+	font-size: 1.5vw;
+	margin: 5px;
+}
+
+#close-detail {
+	font-size: 3em;
+	color: white;
+	text-align: right;
+	padding-right: 20px;
+	right: 50px;
+	display: none;
+}
+
+#room-number {
+	font-size: 4vw;
+	display: none;
+	margin: 0;
+}
+
+#status {
+	font-size: 1.5vw;
+	display: none;
+}
+
+#detail-box input[type=date], #detail-box input[type=time] {
+	display: none;
+}
+button#reserve {
+	margin: 30px 0;
+	background-color: #fae39c;
+	border: 12px;
+	color: #000;
+	padding: 20px;
+	display: none;
+	font-size: 16px;
+}
+
+.not-active {
+	pointer-events: none;
+}
+
+.floor-1-no{
+	fill:#FAC381;
+}
+
+.floor-1-yes{
+	fill:#7491d0;
+}
+.floor-1-yes:hover{
+	fill: #3867ce;
+}
+
+.floor-1-pending{
+	fill:#FF0000;
+}
+.floor-1-pending:hover{
+	fill: #FF0000;
+}
+
+
+/*---------------test css------------------*/
+.mySlides {display:none}
+.w3-left, .w3-right, .w3-badge {cursor:pointer}
+.w3-badge {height:13px;width:13px;padding:0}

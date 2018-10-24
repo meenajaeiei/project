@@ -130,6 +130,7 @@ class reservation(models.Model):
     room = models.ForeignKey(room , related_name = "room" , on_delete=models.CASCADE)
     status_list = (("pending" , "pending"), ("accepted" , "accepted"), ("accepted-pending" , "accepted-pending"), ("denied" , "denied"), ("denied-pending" , "denied-pending") )
     status = models.CharField(max_length = 20 , default = 'pending', choices=status_list)
+    reason_of_reserve = models.CharField(max_length = 300 , default = "reason")
     day_of_reserve = models.DateTimeField(default=timezone.now)
     duration_begin =  models.DateTimeField(default=timezone.now)
     duration_end =  models.DateTimeField(default=timezone.now)

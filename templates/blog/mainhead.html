@@ -1,0 +1,102 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>it reservation</title>
+
+	<link rel="shortcut icon" href="{% static "img/itkmitl.jpg" %}" />
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+	<link rel="stylesheet"  href="{% static "css/reservation_map_1.css" %}">
+	<script  src="{% static "js/script.js" %}"></script>
+</head>
+
+
+<body>
+	 {% include "blog/nav_side.html" %} 
+	<div name="header">
+		<section id="welcome">
+			<img id="welcome" src="{% static "/img/it_background_black.png" %}">
+			<h1 class="header-text">IT Reservation</h1>
+		</section>
+	</div>
+	<div name="tutorial-step">
+		<section class="tutorial-step">
+			<div class="step-block" align="center">
+				<div class="check-step step-img">
+					<img src="{% static "/img/check_blank.png" %}">
+					<p>ตรวจสอบสถานะ</p>
+				</div>
+				<div class="reserve-step step-img">
+					<img src="{% static "/img/reserve.png" %}">
+					<p>จองสถานที่</p>
+				</div>
+				<div class="wait-step step-img">
+					<img src="{% static "/img/wait.png" %}">
+					<p>รอการอนุมัติ</p>
+				</div>
+				<div class="finish-step step-img">
+					<img src="{% static "/img/finish.png" %}">
+					<p>เริ่มใช้งาน</p>
+				</div>
+			</div>
+		</section>
+	</div>
+	
+
+	<!-- {% include "blog/nav_side.html" %} -->
+    <!--  <<< this line is navbar  -->
+    {% block content %}      <!--  การใส่tag block content จะมีผลต่อตัวลูก โดยจะแสดงผลในตำแหน่งที่โค๊ดของตัวลูกได้ถูกล้อมด้วย block ผนวกกับตัวแม่ -->
+    {% endblock %}
+
+	<div name="map">
+		<section id="view-floor">
+			<div class="map-header">
+				 <!-- <h1>FLOOR <div id="floor-number">1  </div> </h1>  -->
+				<form action=""   method="GET">	
+					<div class="start-time">
+						<input type="date" value="2018-12-25" name="check-date-start">
+						<input type="time" value="16:00" name="check-time-start">
+					</div>
+					<div class="end-time">
+						<input type="date" value="2018-12-25" name="check-date-end">
+						<input type="time" value="17:00" name="check-time-end">
+						<button id="checking_btn" type="submit" value="">check</button>
+						{% if start_time != end_time %}
+						You search reservation time between {{start_time}} to {{end_time}}
+						{% endif %}
+					</div>
+				</form>
+			</div>
+
+			<div class="select-map">
+				<h2 class="slide-left"> < </h2>
+				<h2 class="slide-right"> > </h2>
+				<div class="select-map"></div>
+            </div>
+            <div id="detail-box">
+                    <div id="close-detail" onclick="exit()">X</div>
+                    <div id="room-number">Room Number</div><br>
+                    <p> status: <div id="status">status here</div></p><br>
+    
+                    <form action="" method="GET">
+                        <input type="hidden" id ="demo" name="room" value="" />
+                        <p>Begin Reserve : </p><br>
+                        <input class="datetime" type="date" value="2018-1-1" name="res-date-start">
+                        <input class="datetime"type="time" value="16:00" name="res-time-start"><br>
+                        <p>End Reserve : </p><br>
+                        <input class="datetime" type="date" value="2018-12-25" name="res-date-end">
+                        <input class="datetime" type="time" value="17:00" name="res-time-end"><br>
+                        <button id="reserve" type="submit" value="">Reserve</button>
+                        <input type="hidden" name="username" value="{{user.username}}" />
+    
+                    </form>
+                </div>
+    </section>
+    
+    </body>
+ 

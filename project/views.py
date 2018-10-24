@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from blog.models import room , Employee , User , reservation
 from django.contrib import messages
 from datetime import datetime
+import pytz
 
 
 @login_required
@@ -81,7 +82,7 @@ def test(request):
 
 
 def strtodate(strtime):
-    ans = datetime(int(strtime[0:4]) , int(strtime[5:7]) , int(strtime[8:10]) , int(strtime[11:13]) , int(strtime[14:17]))
+    ans = datetime(int(strtime[0:4]) , int(strtime[5:7]) , int(strtime[8:10]) , int(strtime[10:12]) , int(strtime[13:15]))
     return ans
 
 def reserve_room(STDusername , roomarg , period_s , period_n): #period_s = beginreservation , period_n = endreservation 
@@ -96,11 +97,12 @@ def reserve_room(STDusername , roomarg , period_s , period_n): #period_s = begin
         room_obj.save()
 
 
-
 def showmap_1(request):
-    
-    if 'beginreservation' in request.GET and 'username' in request.GET and 'room' in request.GET and 'endreservation' in request.GET:
-        reserve_room(request.GET["username"] , request.GET['room'] , request.GET['beginreservation'] , request.GET['endreservation'] )
+
+      
+    if 'res-date-start' in request.GET and 'res-time-start' in request.GET and 'res-date-end' in request.GET and 'res-time-end' in request.GET and 'username' in request.GET and 'room' in request.GET :
+
+        reserve_room(request.GET["username"] , request.GET['room'] , strtodate(request.GET['res-date-start']+request.GET['res-time-start']) , strtodate(request.GET['res-date-end']+request.GET['res-time-end']) )
         # o_room = room.objects.get(roomname = request.GET['room']) #ดึงค่าสถานะห้อง\
         # user_obj = User.objects.get(username = request.GET['username'])
         # user_obj = Employee.objects.get(id = user_obj.id)
@@ -112,22 +114,55 @@ def showmap_1(request):
         #     reservation.objects.create_book(user_obj , o_room , strtodate(request.GET['beginreservation']) , strtodate(request.GET['endreservation'])) 
         #     #def create_book(self, student ,  room ,begin_reserve , end_reserve):
         #     o_room.save()
-
     
-    return render(request , "blog/reservation_map_1.html" , {"rooms" : room.objects.filter(floor=1)})
+    r_check = []
+    if 'check-date-start' in request.GET and 'check-date-end' in request.GET:
+        start_time = strtodate(request.GET['check-date-start']+request.GET['check-time-start']).replace(tzinfo = pytz.UTC)
+        end_time =   strtodate(request.GET['check-date-end']+request.GET['check-time-end']).replace(tzinfo = pytz.UTC)
+        #datetime.datetime.now().strftime("%y-%m-%d--%H:%M")
+        for r_obj in reservation.objects.all():
+            print("we_rent on" , r_obj.duration_begin , "|| you finding start " , start_time , " end" ,end_time)
+            if(r_obj.duration_begin > start_time and r_obj.duration_begin < end_time):
+                r_check.append(r_obj.room)
+        
+
+        return render(request , "blog/reservation_map_1.html" , 
+        {"end_time" : end_time ,
+        "start_time":start_time,
+        "rooms" :  room.objects.all() , 
+        "r_check": r_check })
+
+    return render(request , "blog/reservation_map_1.html" , {"rooms" : room.objects.all()})
 
 
-def showmap_2(request):
-    if 'beginreservation' in request.GET and 'username' in request.GET and 'room' in request.GET and 'endreservation' in request.GET:
-        reserve_room(request.GET["username"] , request.GET['room'] , request.GET['beginreservation'] , request.GET['endreservation'] )
+# def showmap_2(request):
+#     if 'beginreservation' in request.GET and 'username' in request.GET and 'room' in request.GET and 'endreservation' in request.GET:
+#         reserve_room(request.GET["username"] , request.GET['room'] , request.GET['beginreservation'] , request.GET['endreservation'] )
     
-    return render(request , "blog/reservation_map_2.html" , {"rooms" : room.objects.filter(floor=2)})
+#     return render(request , "blog/reservation_map_2.html" , {"rooms" : room.objects.filter(floor=2)})
 
-def showmap_3(request):
-    if 'beginreservation' in request.GET and 'username' in request.GET and 'room' in request.GET and 'endreservation' in request.GET:
-        reserve_room(request.GET["username"] , request.GET['room'] , request.GET['beginreservation'] , request.GET['endreservation'] )
-    
-    return render(request , "blog/reservation_map_3.html" , {"rooms" : room.objects.filter(floor=3)})
+
+# def showmap_3(request):
+#     if 'res-date-start' in request.GET and 'res-time-start' in request.GET and 'res-date-end' in request.GET and 'res-time-end' in request.GET and 'username' in request.GET and 'room' in request.GET :
+#         reserve_room(request.GET["username"] , request.GET['room'] , strtodate(request.GET['res-date-start']+request.GET['res-time-start']) , strtodate(request.GET['res-date-end']+request.GET['res-time-end']) )
+#     r_check = []
+#     if 'check-date-start' in request.GET and 'check-date-end' in request.GET:
+#         start_time = strtodate(request.GET['check-date-start']+request.GET['check-time-start']).replace(tzinfo = pytz.UTC)
+#         end_time =   strtodate(request.GET['check-date-end']+request.GET['check-time-end']).replace(tzinfo = pytz.UTC)
+#         #datetime.datetime.now().strftime("%y-%m-%d--%H:%M")
+#         for r_obj in reservation.objects.all():
+#             print("we_rent on" , r_obj.duration_begin , "|| you finding start " , start_time , " end" ,end_time)
+#             if(r_obj.duration_begin > start_time and r_obj.duration_begin < end_time and r_obj.room.floor == 3):
+#                 r_check.append(r_obj.room)
+        
+
+#         return render(request , "blog/reservation_map_3.html" , 
+#         {"end_time" : end_time ,
+#         "start_time":start_time,
+#         "rooms" : room.objects.filter(floor=3) , 
+#         "r_check": r_check })
+
+#     return render(request , "blog/reservation_map_3.html" , {"rooms" : room.objects.filter(floor=3)})
 
 
 def managereservation(request):

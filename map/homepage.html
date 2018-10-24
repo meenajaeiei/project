@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>IT Reservation</title>
+
+	<link rel="shortcut icon" href="img/itkmitl.jpg" />
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="script.js"></script>
+
+</head>
+<body>
+	<nav>
+		<a href="#welcome">HOME</a>
+		<a href="#view-floor">RESERVE ROOM</a>
+		<a href="">YOUR RESERVE</a>
+		<a href="login.html">LOGIN</a>
+	</nav>
+	<div name="header">
+		<section id="welcome">
+			<h1 class="header-text">IT Reservation</h1>
+		</section>
+	</div>
+	<div name="tutorial-step">
+		<section class="tutorial-step">
+			<div class="step-block" align="center">
+				<div class="check-step step-img">
+					<img src="img/check_blank.png">
+					<p>ตรวจสอบสถานะ</p>
+				</div>
+				<div class="reserve-step step-img">
+					<img src="img/reserve.png">
+					<p>จองสถานที่</p>
+				</div>
+				<div class="wait-step step-img">
+					<img src="img/wait.png">
+					<p>รอการอนุมัติ</p>
+				</div>
+				<div class="finish-step step-img">
+					<img src="img/finish.png">
+					<p>เริ่มใช้งาน</p>
+				</div>
+			</div>
+		</section>
+	</div>
+	<div name="map">
+		<section id="view-floor">
+			<div class="map-header">
+				<h1>FLOOR <div id="floor-number">1 <!-- ตรงนี้คือถ้าเปลี่ยนหน้าเลขก็จะเปลี่ยน --></div> </h1>
+				<div class="start-time">
+					<input type="date" value="2018-12-25" name="date-start">
+					<input type="time" value="16:00" name="time-start">
+				</div>
+				<div class="end-time">
+					<input type="date" value="2018-12-25" name="date-end">
+					<input type="time" value="17:00" name="time-end">
+					<button id="check-room">check</button>
+				</div>
+			</div>
+
+			<div class="select-map">
+				<h2 class="slide-left"> < </h2>
+				<h2 class="slide-right"> > </h2>
+			</div>
+
+			
+			
+			<div class="map-image">
+
+				<!-- <svg id="floor1-map" version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1000" preserveAspectRatio="xMidYMid meet">
+					<g transform="translate(0.000000,800.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="#FFF">
+						<path id="audi" class="floor-1" onclick="showDetail(this.id)" d="M4010 6925 l0 -925 1475 0 1475 0 0 925 0 925 -1475 0 -1475 0 0    -925z"></path>
+						<path id="front-audi" class="floor-1 not-active" d="M6990 6925 c0 -509 1 -925 3 -925 117 -14 603 -45 605 -39 5 13 1192    12 1192 -1 0 -6 125 -10 355 -10 l355 0 0 950 0 950 -1255 0 -1255 0 0 -925z"></path>
+						<path id="hall" class="floor-1" onclick="showDetail(this.id)" d="M6990 5963 c0 -4 13 -46 27 -93 l27 -85 3 -547 3 -548 -840 0 -840 0    0 -820 0 -820 35 0 c34 0 35 -1 35 -40 0 -39 1 -40 35 -40 35 0 35 0 35 -45 0    -45 0 -45 35 -45 l35 0 0 -420 0 -420 -35 0 c-33 0 -35 -2 -35 -35 0 -33 -2    -35 -35 -35 l-35 0 0 -55 0 -55 -35 0 -35 0 0 -475 1 -475 244 0 245 0 0 -80    c0 -78 1 -81 27 -91 81 -31 503 -129 554 -129 18 0 19 10 19 145 l0 145 340 0    340 0 0 -192 0 -191 218 6 c711 21 1333 182 1810 469 321 193 538 444 612 710    25 87 39 268 22 268 -9 0 -12 116 -12 446 l0 445 -52 23 c-62 27 -143 46 -198    46 l-40 0 0 1495 0 1495 -355 0 -355 0 0 -25 c0 -22 -4 -25 -40 -25 -39 0 -40    -1 -40 -35 0 -35 0 -35 -45 -35 -45 0 -45 0 -45 -35 l0 -35 -420 0 -420 0 0    35 c0 33 -2 35 -35 35 -33 0 -35 2 -35 35 l0 35 -55 0 c-52 0 -55 1 -55 24 0    30 2 29 -295 51 -115 8 -234 17 -262 21 -29 3 -53 2 -53 -3z m-280 -2223 l0    -400 -360 0 -360 0 0 400 0 400 360 0 360 0 0 -400z"></path><path class="lift not-active" d="M6020 3740 l0 -370 330 0 330 0 0 370 0 370 -330 0 -330 0 0 -370z"></path>
+						<path class="stair not-active" d="M7630 5920 c0 -20 7 -20 565 -20 558 0 565 0 565 20 0 20 -7 20 -565    20 -558 0 -565 0 -565 -20z"></path>
+						<path class="stair not-active" d="M7740 5850 c0 -20 7 -20 470 -20 463 0 470 0 470 20 0 20 -7 20 -470    20 -463 0 -470 0 -470 -20z"></path>
+						<path class="stair not-active" d="M7810 5780 c0 -20 7 -20 390 -20 383 0 390 0 390 20 0 20 -7 20 -390    20 -383 0 -390 0 -390 -20z"></path>
+						<path class="toilet not-active" d="M9530 5405 l0 -385 260 0 260 0 0 385 0 385 -260 0 -260 0 0 -385z"></path>
+						<path id="m04" class="floor-m" onclick="showDetail(this.id)" d="M330 5235 l0 -515 825 0 825 0 0 515 0 515 -825 0 -825 0 0 -515z"></path>
+						<path id="m03" class="floor-m" onclick="showDetail(this.id)" d="M2010 5235 l0 -515 825 0 825 0 0 515 0 515 -825 0 -825 0 0 -515z"></path>
+						<path id="regis-room" class="floor-m not-active" d="M3690 5235 l0 -515 825 0 825 0 0 515 0 515 -825 0 -825 0 0 -515z"></path>
+						<path id="111" class="floor-1" onclick="showDetail(this.id)" d="M5370 5235 l0 -515 825 0 825 0 0 515 0 515 -825 0 -825 0 0 -515z"></path>
+						<path id="common-room" class="floor-1" onclick="showDetail(this.id)" d="M9530 4285 l0 -695 965 0 965 0 0 695 0 695 -965 0 -965 0 0 -695z"></path>
+						<path class="floor-m not-active" d="M330 4435 l0 -255 280 0 280 0 0 -900 0 -900 -280 0 -280 0 0 -505 0    -505 2505 0 2505 0 0 950 0 950 -35 0 c-34 0 -35 1 -35 40 0 39 -1 40 -35 40    -35 0 -35 0 -35 45 0 45 0 45 -35 45 l-35 0 0 420 0 420 35 0 c33 0 35 2 35    35 0 33 2 35 35 35 l35 0 0 55 0 55 35 0 35 0 0 115 0 115 -2505 0 -2505 0 0    -255z m3370 -1160 l0 -975 -1335 0 -1335 0 0 975 0 975 1335 0 1335 0 0 -975z"></path>
+						<path id="m12" class="floor-m" onclick="showDetail(this.id)" d="M1060 3755 l0 -465 315 0 315 0 0 465 0 465 -315 0 -315 0 0 -465z"></path>
+						<path id="m13" class="floor-m" onclick="showDetail(this.id)" d="M1720 3755 l0 -465 315 0 315 0 0 465 0 465 -315 0 -315 0 0 -465z"></path>
+						<path id="m14" class="floor-m" onclick="showDetail(this.id)" d="M2380 3755 l0 -465 315 0 315 0 0 465 0 465 -315 0 -315 0 0 -465z"></path>
+						<path id="m15" class="floor-m" onclick="showDetail(this.id)" d="M3040 3755 l0 -465 315 0 315 0 0 465 0 465 -315 0 -315 0 0 -465z"></path>
+						<path id="m16" class="floor-m" onclick="showDetail(this.id)" d="M1060 2795 l0 -465 315 0 315 0 0 465 0 465 -315 0 -315 0 0 -465z"></path>
+						<path id="m17" class="floor-m" onclick="showDetail(this.id)" d="M1720 2795 l0 -465 315 0 315 0 0 465 0 465 -315 0 -315 0 0 -465z"></path>
+						<path id="m18" class="floor-m" onclick="showDetail(this.id)" d="M2380 2795 l0 -465 315 0 315 0 0 465 0 465 -315 0 -315 0 0 -465z"></path>
+						<path id="m19" class="floor-m" onclick="showDetail(this.id)" d="M3040 2795 l0 -465 130 0 130 0 0 465 0 465 -130 0 -130 0 0 -465z"></path>
+						<path id="m20" class="floor-m" onclick="showDetail(this.id)" d="M3330 3085 l0 -175 170 0 170 0 0 175 0 175 -170 0 -170 0 0 -175z"></path>
+						<path id="m24" class="floor-m" onclick="showDetail(this.id)" d="M3330 2605 l0 -275 170 0 170 0 0 275 0 275 -170 0 -170 0 0 -275z"></path>
+						<path class="stair not-active" d="M5300 3865 c0 -558 0 -565 20 -565 20 0 20 7 20 565 0 558 0 565 -20    565 -20 0 -20 -7 -20 -565z"></path>
+						<path class="stair not-active" d="M5230 3850 c0 -463 0 -470 20 -470 20 0 20 7 20 470 0 463 0 470 -20    470 -20 0 -20 -7 -20 -470z"></path>
+						<path class="stair not-active" d="M5160 3860 c0 -383 0 -390 20 -390 20 0 20 7 20 390 0 383 0 390 -20    390 -20 0 -20 -7 -20 -390z"></path>
+						<path class="toilet not-active" d="M90 3280 l0 -870 385 0 385 0 0 870 0 870 -385 0 -385 0 0 -870z"></path>
+						<path class="stair not-active" d="M5370 2455 c0 -558 0 -565 20 -565 20 0 20 7 20 565 0 558 0 565 -20    565 -20 0 -20 -7 -20 -565z"></path>
+						<path class="stair not-active" d="M5440 2470 c0 -463 0 -470 20 -470 20 0 20 7 20 470 0 463 0 470 -20    470 -20 0 -20 -7 -20 -470z"></path>
+						<path class="stair not-active" d="M5510 2460 c0 -383 0 -390 20 -390 20 0 20 7 20 390 0 383 0 390 -20    390 -20 0 -20 -7 -20 -390z"></path>
+						<path class="stair not-active" d="M9820 2425 c0 -418 0 -425 20 -425 20 0 20 7 20 425 0 418 0 425 -20    425 -20 0 -20 -7 -20 -425z"></path>
+						<path id="m21" class="floor-m" onclick="showDetail(this.id)" d="M330 825 l0 -515 825 0 825 0 0 515 0 515 -825 0 -825 0 0 -515z"></path>
+						<path id="m22" class="floor-m" onclick="showDetail(this.id)" d="M2010 825 l0 -515 825 0 825 0 0 515 0 515 -825 0 -825 0 0 -515z"></path>
+						<path id="m23" class="floor-m" onclick="showDetail(this.id)" d="M3690 825 l0 -515 825 0 825 0 0 515 0 515 -825 0 -825 0 0 -515z"></path>
+						<path id="g25" class="floor-1  not-active" d="M5370 640 l0 -240 230 0 230 0 0 240 0 240 -230 0 -230 0 0 -240z"></path>
+						<path class="stage not-active" d="M6490 590 l0 -280 310 0 310 0 0 280 0 280 -310 0 -310 0 0 -280z"></path>
+					</g>
+				</svg> -->
+
+<svg id="floor1-map" version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid meet">
+					<g transform="translate(0.000000,800.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="#FFF">
+						<path id="audi" class="floor-1" d="M4010 6925 l0 -925 1475 0 1475 0 0 925 0 925 -1475 0 -1475 0 0    -925z"></path>
+						<path id="front-audi" class="floor-1 not-active" d="M6990 6925 c0 -509 1 -925 3 -925 117 -14 603 -45 605 -39 5 13 1192    12 1192 -1 0 -6 125 -10 355 -10 l355 0 0 950 0 950 -1255 0 -1255 0 0 -925z"></path>
+						<path id="hall" class="floor-1" d="M6990 5963 c0 -4 13 -46 27 -93 l27 -85 3 -547 3 -548 -840 0 -840 0    0 -820 0 -820 35 0 c34 0 35 -1 35 -40 0 -39 1 -40 35 -40 35 0 35 0 35 -45 0    -45 0 -45 35 -45 l35 0 0 -420 0 -420 -35 0 c-33 0 -35 -2 -35 -35 0 -33 -2    -35 -35 -35 l-35 0 0 -55 0 -55 -35 0 -35 0 0 -475 1 -475 244 0 245 0 0 -80    c0 -78 1 -81 27 -91 81 -31 503 -129 554 -129 18 0 19 10 19 145 l0 145 340 0    340 0 0 -192 0 -191 218 6 c711 21 1333 182 1810 469 321 193 538 444 612 710    25 87 39 268 22 268 -9 0 -12 116 -12 446 l0 445 -52 23 c-62 27 -143 46 -198    46 l-40 0 0 1495 0 1495 -355 0 -355 0 0 -25 c0 -22 -4 -25 -40 -25 -39 0 -40    -1 -40 -35 0 -35 0 -35 -45 -35 -45 0 -45 0 -45 -35 l0 -35 -420 0 -420 0 0    35 c0 33 -2 35 -35 35 -33 0 -35 2 -35 35 l0 35 -55 0 c-52 0 -55 1 -55 24 0    30 2 29 -295 51 -115 8 -234 17 -262 21 -29 3 -53 2 -53 -3z m-280 -2223 l0    -400 -360 0 -360 0 0 400 0 400 360 0 360 0 0 -400z"></path><path class="lift not-active" d="M6020 3740 l0 -370 330 0 330 0 0 370 0 370 -330 0 -330 0 0 -370z"></path>
+						<path class="stair not-active" d="M7630 5920 c0 -20 7 -20 565 -20 558 0 565 0 565 20 0 20 -7 20 -565    20 -558 0 -565 0 -565 -20z"></path>
+						<path class="stair not-active" d="M7740 5850 c0 -20 7 -20 470 -20 463 0 470 0 470 20 0 20 -7 20 -470    20 -463 0 -470 0 -470 -20z"></path>
+						<path class="stair not-active" d="M7810 5780 c0 -20 7 -20 390 -20 383 0 390 0 390 20 0 20 -7 20 -390    20 -383 0 -390 0 -390 -20z"></path>
+						<path class="toilet not-active" d="M9530 5405 l0 -385 260 0 260 0 0 385 0 385 -260 0 -260 0 0 -385z"></path>
+						<path id="m04" class="floor-m" data-info="aaa" d="M330 5235 l0 -515 825 0 825 0 0 515 0 515 -825 0 -825 0 0 -515z"></path>
+						<path id="m03" class="floor-m" d="M2010 5235 l0 -515 825 0 825 0 0 515 0 515 -825 0 -825 0 0 -515z"></path>
+						<path id="regis-room" class="floor-m not-active" d="M3690 5235 l0 -515 825 0 825 0 0 515 0 515 -825 0 -825 0 0 -515z"></path>
+						<path id="111" class="floor-1" d="M5370 5235 l0 -515 825 0 825 0 0 515 0 515 -825 0 -825 0 0 -515z"></path>
+						<path id="common-room" class="floor-1" d="M9530 4285 l0 -695 965 0 965 0 0 695 0 695 -965 0 -965 0 0 -695z"></path>
+						<path class="floor-m not-active" d="M330 4435 l0 -255 280 0 280 0 0 -900 0 -900 -280 0 -280 0 0 -505 0    -505 2505 0 2505 0 0 950 0 950 -35 0 c-34 0 -35 1 -35 40 0 39 -1 40 -35 40    -35 0 -35 0 -35 45 0 45 0 45 -35 45 l-35 0 0 420 0 420 35 0 c33 0 35 2 35    35 0 33 2 35 35 35 l35 0 0 55 0 55 35 0 35 0 0 115 0 115 -2505 0 -2505 0 0    -255z m3370 -1160 l0 -975 -1335 0 -1335 0 0 975 0 975 1335 0 1335 0 0 -975z"></path>
+						<path id="m12" class="floor-m" d="M1060 3755 l0 -465 315 0 315 0 0 465 0 465 -315 0 -315 0 0 -465z"></path>
+						<path id="m13" class="floor-m" d="M1720 3755 l0 -465 315 0 315 0 0 465 0 465 -315 0 -315 0 0 -465z"></path>
+						<path id="m14" class="floor-m" d="M2380 3755 l0 -465 315 0 315 0 0 465 0 465 -315 0 -315 0 0 -465z"></path>
+						<path id="m15" class="floor-m" d="M3040 3755 l0 -465 315 0 315 0 0 465 0 465 -315 0 -315 0 0 -465z"></path>
+						<path id="m16" class="floor-m" d="M1060 2795 l0 -465 315 0 315 0 0 465 0 465 -315 0 -315 0 0 -465z"></path>
+						<path id="m17" class="floor-m" d="M1720 2795 l0 -465 315 0 315 0 0 465 0 465 -315 0 -315 0 0 -465z"></path>
+						<path id="m18" class="floor-m" d="M2380 2795 l0 -465 315 0 315 0 0 465 0 465 -315 0 -315 0 0 -465z"></path>
+						<path id="m19" class="floor-m" d="M3040 2795 l0 -465 130 0 130 0 0 465 0 465 -130 0 -130 0 0 -465z"></path>
+						<path id="m20" class="floor-m" d="M3330 3085 l0 -175 170 0 170 0 0 175 0 175 -170 0 -170 0 0 -175z"></path>
+						<path id="m24" class="floor-m" d="M3330 2605 l0 -275 170 0 170 0 0 275 0 275 -170 0 -170 0 0 -275z"></path>
+						<path class="stair not-active" d="M5300 3865 c0 -558 0 -565 20 -565 20 0 20 7 20 565 0 558 0 565 -20    565 -20 0 -20 -7 -20 -565z"></path>
+						<path class="stair not-active" d="M5230 3850 c0 -463 0 -470 20 -470 20 0 20 7 20 470 0 463 0 470 -20    470 -20 0 -20 -7 -20 -470z"></path>
+						<path class="stair not-active" d="M5160 3860 c0 -383 0 -390 20 -390 20 0 20 7 20 390 0 383 0 390 -20    390 -20 0 -20 -7 -20 -390z"></path>
+						<path class="toilet not-active" d="M90 3280 l0 -870 385 0 385 0 0 870 0 870 -385 0 -385 0 0 -870z"></path>
+						<path class="stair not-active" d="M5370 2455 c0 -558 0 -565 20 -565 20 0 20 7 20 565 0 558 0 565 -20    565 -20 0 -20 -7 -20 -565z"></path>
+						<path class="stair not-active" d="M5440 2470 c0 -463 0 -470 20 -470 20 0 20 7 20 470 0 463 0 470 -20    470 -20 0 -20 -7 -20 -470z"></path>
+						<path class="stair not-active" d="M5510 2460 c0 -383 0 -390 20 -390 20 0 20 7 20 390 0 383 0 390 -20    390 -20 0 -20 -7 -20 -390z"></path>
+						<path class="stair not-active" d="M9820 2425 c0 -418 0 -425 20 -425 20 0 20 7 20 425 0 418 0 425 -20    425 -20 0 -20 -7 -20 -425z"></path>
+						<path id="m21" class="floor-m" d="M330 825 l0 -515 825 0 825 0 0 515 0 515 -825 0 -825 0 0 -515z"></path>
+						<path id="m22" class="floor-m" d="M2010 825 l0 -515 825 0 825 0 0 515 0 515 -825 0 -825 0 0 -515z"></path>
+						<path id="m23" class="floor-m" d="M3690 825 l0 -515 825 0 825 0 0 515 0 515 -825 0 -825 0 0 -515z"></path>
+						<path id="g25" class="floor-1  not-active" d="M5370 640 l0 -240 230 0 230 0 0 240 0 240 -230 0 -230 0 0 -240z"></path>
+						<path class="stage not-active" d="M6490 590 l0 -280 310 0 310 0 0 280 0 280 -310 0 -310 0 0 -280z"></path>
+					</g>
+				</svg>
+			</div>
+
+			<div id="detail-box">
+				<div id="close-detail" onclick="exit()">X</div>
+				<div id="room-number">Room Number</div><br>
+				<p> status: <div id="status">status here</div></p><br>
+				<p>Begin Reserve : </p><br>
+				<input class="datetime" type="date" value="2018-12-25" name="date-start">
+				<input class="datetime"type="time" value="16:00" name="time-start"><br>
+				<p>End Reserve : </p><br>
+				<input class="datetime" type="date" value="2018-12-25" name="date-end">
+				<input class="datetime" type="time" value="17:00" name="time-end"><br>
+				<button id="reserve" type="submit" value="">Reserve</button>
+			</div>
+		</section>
+	</div>
+</body>
+</html>
