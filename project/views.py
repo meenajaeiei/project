@@ -132,30 +132,23 @@ def showmap_3(request):
 
 def managereservation(request):
     u = request.session['username']
+    staff_obj = Employee.objects.get(user = User.objects.get(username = u)) #get user object teacher/staff
 
-    if request.method == 'POST':
-        staff_obj = Employee.objects.get(user = User.objects.get(username = u)) #get user object teacher/staff
-        reserve_id = int(request.POST['action'].split()[0]) #reservation id
-        action = request.POST['action'].split()[1] #accepted or denied
-        print(reserve_id, action)
+    if 'accepted' in request.GET or 'denied' in request.GET:
+        action = 'accepted' if 'accepted' in request.GET else 'denied'
+        # print(action)
+        reserve_id = int(request.GET[action]) #reservation id
+        # print(reserve_id)
         reserve = reservation.objects.get(id = reserve_id) #get reservation object that user selected
-
-        if action != "cancel":
-            actionReserve(action, reserve, staff_obj)
-        elif action == 'cancel':
-            return render(request , "blog/reservation_manage.html",  {"res": reservation.objects.filter(status = "pending") | reservation.objects.filter(status = "accepted-pending") | 
-                                                                        reservation.objects.filter(status = "denied-pending")} )
+        actionReserve(action, reserve, staff_obj)
 
     temp_role = str (Employee.objects.get(user = User.objects.get(username = u)).role)
-    teacher_role = "teacher"
-    staff_role = "staff"
-    if (temp_role == teacher_role or temp_role == staff_role ):        
+    if (temp_role == 'teacher' or temp_role == 'staff'):        
         return render(request , "blog/reservation_manage.html",  {"res": reservation.objects.filter(status = "pending") | reservation.objects.filter(status = "accepted-pending") | 
                                                                         reservation.objects.filter(status = "denied-pending")} )
     else:
         return render(request, "blog/home.html" , {})
     
-
 
 def getreservation(request):
     if "reservation" in request.GET:

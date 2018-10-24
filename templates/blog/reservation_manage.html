@@ -2,16 +2,16 @@
 
 {% block content %}
         {% for re in res %}
-        <form action="#" method="POST">
-            {% csrf_token %}
+        <form action="" method="GET">
+            <!-- {% csrf_token %} -->
             <h1>{{ re.room }} </h1>
             <h4>
                 <li> Name : {{ re.student }} </li>
                 <li> Date : {{ re.day_of_reserve }} </li>
                 <li>Status : {{ re.status }}</li>
             </h4>
-            <button id="acceptBtn" onclick="acceptButton('{{re.id}}')" value="" name="action">Accept</button> 
-            <button id="deniedBtn" onclick="deniedButton('{{re.id}}')" value="" name="action">Denied</button>
+            <button id="acceptBtn" value="{{ re.id }}" name="accepted">Accept</button> 
+            <button id="deniedBtn" value="{{ re.id }}" name="denied">Denied</button>
         </form>
         {% endfor %}
     <script>
@@ -21,10 +21,11 @@
             if (action){
                 val = reserveId + " accepted";
             } else {
-                val = reserveId + " cancel";
+                val = reserveId + " cancel";             
             }
             document.getElementById("acceptBtn").value = val;
         }
+        
         function deniedButton(reserveId){
             var val;
             var action = confirm("Denied?");
