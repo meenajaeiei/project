@@ -8,6 +8,7 @@ from django.contrib import messages
 from datetime import datetime
 import pytz
 
+
 @login_required
 def changepass(request):
      return render(request, 'blog/password_change_form.html', {})
@@ -24,15 +25,13 @@ def home_page(request):
         usernamex = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=usernamex, password=password)
-
+        print(usernamex)
         if user is not None:
             login(request, user)
             # Redirect to a success page.
             emp_id = User.objects.get(username = usernamex)
-            emp = Employee.objects.get(id = emp_id.id)
+            emp = Employee.objects.get(user = emp_id) #(id = emp_id.id)
             request.session['username'] = usernamex 
-
-
             return render(request, 'blog/home.html' , {"emp":emp})
         else:
             # Return an 'invalid login' error message.
@@ -166,25 +165,58 @@ def showmap_1(request):
 #     return render(request , "blog/reservation_map_3.html" , {"rooms" : room.objects.filter(floor=3)})
 
 
-
-
 def managereservation(request):
+    u = request.session['username']
+    staff_obj = Employee.objects.get(user = User.objects.get(username = u)) #get user object teacher/staff
 
-    temp_role = str (Employee.objects.get(id = User.objects.get(username = request.session['username']).id).role)
+    if 'accepted' in request.GET or 'denied' in request.GET:
+        action = 'accepted' if 'accepted' in request.GET else 'denied'
+        # print(action)
+        reserve_id = int(request.GET[action]) #reservation id
+        # print(reserve_id)
+        reserve = reservation.objects.get(id = reserve_id) #get reservation object that user selected
+        actionReserve(action, reserve, staff_obj)
 
-    ei1 = "teacher"
-    ei2 = "staff"
-    if (temp_role == ei1 or temp_role == ei2 ):
-
-        
-        return render(request , "blog/reservation_manage.html",  {"res": reservation.objects.filter(status = "pending")} )
+    temp_role = str (Employee.objects.get(user = User.objects.get(username = u)).role)
+    if (temp_role == 'teacher' or temp_role == 'staff'):        
+        return render(request , "blog/reservation_manage.html",  {"res": reservation.objects.filter(status = "pending") | reservation.objects.filter(status = "accepted-pending") | 
+                                                                        reservation.objects.filter(status = "denied-pending")} )
     else:
         return render(request, "blog/home.html" , {})
-
+    
 
 def getreservation(request):
     if "reservation" in request.GET:
         res_obj = reservation.objects.get(id = int(request.GET['reservation']) )
         res_obj.cancel_book()
     reservation_list = reservation.objects.get_booklist(User.objects.get(username = request.session['username'] ))
-    return render(request, "blog/status.html" , {"reservation_list":reservation_list})
+    return render(request, "blog/reservation_status.html" , {"reservation_list":reservation_list})
+
+
+def actionReserve(action, reserve, staff_obj):
+    role = staff_obj.role
+    if reserve.status == 'pending':
+        if action == 'accepted':
+            reserve.status = 'accepted-pending'
+        elif action == 'denied':
+            reserve.status = 'denied-pending'
+        addWhoDoAction(role, staff_obj, reserve)
+
+    elif reserve.status == 'accepted-pending':
+        if (reserve.staff is None and role == 'staff') or (reserve.teacher is None and role == 'teacher'):
+            if action == 'accepted':
+                reserve.status = 'accepted'
+            elif action == 'denied':
+                reserve.status = 'denied'
+            addWhoDoAction(role, staff_obj, reserve)
+    elif reserve.status == 'denied-pending':
+        if (reserve.staff is None and role == 'staff') or (reserve.teacher is None and role == 'teacher'):
+            reserve.status = 'denied'
+            addWhoDoAction(role, staff_obj, reserve)
+
+def addWhoDoAction(role, staff_obj, reserve):
+    if role == 'staff':
+        reserve.staff = staff_obj
+    elif role == 'teacher':
+        reserve.teacher = staff_obj
+    reserve.save()

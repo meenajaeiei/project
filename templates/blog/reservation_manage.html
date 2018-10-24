@@ -1,15 +1,40 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
         {% for re in res %}
+        <form action="" method="GET">
+            <!-- {% csrf_token %} -->
             <h1>{{ re.room }} </h1>
-            <h4> <li> reservator : {{ re.student }} </li>
-                <li> day_of_reserve : {{ re.day_of_reserve }} </li>
-
+            <h4>
+                <li> Name : {{ re.student }} </li>
+                <li> Date : {{ re.day_of_reserve }} </li>
+                <li>Status : {{ re.status }}</li>
             </h4>
+            <button id="acceptBtn" value="{{ re.id }}" name="accepted">Accept</button> 
+            <button id="deniedBtn" value="{{ re.id }}" name="denied">Denied</button>
+        </form>
         {% endfor %}
-
-
-
+    <script>
+        function acceptButton(reserveId){
+            var val;
+            var action = confirm("Accepted?");
+            if (action){
+                val = reserveId + " accepted";
+            } else {
+                val = reserveId + " cancel";             
+            }
+            document.getElementById("acceptBtn").value = val;
+        }
+        
+        function deniedButton(reserveId){
+            var val;
+            var action = confirm("Denied?");
+            if (action){
+                val = reserveId + " denied";
+            } else {
+                val = reserveId + " cancel";
+            }
+            document.getElementById("deniedBtn").value = val;
+        }
+    </script>
 {% endblock %}
