@@ -147,6 +147,7 @@ input[type=date], input[type=time] {
 	color: #FFF;
 	margin: 5px;
 	padding: 5px 15px;
+	cursor:pointer
 }
 
 .map {
@@ -156,17 +157,16 @@ input[type=date], input[type=time] {
 }
 
 .select-floor {
-	position: relative;
-	height: 70vh;
-	z-index: -1;
-	/*line-height: 1vw;*/
+	position: absolute;
+	z-index: 1;
+	width: 100%;
 }
 
 h2.slide-left {
 	cursor: pointer;
 	display: inline-block;
+	top: 200px;
 	position: relative;
-	top: -350px;
 	clear: left;
 	float: left;
 	font-size: 5em;
@@ -175,15 +175,15 @@ h2.slide-left {
 h2.slide-right {
 	cursor: pointer;
 	display: inline-block;
+	top: 200px;
 	position: relative;
-	top: -350px;
 	clear: right;
 	float: right;
 	font-size: 5em;
 }
 
 #detail-box {
-	top: -65%;
+	top:20%;
 	left: 30%;
 	width: 0;
 	height: 0;
@@ -195,9 +195,9 @@ h2.slide-right {
 	color: #FFF;
 }
 
-#detail-box p {
+.text-in-detail-box {
 	display: none;
-	font-size: 1.5vw;
+	font-size: 1.2vw;
 	margin: 5px;
 }
 
@@ -217,7 +217,7 @@ h2.slide-right {
 }
 
 #status {
-	font-size: 1.5vw;
+	font-size: 1.2vw;
 	display: none;
 }
 
@@ -232,6 +232,7 @@ button#reserve {
 	padding: 20px;
 	display: none;
 	font-size: 16px;
+	cursor:pointer
 }
 
 .not-active {
@@ -246,6 +247,7 @@ button#reserve {
 	fill:#7491d0;
 }
 .floor-1-yes:hover{
+	cursor:pointer;
 	fill: #3867ce;
 }
 
@@ -253,6 +255,7 @@ button#reserve {
 	fill:#FF0000;
 }
 .floor-1-pending:hover{
+	cursor:pointer;
 	fill: #FF0000;
 }
 
