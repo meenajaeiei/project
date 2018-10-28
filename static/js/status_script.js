@@ -1,4 +1,4 @@
-function showDetail(roomNumber , roomstatus) {
+function teacherDetail(roomNumber , roomstatus) {
 
 	document.getElementById("close-detail").style.display = "block";
 	var roomNumberID = document.getElementById("room-number");
@@ -51,10 +51,28 @@ function exit() {
 
 
 
-function showReserveDetail(roomNumber) {
+function showReserveDetail(roomNumber , dayoftransaction , begin , end , reason , teacher , staff) {
 	document.getElementById("close-detail").style.display = "block";
 	var roomNumberID = document.getElementById("room-number");
 	var paragraph = document.getElementsByClassName("text-in-detail-box");
+	document.getElementById("time-reserve").innerHTML = dayoftransaction;
+	document.getElementById("date_begin").innerHTML = begin;
+	document.getElementById("date_end").innerHTML = end;
+	document.getElementById("reason").innerHTML = reason;
+	if (teacher.length == 0) {
+		document.getElementById("teacher").innerHTML = "ไม่มี";
+	}
+	else{
+		document.getElementById("teacher").innerHTML = teacher;
+	}
+	
+	if (staff.length == 0) {
+		document.getElementById("staff").innerHTML = "ไม่มี";
+	}
+	else{
+		document.getElementById("staff").innerHTML = staff;
+	}
+	
 	roomNumberID.innerHTML = roomNumber;
 
 	for(i=0;i<paragraph.length; i++) {
