@@ -1,29 +1,63 @@
 {% extends 'base.html' %}
 
 {% block content %}
-        {% for re in res %}
-        <form action="" method="GET">
-            <!-- {% csrf_token %} -->
-            <h1>{{ re.room }} </h1>
-            <h4>
-                <li> Name : {{ re.student }} </li>
-                <li> Date : {{ re.day_of_reserve }} </li>
-                <li>Status : {{ re.status }}</li>
-            </h4>
-            <button id="acceptBtn" value="{{ re.id }}" name="accepted">Accept</button> 
-            <button id="deniedBtn" value="{{ re.id }}" name="denied">Denied</button>
-        </form>
-        {% endfor %}
+<div class="container">
+
+    <h1 class="my-4">Request
+        <small>Pending</small>
+    </h1>
+
+    {% for re in res %}
+    <form action="" method="GET">
+        <!-- {% csrf_token %} -->
+        <!-- <h1 class="my-4">{{ re.room }}</h1> -->
+        <!-- <h4>
+            <li> Name : {{ re.student }} </li>
+            <li> Date : {{ re.day_of_reserve }} </li>
+            <li>Status : {{ re.status }}</li>
+        </h4>
+        <button id="acceptBtn" onclick="acceptButton('{{re.id}}')" value="{{ re.id }}" name="accept">Accept {{ re.id }}</button> 
+        <button id="deniedBtn" onclick="deniedButton('{{re.id}}')" value="{{ re.id }}" name="denied">Denied</button> -->
+
+        <!-- Page Content -->
+        <div class="row">
+            <div class="col-md-7">
+              <a>
+                <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300?text=Your+room+here+(700x300)" alt="">
+              </a>
+            </div>
+            <div class="col-md-5">
+              <h3>{{ re.room }}</h3>
+              <p>
+                {{re.student}} <br>
+                {{re.day_of_reserve}} <br>
+                {{re.status}} <br>
+              </p>
+              <a class="btn btn-primary"  id="acceptBtn" value="{{ re.id }}" name="accept" href="">Accept</a>
+              <a class="btn btn-primary" id="deniedBtn" value="{{ re.id }}" name="denied" href="#">Denied</a>
+            </div>
+        </div>
+
+        <hr>
+
+    </form>
+
+    {% endfor %}
+
+</div>
+
     <script>
         function acceptButton(reserveId){
             var val;
             var action = confirm("Accepted?");
             if (action){
                 val = reserveId + " accepted";
+                document.getElementById("acceptBtn").value = val;
             } else {
-                val = reserveId + " cancel";             
+                val = reserveId + " cancel";
+                document.getElementById("acceptBtn").value = val;
             }
-            document.getElementById("acceptBtn").value = val;
+            
         }
         
         function deniedButton(reserveId){
@@ -37,4 +71,5 @@
             document.getElementById("deniedBtn").value = val;
         }
     </script>
+
 {% endblock %}
