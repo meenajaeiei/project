@@ -189,8 +189,8 @@ def getreservation(request):
     if "reservation" in request.GET:
         res_obj = reservation.objects.get(id = int(request.GET['reservation']) )
         res_obj.cancel_book()
-    reservation_list = reservation.objects.get_booklist(User.objects.get(username = request.session['username'] ))
-    return render(request, "blog/reservation_status.html" , {"reservation_list":reservation_list})
+    reservation_list = reservation.objects.get_booklist(User.objects.get(username = request.session['username']))
+    return render(request, "blog/status.html" , {"reservation_list":reservation_list})
 
 
 def actionReserve(action, reserve, staff_obj):

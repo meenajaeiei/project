@@ -111,7 +111,7 @@ class BookManager(models.Manager):
     def get_booklist(self , student_id):
 
         user_a = User.objects.get(username = student_id)
-        emp = Employee.objects.get(id = user_a.id)
+        emp = Employee.objects.get(user = user_a)
         reservation_list = reservation.objects.filter(student = emp)
         
         return reservation_list
@@ -129,8 +129,14 @@ class reservation(models.Model):
     
     room = models.ForeignKey(room , related_name = "room" , on_delete=models.CASCADE)
     status_list = (("pending" , "pending"), ("accepted" , "accepted"), ("accepted-pending" , "accepted-pending"), ("denied" , "denied"), ("denied-pending" , "denied-pending") )
+<<<<<<< HEAD
     status = models.CharField(max_length = 20 , default = 'pending', choices=status_list)
     # reason_of_reserve = models.CharField(max_length = 300 , default = "reason")
+=======
+    reason_of_reserve = models.CharField(max_length = 300 , default = "reason")
+    status = models.CharField(max_length = 20 , default = 'pending', choices=status_list)
+    
+>>>>>>> master
     day_of_reserve = models.DateTimeField(default=timezone.now)
     duration_begin =  models.DateTimeField(default=timezone.now)
     duration_end =  models.DateTimeField(default=timezone.now)

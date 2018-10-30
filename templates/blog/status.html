@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>IT Reservation</title>
-
+	<title>it reservation</title>
+	<meta charset="utf-8">
 	<link rel="shortcut icon" href="{% static "img/itkmitl.jpg" %}" />
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -15,30 +15,51 @@
 	<link rel="stylesheet" type="text/css" href="{% static "css/status_style.css" %}">
 	<script type="text/javascript" src="{% static "js/status_script.js" %}"></script> 
 </head>
-<body>
-		{% include "blog/nav_side.html" %} 
+<body style="background-image: url({% static "/img/circle_bg.png" %})">
+	{% include "blog/nav_side.html" %} 
 	<div name="header">
 		<img src="{% static "img/check_status_bg.jpg" %}" class="image-subheader">
 		<h1 class="text-subheader">STATUS<br><small>your reservation.</small></h1>
 	</div>
 
+	
 	<div id="checkstatus">
+
 		{% for res in reservation_list %}
-			<div class="check-status-block">
-				<h1 class="status-room">{{ res.room.roomname }}</h1>
-				{% if res.status == "accepted" %}
-					<div class="status-reservation approved">approved</div>
-				{% elif res.status == "denied" %}
-					<div class="status-reservation disapproved">disapproved</div>
-				{% else %}
-					<div class="status-reservation waiting">waiting</div>
-				{% endif %}
-				<a href="verify.html" class="status-detail">view detail</a>
-			</div>
+		<div class="check-status-block">
+			<h1 class="status-room">{{ res.room.roomname }}</h1>
+			{% if res.status == "accepted" %}
+			<div class="status-reservation approved">approved</div>
+			{% elif res.status == "denied" %}
+			<div class="status-reservation disapproved">disapproved</div>
+			{% else %}
+			<div class="status-reservation waiting">waiting</div>
+			{% endif %}
+			<div class="status-detail" id="{{ res.room.roomname }}" onclick="showReserveDetail(this.id , '{{ res.day_of_reserve }}' , '{{ res.duration_begin }}' 
+			, '{{ res.duration_end }}' , '{{ res.reason_of_reserve }}'  , '{{ res.teacher.user.username }}', '{{ res.staff.user.username }}'  )">view detail</div>
+		</div>
 		{% endfor %}
+		<div id="detail-box" style="top:-300px">
+			<p id="close-detail" onclick="exitReserveDetail()">X</p>
+			<h1 class="text-in-detail-box" style="font-size: 3em;"> ข้อมูลการจองสถานที่<br><br></h1>
+			<p id="room-number">Room Number</p>
+			<p class="text-in-detail-box">เวลาที่ทำการรจอง <span id="time-reserve">reserve time here</span></p>
+			<p class="text-in-detail-box">ใช้งานตั้งแต่วันที่ <span id="date_begin">date here</span></p>
+			<p class="text-in-detail-box">ถึงวันที่ <span id="date_end">time here</span></p>
+			<p class="text-in-detail-box">เหตุผลที่ขอจอง : <span id="reason">reason here</span></p>
+			<p class="text-in-detail-box">การอนุมัติ</p>
+			<!-- อนุมัติโดยอาจารย์ -->
+			<p class="text-in-detail-box"> (1) ผู้พิจารณา/อาจารย์ (<span id="teacher">approver name here</span>)</p>
+			<!-- <p class="text-in-detail-box"><span id="approve-status">approve status here</span> ณ วันที่ <span id="approve-date">date approve here</span></p>
+			<p class="text-in-detail-box">หมายเหตุ : <span id="approve-reason">reason approvers here</span></p> -->
 
-
-	</div>
-</body>
-</html>
-{% endblock %}
+			<!-- อนุมัติโดยงานอาคารสถานที่ -->
+			<p class="text-in-detail-box"> (2) งานอาคารสถานที่ (<span id="staff">approver name here</span>)</p>
+			<!-- <p class="text-in-detail-box"><span id="approve-status">approve status here</span> ณ วันที่ <span id="approve-date">date approve here</span></p>
+			<p class="text-in-detail-box">หมายเหตุ : <span id="approve-reason">reason approvers here</span><br><br><br></p> -->
+		</div>
+		</div>
+		
+	</body>
+	</html>
+	{% endblock %}

@@ -8,7 +8,7 @@ body, html{
 	font-family: 'Kanit', sans-serif;
 	scroll-behavior: smooth;
 	transition: all 0.3s ease-in;
-	/*background-image: url("img/zig.png");*/
+	background-image: url("img/circle_bg.png");
 	color: #FFF;
 }
 
@@ -25,21 +25,19 @@ nav a {
 	padding: 2em;
 }
 
-nav a:hover {
-	color: #a2a1a1;
+
+
+a{
+	color: #FFF;
 }
 
-
-a {
+a:link {
+	text-decoration: none;
 	color: #FFF;
 }
 
 a:hover {
-	color: gray;
-}
-a:link {
-	text-decoration: none;
-	color: #FFF;
+	color: #a2a1a1;
 }
 
 svg{ 
@@ -47,7 +45,7 @@ svg{
 	height: 70vh;
 	position: absolute;
 	left: 11%;
-	margin: 0;
+	margin-top: 10%;
 }
 
 path {
@@ -63,12 +61,11 @@ text, tspan{
 }
 
 #welcome {
-	/*background: url("img/it_background_black.png") no-repeat;*/
+	background: url("img/it_background_black.png") no-repeat;
 	width: 100vw;
     height: 100vh;
     background-size: cover;
 }
-
 
 h1.header-text {
 	font-size: 7vw;
@@ -85,6 +82,7 @@ h1.header-text {
     from {top: 50%;}
     to {top:45%;}
 }
+
 
 .tutorial-step {
 	background-image: linear-gradient(-90deg, #9ebabb, #6a9395, #9ebabb);
@@ -140,64 +138,53 @@ input[type=date], input[type=time] {
 	padding-right: 10%;
 }
 
-#checking_btn {
+#check-room {
 	border: 0;
 	border-radius: 5px;
 	background-color: green;
 	color: #FFF;
 	margin: 5px;
 	padding: 5px 15px;
-	cursor:pointer
 }
 
-.map {
-	top: 15%;
+.select-map {
+	top: 40%;
 	position: relative;
 	z-index: 1;
-}
-
-.select-floor {
-	position: absolute;
-	z-index: 1;
-	width: 100%;
 }
 
 h2.slide-left {
-	cursor: pointer;
+
 	display: inline-block;
-	top: 200px;
-	position: relative;
 	clear: left;
 	float: left;
 	font-size: 5em;
 }
 
 h2.slide-right {
-	cursor: pointer;
+	
 	display: inline-block;
-	top: 200px;
-	position: relative;
 	clear: right;
 	float: right;
 	font-size: 5em;
 }
 
 #detail-box {
-	top:20%;
-	left: 30%;
+	top: 20%;
+	left: 25%;
 	width: 0;
 	height: 0;
 	position: relative;
-	z-index: 5;
+	z-index: 1;
 	background: rgba(0,0,0,80%);
 	transition: 1s;
 	padding-left: 2%;
 	color: #FFF;
 }
 
-.text-in-detail-box {
+#detail-box p {
 	display: none;
-	font-size: 1.2vw;
+	font-size: 1.5vw;
 	margin: 5px;
 }
 
@@ -217,14 +204,14 @@ h2.slide-right {
 }
 
 #status {
-	font-size: 1.2vw;
+	font-size: 1.5vw;
 	display: none;
 }
 
 #detail-box input[type=date], #detail-box input[type=time] {
 	display: none;
 }
-button#reserve {
+#detail-box button[type="submit"] {
 	margin: 30px 0;
 	background-color: #fae39c;
 	border: 12px;
@@ -232,7 +219,6 @@ button#reserve {
 	padding: 20px;
 	display: none;
 	font-size: 16px;
-	cursor:pointer
 }
 
 .not-active {
@@ -247,7 +233,6 @@ button#reserve {
 	fill:#7491d0;
 }
 .floor-1-yes:hover{
-	cursor:pointer;
 	fill: #3867ce;
 }
 
@@ -255,7 +240,6 @@ button#reserve {
 	fill:#FF0000;
 }
 .floor-1-pending:hover{
-	cursor:pointer;
 	fill: #FF0000;
 }
 
@@ -316,8 +300,8 @@ h1.text-subheader {
 
 /*-----------check status page------------*/
 #checkstatus {
-margin: 5% 10% 5% 10%;
-	height: auto;
+margin: 5% 10% 0% 10%;
+	height: 100vh;
 }
 
 .check-status-block {
@@ -330,7 +314,6 @@ margin: 5% 10% 5% 10%;
 	width: 200px;
 	height: 300px;
 	display: inline-block;
-	/*position: relative;*/
 }
 
 .approved {
@@ -347,4 +330,3 @@ margin: 5% 10% 5% 10%;
 	color: gray;
 	font-size: 20px;
 }
-
