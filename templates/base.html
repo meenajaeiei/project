@@ -3,15 +3,32 @@
 <html>
 <head>
 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
   <title>{% block title %}{% endblock %}</title>
-  <link href="{% static "css/blog.css" %}" rel="stylesheet">
+  <!-- <link href="{% static "css/blog.css" %}" rel="stylesheet"> -->
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static "vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static "css/1-col-portfolio.css" %}" rel="stylesheet">
+
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+
 </head>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
 
-<style>
+  <!-- <title>Reservation</title> -->
+
+
+<!-- <style>
 .navbar-nav>li>a {
     padding-top: 0;
     padding-bottom: 0;
@@ -21,14 +38,15 @@
   display:flex;
   align-items:center;
 }
-</style>
+</style> -->
+
 <body>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
+<!-- <nav class="navbar navbar-inverse">
+  <div class="container">
     <div class="navbar-header">
       <a class="navbar-brand" href="{% url "home" %}">Reservation</a>
     </div>
-    <ul class="nav navbar-nav">
+    <ul class="navbar-nav ml-auto">
       <li><a href="{% url "reservation_manage" %}">manage</a></li>
       <li><a href="{% url "reservation_room" %}"> reserve room</a></li>
       <li><a href="{% url "reservation_status" %}">your reservation</a></li>
@@ -41,12 +59,46 @@
     </ul>
     
   </div>
-</nav>
+</nav> -->
 
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'home' %}">Reservation</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'reservation_manage' %}">Manage
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'reservation_room' %}">Reserve room</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'reservation_status' %}">Your reservation</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="btn btn-danger" href="{% url 'logout' %}">Logout</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="btn btn-success" href="{% url 'login' %}">Login</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
 
     {% block content %}
     {% endblock %}
-
+    
 
 </body>
 </html>
