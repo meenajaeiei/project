@@ -2,6 +2,7 @@ function showReserveDetail(roomNumber , dayoftransaction , begin , end , reason 
 	document.getElementById("close-detail").style.display = "block";
 	var roomNumberID = document.getElementById("room-number");
 	var paragraph = document.getElementsByClassName("text-in-detail-box");
+	var cancelBtn = document.getElementsByClassName("cancelReserve");
 	document.getElementById("time-reserve").innerHTML = dayoftransaction;
 	document.getElementById("date_begin").innerHTML = begin;
 	document.getElementById("date_end").innerHTML = end;
@@ -26,6 +27,10 @@ function showReserveDetail(roomNumber , dayoftransaction , begin , end , reason 
 		paragraph[i].style.display = "block";
 	}
 
+	for(i=0;i<cancelBtn.length; i++) {
+		cancelBtn[i].style.display = "block";
+	}
+
 	document.getElementById("detail-box").style.width = "50%";
 	document.getElementById("detail-box").style.height = "auto";
 	document.getElementById("detail-box").style.padding = "40px";
@@ -35,9 +40,14 @@ function exitReserveDetail() {
 	document.getElementById("close-detail").style.display = "none";
 	document.getElementById("room-number").style.display = "none";
 	var paragraph = document.getElementsByClassName("text-in-detail-box");
+	var cancelBtn = document.getElementsByClassName("cancelReserve");
 
 	for(i=0;i<paragraph.length; i++) {
 		paragraph[i].style.display = "none";
+	}
+
+	for(i=0;i<cancelBtn.length; i++) {
+		cancelBtn[i].style.display = "none";
 	}
 
 	document.getElementById("detail-box").style.width = "0%";
@@ -55,9 +65,4 @@ function clickAccept() {
   		confirmBtn.style.pointerEvents = "visible";
     	confirmBtn.style.background = "#28a745";
   	}
-}
-
-
-function cancelReserve() {
-	window();
 }

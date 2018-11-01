@@ -28,7 +28,6 @@
 		{% for res in reservation_list %}
 		<div class="check-status-block" onclick="showReserveDetail(this.id , '{{ res.day_of_reserve }}' , '{{ res.duration_begin }}' 
 			, '{{ res.duration_end }}' , '{{ res.reason_of_reserve }}'  , '{{ res.teacher.user.username }}', '{{ res.staff.user.username }}'  )"	>
-			<h1 style="float:right;" onclick="cancelReserve()">X</h1>
 			<h1 class="status-room">{{ res.room.roomname }}</h1>
 			{% if res.status == "accepted" %}
 			<div class="status-reservation approved">approved</div>
@@ -42,7 +41,7 @@
 		{% endfor %}
 		<div id="detail-box" style="top:-300px">
 			<p id="close-detail" onclick="exitReserveDetail()">X</p>
-			<h1 class="text-in-detail-box" style="font-size: 3em;"> ข้อมูลการจองสถานที่<br><br></h1>
+			<h1 class="text-in-detail-box" style="font-size: 3em; margin-bottom: 40px;"> ข้อมูลการจองสถานที่</h1>
 			<p id="room-number">Room Number</p>
 			<p class="text-in-detail-box">เวลาที่ทำการรจอง <span id="time-reserve">reserve time here</span></p>
 			<p class="text-in-detail-box">ใช้งานตั้งแต่วันที่ <span id="date_begin">date here</span></p>
@@ -56,8 +55,9 @@
 
 			<!-- อนุมัติโดยงานอาคารสถานที่ -->
 			<p class="text-in-detail-box"> (2) งานอาคารสถานที่ (<span id="staff">approver name here</span>)</p>
-			<!-- <p class="text-in-detail-box"><span id="approve-status">approve status here</span> ณ วันที่ <span id="approve-date">date approve here</span></p>
-			<p class="text-in-detail-box">หมายเหตุ : <span id="approve-reason">reason approvers here</span><br><br><br></p> -->
+			<!-- <p class="text-in-detail-box"><span id="approve-status">approve status here</span> ณ วันที่ <span id="approve-date">date approve here</span></p> -->
+			<!-- <p class="text-in-detail-box">หมายเหตุ : <span id="approve-reason">reason approvers here</span><br><br><br></p> -->
+			<button class="cancelReserve btn-danger ">ยกเลิกการจอง</button>
 		</div>
 		</div>
 		
