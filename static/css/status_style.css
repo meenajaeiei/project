@@ -9,7 +9,7 @@ body, html{
 	scroll-behavior: smooth;
 	transition: all 0.3s ease-in;
 	/*background-image: url("img/zig.png");*/
-	color: #FFF;
+	/*color: #FFF;*/
 }
 
 nav {
@@ -191,7 +191,6 @@ h2.slide-right {
 	z-index: 5;
 	background: rgba(0,0,0,80%);
 	transition: 1s;
-	padding-left: 2%;
 	color: #FFF;
 }
 
@@ -208,6 +207,7 @@ h2.slide-right {
 	padding-right: 20px;
 	right: 50px;
 	display: none;
+	cursor: pointer;
 }
 
 #room-number {
@@ -232,7 +232,7 @@ button#reserve {
 	padding: 20px;
 	display: none;
 	font-size: 16px;
-	cursor:pointer
+	cursor:pointer;
 }
 
 .not-active {
@@ -327,10 +327,16 @@ margin: 5% 10% 5% 10%;
 	margin-bottom: 20px;
 	padding:20px;
 	color: #FFF;
-	width: 200px;
+	width: 250px;
 	height: 300px;
 	display: inline-block;
+	cursor: pointer;
 	/*position: relative;*/
+}
+
+.check-status-block:hover{
+	background-color: #383535;
+	box-shadow: 5px 10px #888888;
 }
 
 .approved {

@@ -9,7 +9,7 @@ body, html{
 	scroll-behavior: smooth;
 	transition: all 0.3s ease-in;
 	/*background-image: url("img/zig.png");*/
-	color: #FFF;
+	/*color: #FFF;*/
 }
 
 nav {
@@ -67,6 +67,7 @@ text, tspan{
 	width: 100vw;
     height: 100vh;
     background-size: cover;
+    color: #FFF;
 }
 
 
@@ -122,6 +123,7 @@ input[type=date], input[type=time] {
 	left: 40%;
 	position: absolute;
 	font-size: 4em;
+	color: #FFF;
 }
 
 #floor-number {
@@ -132,22 +134,28 @@ input[type=date], input[type=time] {
 	float: left;
 	padding-top: 15px;
 	padding-left: 10%;
+	color: #FFF;
 }
 
 .end-time {
 	float: right;
 	padding-top: 15px;
 	padding-right: 10%;
+	color:#FFF;
 }
 
 #checking_btn {
 	border: 0;
 	border-radius: 5px;
-	background-color: green;
+	background-color: #13bb13;
 	color: #FFF;
 	margin: 5px;
 	padding: 5px 15px;
 	cursor:pointer
+}
+
+#checking_btn:hover {
+	background-color: green;
 }
 
 .map {
@@ -170,6 +178,7 @@ h2.slide-left {
 	clear: left;
 	float: left;
 	font-size: 5em;
+	color:#FFF;
 }
 
 h2.slide-right {
@@ -180,6 +189,7 @@ h2.slide-right {
 	clear: right;
 	float: right;
 	font-size: 5em;
+	color: #FFF;
 }
 
 #detail-box {
@@ -191,7 +201,6 @@ h2.slide-right {
 	z-index: 5;
 	background: rgba(0,0,0,80%);
 	transition: 1s;
-	padding-left: 2%;
 	color: #FFF;
 }
 
@@ -208,6 +217,7 @@ h2.slide-right {
 	padding-right: 20px;
 	right: 50px;
 	display: none;
+	cursor: pointer;
 }
 
 #room-number {
@@ -233,6 +243,10 @@ button#reserve {
 	display: none;
 	font-size: 16px;
 	cursor:pointer
+}
+
+button#reserve:hover {
+	background-color: #fdd762;
 }
 
 .not-active {

@@ -27,6 +27,7 @@ function showDetail(roomNumber , roomstatus) {
 
 	document.getElementById("detail-box").style.width = "40%";
 	document.getElementById("detail-box").style.height = "auto";
+	document.getElementById("detail-box").style.padding = "40px";
 
 }
 
@@ -47,5 +48,6 @@ function exit() {
 	document.getElementById("reserve").style.display = "none";
 	document.getElementById("detail-box").style.width = "0%";
 	document.getElementById("detail-box").style.height = "0%";
+	document.getElementById("detail-box").style.padding = "0";
 }
 

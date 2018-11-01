@@ -17,7 +17,7 @@
 </head>
 
 
-<body style="background-image: url({% static "/img/zig.png" %})">
+<body>
 	<!-- {% include "base.html" %} -->
 	{% include "blog/nav_side.html" %} 
 
@@ -74,7 +74,7 @@
 					</div>
 
 					{% if start_time != end_time %}
-					<p align="center" style="top:90px; left: 25px; position: relative; width:100%; font-size: 14px;">
+					<p align="center" style="color:#FFF; top:90px; left: 25px; position: relative; width:100%; font-size: 14px;">
 						You search reservation time between <br>{{start_time}} to {{end_time}}</p>
 						{% endif %}
 					</form>
@@ -158,10 +158,10 @@
 					</div>
 
 					<div id="detail-box">
-						<div id="close-detail" onclick="exit()">X</div>
+						<div id="close-detail" onclick="exit()">X<br></div>
 						<div id="room-number">Room Number</div>
 						<div class="text-in-detail-box"> Status : <div id="status">status here</div></div>
-
+	
 						<form action="" method="GET">
 							<input type="hidden" id ="demo" name="room" value="" />
 							<div class="text-in-detail-box">Begin Reserve : </div>
