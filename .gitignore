@@ -80,3 +80,4 @@ project/__pycache__/urls\.cpython-35\.pyc
 project/__pycache__/views\.cpython-35\.pyc
 
 project/__pycache__/wsgi\.cpython-35\.pyc
+*.pyc
