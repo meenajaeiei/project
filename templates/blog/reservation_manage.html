@@ -29,12 +29,17 @@
             <div class="col-md-5">
               <h3>{{ re.room }}</h3>
               <p>
-                {{re.student}} <br>
-                {{re.day_of_reserve}} <br>
-                {{re.status}} <br>
+                ผู้ร้องขอการเช่า: {{re.student}} <br>
+                วันเวลาที่ทำการจอง: {{re.day_of_reserve}} <br>
+                ทำการจอง ตั้งแต่ {{re.duration_begin}} ถึง {{re.duration_end}} <br>
+                เหตุผลการขอจอง: {{re.reason_of_reserve}}<br>
+                การอนุมัติ
+                 <li> อาจารย์: {{re.teacher}}</li>
+                 <li>  เจ้าหน้าที่: {{re.staff}}</li>
               </p>
-              <a class="btn btn-primary"  id="acceptBtn" value="{{ re.id }}" name="accept" href="">Accept</a>
-              <a class="btn btn-primary" id="deniedBtn" value="{{ re.id }}" name="denied" href="#">Denied</a>
+              <input type="hidden" id="resno" name="resno" value="{{re.id}}">
+              <button id="acceptBtn" onclick="acceptButton('{{re.id}}')" value="accepted" name="accepted">accept</button> 
+              <button id="deniedBtn" onclick="deniedButton('{{re.id}}')" value="denied" name="denied">Denied</button> 
             </div>
         </div>
 

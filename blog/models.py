@@ -128,9 +128,12 @@ class reservation(models.Model):
     # staff = models.CharField(max_length=100, default="-")
     
     room = models.ForeignKey(room , related_name = "room" , on_delete=models.CASCADE)
-    status_list = (("pending" , "pending"), ("accepted" , "accepted"), ("accepted-pending" , "accepted-pending"), ("denied" , "denied"), ("denied-pending" , "denied-pending") )
+    status_list = (("pending" , "pending"), ("accepted" , "accepted"),  ("denied" , "denied") )
     reason_of_reserve = models.CharField(max_length = 300 , default = "reason")
     status = models.CharField(max_length = 20 , default = 'pending', choices=status_list)
+
+    teacher_result = models.CharField(max_length = 20 , default = 'pending', choices=status_list)
+    staff_result = models.CharField(max_length = 20 , default = 'pending', choices=status_list)
     
     day_of_reserve = models.DateTimeField(default=timezone.now)
     duration_begin =  models.DateTimeField(default=timezone.now)
