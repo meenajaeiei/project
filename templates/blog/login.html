@@ -1,28 +1,40 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 <!------ Include the above in your HEAD tag ---------->
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>it reservation</title>
+    <link rel="shortcut icon" href="{% static 'img/itkmitl.jpg' %}" />
+    <link rel="stylesheet"  href="{% static 'css/login.css' %}">
+</head>
 
 <body>
-<form id="login-form" class="form" action="" method="POST">
-{% csrf_token %}
-    <h3 class="text-center text-info">Login</h3>
-    <div class = "container col-3">
-        <div class="form-group">
-            <label for="username" class="text-info">Username:</label><br>
-            <input type="text" name="username"  class="form-control">
-            </div>
-                <div class="form-group">
-                    <label for="password" class="text-info">Password:</label><br>
-                    <input type="password" name="password" id="password" class="form-control">
-                </div>
-                <div class="form-group">
-                    <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
-                </div>
+    <div name="image-left">
+        <img class="image-login" src="{% static '/img/left_bg_login.jpg' %}">
     </div>
-    
 
+    <form id="login-form" class="form" action="" method="POST">
+        {% csrf_token %}
+        <div class="right-panel" >
+            <h1 style="font-size: 4em;" align="center">Login</h1>
+            <h3 align="center">welcome back,</h3><br>
+
+            <div class="form-group">
+                <h5>Username:</h5>
+                <input type="text" name="username"  class="form-underline">
+            </div>
+            <div class="form-group">
+             <h5>Password:</h5>
+             <input type="password" name="password" id="password" class="form-underline">
+         </div>
+         <div class="form-group" align="center">
+            <input type="submit" name="submit" class="btn btn-info btn-md login-btn " value="login" >
+        </div>
+    </div>
+</form>
 
 </body>
-    {% endblock %}
+
+{% endblock %}

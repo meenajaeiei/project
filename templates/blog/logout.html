@@ -1,7 +1,25 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Logged out{% endblock %}
 {% block content %}
-<h1>Logged out</h1>
-<p>You have been successfully logged out.
-   You can <a href="{% url "login" %}">log-in again</a>.</p>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>it reservation</title>
+    <link rel="shortcut icon" href="{% static 'img/itkmitl.jpg' %}" />
+    <link rel="stylesheet"  href="{% static 'css/login.css' %}">
+</head>
+
+<body>
+    <div name="image-left" style="box-shadow:220px 20px 50px grey;">
+        <img class="image-login" src="{% static '/img/left_bg_logout.jpg' %}">
+    </div>
+
+        <div class="right-panel" >
+            <h1 style="font-size: 4em; margin-top: 20%;" align="center">Logged out</h1><br>
+            <h4 align="center">You have been successfully logged out.
+   You can <a href="{% url "login" %}">log-in again</a>.</h4>
+
+</body>
+
 {% endblock %}

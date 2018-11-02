@@ -7,6 +7,7 @@ from blog.models import room , Employee , User , reservation
 from django.contrib import messages
 from datetime import datetime
 import pytz
+from django.utils import timezone
 
 
 @login_required
@@ -19,7 +20,18 @@ def logout_view(request):
 
 #Post.objects.filter
 
+def isRoomExpire():
+    res = reservation.objects.filter(status="accepted")
+    for i in res:
+        if timezone.now()  > i.duration_end:
+            i.room.status = "yes"
+            i.save()
+            i.delete()
+    
+             
+
 def home_page(request):
+    isRoomExpire()
     if request.method == 'POST':
         print("login")
         usernamex = request.POST['username']
@@ -87,7 +99,7 @@ def strtodate(strtime):
 
 def reserve_room(STDusername , roomarg , period_s , period_n): #period_s = beginreservation , period_n = endreservation 
     user_obj = User.objects.get(username = STDusername)
-    emp_obj = Employee.objects.get(id = user_obj.id)
+    emp_obj = Employee.objects.get(user = user_obj)
     room_obj = room.objects.get(roomname = roomarg)
     if(room_obj.status  == "pending"):
         print("anti - double transaction")
