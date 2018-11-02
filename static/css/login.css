@@ -28,14 +28,14 @@
   float: left;
 }
 
-.login-panel {
+.right-panel {
   width: 50%;
   height: 93vh;
   float: right;
   padding: 10%;
 }
 
-.form-login {
+.form-underline {
   width: 100%;
   border: 0 solid;
   border-bottom-width: 2px;
