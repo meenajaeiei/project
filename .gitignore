@@ -81,3 +81,6 @@ project/__pycache__/views\.cpython-35\.pyc
 
 project/__pycache__/wsgi\.cpython-35\.pyc
 *.pyc
+*.sqlite3
+blog/migrations/0034_auto_20181102_1529.py
+blog/migrations/0034_merge_20181027_1700.py
