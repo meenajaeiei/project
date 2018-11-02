@@ -7,6 +7,7 @@ from blog.models import room , Employee , User , reservation
 from django.contrib import messages
 from datetime import datetime
 import pytz
+from django.utils import timezone
 
 
 @login_required
@@ -19,7 +20,18 @@ def logout_view(request):
 
 #Post.objects.filter
 
+def isRoomExpire():
+    res = reservation.objects.filter(status="accepted")
+    for i in res:
+        if timezone.now()  > i.duration_end:
+            i.room.status = "yes"
+            i.save()
+            i.delete()
+    
+             
+
 def home_page(request):
+    isRoomExpire()
     if request.method == 'POST':
         print("login")
         usernamex = request.POST['username']
