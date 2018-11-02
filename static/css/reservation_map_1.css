@@ -12,7 +12,7 @@ body, html{
 	/*color: #FFF;*/
 }
 
-nav {
+/* nav {
 	position: fixed;
 	width: 100%;
 	background-color: rgba(0,0,0,80%);
@@ -23,7 +23,7 @@ nav {
 nav a {
 	color: #FFF;
 	padding: 2em;
-}
+} */
 
 nav a:hover {
 	color: #a2a1a1;
