@@ -26,7 +26,7 @@
 	<div id="checkstatus">
 
 		{% for res in reservation_list %}
-		<div class="check-status-block" onclick="showReserveDetail({{ res.room.roomname }},this.id , '{{ res.day_of_reserve }}' , '{{ res.duration_begin }}' 
+		<div class="check-status-block" onclick="showReserveDetail('{{ res.room.roomname }}', '{{ res.day_of_reserve }}' , '{{ res.duration_begin }}' 
 			, '{{ res.duration_end }}' , '{{ res.reason_of_reserve }}'  , '{{ res.teacher.user.username }}', '{{ res.staff.user.username }}' )"	>
 			<h1 class="status-room">{{ res.room.roomname }}</h1>
 			{% if res.status == "accepted" %}
