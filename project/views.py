@@ -99,7 +99,7 @@ def strtodate(strtime):
 
 def reserve_room(STDusername , roomarg , period_s , period_n): #period_s = beginreservation , period_n = endreservation 
     user_obj = User.objects.get(username = STDusername)
-    emp_obj = Employee.objects.get(id = user_obj.id)
+    emp_obj = Employee.objects.get(user = user_obj)
     room_obj = room.objects.get(roomname = roomarg)
     if(room_obj.status  == "pending"):
         print("anti - double transaction")
