@@ -14,9 +14,6 @@
   <!-- Bootstrap core CSS -->
   <link href="{% static "vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
 
-  <!-- custom CSS -->
-  <!-- <link rel="stylesheet"  href="{% static "css/reservation_map_1.css" %}"> -->
-
   <!-- Custom styles for this template -->
   <link href="{% static "css/1-col-portfolio.css" %}" rel="stylesheet">
 
@@ -64,8 +61,6 @@
   </div>
 </nav> -->
 
-
-<!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
     <a class="navbar-brand" href="{% url 'home' %}">Reservation</a>
@@ -75,15 +70,15 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="{% url 'reservation_manage' %}">Manage
+          <a class="nav-link" href="{% url 'reservation_manage' %}" style="padding-right: 35px;">Manage
             <span class="sr-only">(current)</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'reservation_map_1' %}">Reserve room</a>
+          <a class="nav-link" href="{% url 'reservation_room' %}" style="padding-right: 30px;">Reserve room</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'reservation_status' %}">Your reservation</a>
+          <a class="nav-link" href="{% url 'reservation_status' %}" style="padding-right: 30px;">Your reservation</a>
         </li>
         {% if user.is_authenticated %}
         <li class="nav-item">
@@ -97,11 +92,12 @@
       </ul>
     </div>
   </div>
-</nav>
+</nav> 
+
 
     {% block content %}
     {% endblock %}
-    
+
 
 </body>
 </html>
