@@ -21,12 +21,7 @@
 
         <!-- Page Content -->
         <div class="row">
-            <div class="col-md-7">
-              <a>
-                <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300?text=Your+room+here+(700x300)" alt="">
-              </a>
-            </div>
-            <div class="col-md-5">
+            <div class="col-md-auto" style="padding-left: 40px">
               <h3>{{ re.room }}</h3>
               <p>
                 ผู้ร้องขอการเช่า: {{re.student}} <br>
@@ -38,8 +33,8 @@
                  <li>  เจ้าหน้าที่: {{re.staff}}</li>
               </p>
               <input type="hidden" id="resno" name="resno" value="{{re.id}}">
-              <button id="acceptBtn" onclick="acceptButton('{{re.id}}')" value="accepted" name="accepted">accept</button> 
-              <button id="deniedBtn" onclick="deniedButton('{{re.id}}')" value="denied" name="denied">Denied</button> 
+              <button id="acceptBtn" onclick="acceptButton('{{re.id}}')" value="accepted" name="accepted" class="btn btn-success">accept</button> 
+              <button id="deniedBtn" onclick="deniedButton('{{re.id}}')" value="denied" name="denied" class="btn btn-danger">Denied</button> 
             </div>
         </div>
 
