@@ -23,12 +23,15 @@ function showDetail(roomNumber , roomstatus) {
 	roomNumberID.style.display = "block";
 	statusID.style.display = "inline-block";
 	buttonID.style.display = "block";
+	if(roomstatus == "pending")
+	{
+		buttonID.style.display = "none";
+	}
 	var status = statusID.innerText;
 
 	document.getElementById("detail-box").style.width = "40%";
 	document.getElementById("detail-box").style.height = "auto";
 	document.getElementById("detail-box").style.padding = "40px";
-
 }
 
 function exit() {

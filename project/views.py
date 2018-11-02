@@ -31,7 +31,6 @@ def isRoomExpire():
              
 
 def home_page(request):
-    isRoomExpire()
     if request.method == 'POST':
         print("login")
         usernamex = request.POST['username']
@@ -43,8 +42,11 @@ def home_page(request):
             # Redirect to a success page.
             emp_id = User.objects.get(username = usernamex)
             emp = Employee.objects.get(user = emp_id) #(id = emp_id.id)
-            request.session['username'] = usernamex 
-            return render(request, 'blog/home.html' , {"emp":emp})
+            request.session['username'] = usernamex
+            if emp.role == "student": 
+                return render(request, 'blog/reservation_map_1.html' , {"emp":emp , "rooms" : room.objects.all() })
+            elif emp.role == "staff" or emp.role == "teacher":
+                return render(request , "blog/reservation_manage.html",  {"emp":emp ,"res": reservation.objects.filter(status = "pending")} )
         else:
             # Return an 'invalid login' error message.
             return HttpResponse('Invalid login')
@@ -99,7 +101,7 @@ def strtodate(strtime):
 
 def reserve_room(STDusername , roomarg , period_s , period_n): #period_s = beginreservation , period_n = endreservation 
     user_obj = User.objects.get(username = STDusername)
-    emp_obj = Employee.objects.get(id = user_obj.id)
+    emp_obj = Employee.objects.get(user = user_obj)
     room_obj = room.objects.get(roomname = roomarg)
     if(room_obj.status  == "pending"):
         print("anti - double transaction")
@@ -110,11 +112,11 @@ def reserve_room(STDusername , roomarg , period_s , period_n): #period_s = begin
 
 
 def showmap_1(request):
-
-      
+    isRoomExpire()
     if 'res-date-start' in request.GET and 'res-time-start' in request.GET and 'res-date-end' in request.GET and 'res-time-end' in request.GET and 'username' in request.GET and 'room' in request.GET :
 
         reserve_room(request.GET["username"] , request.GET['room'] , strtodate(request.GET['res-date-start']+request.GET['res-time-start']) , strtodate(request.GET['res-date-end']+request.GET['res-time-end']) )
+        return render(request, "blog/status.html" , {"reservation_list": reservation.objects.get_booklist(User.objects.get(username = request.session['username']))}  )
         # o_room = room.objects.get(roomname = request.GET['room']) #ดึงค่าสถานะห้อง\
         # user_obj = User.objects.get(username = request.GET['username'])
         # user_obj = Employee.objects.get(id = user_obj.id)
@@ -137,14 +139,16 @@ def showmap_1(request):
             if(r_obj.duration_begin > start_time and r_obj.duration_begin < end_time):
                 r_check.append(r_obj.room)
         
-
-        return render(request , "blog/reservation_map_1.html" , 
-        {"end_time" : end_time ,
-        "start_time":start_time,
-        "rooms" :  room.objects.all() , 
-        "r_check": r_check })
-
-    return render(request , "blog/reservation_map_1.html" , {"rooms" : room.objects.all()})
+            return render(request , "blog/reservation_map_1.html" , 
+            {
+            "end_time" : end_time ,
+            "start_time":start_time,
+            "rooms" :  room.objects.all() , 
+            "r_check": r_check })
+    try:
+        return render(request , "blog/reservation_map_1.html" , {"emp" :  Employee.objects.get(user = User.objects.get(username = request.session['username'])) ,"rooms" : room.objects.all()})
+    except Exception as e:
+        return render(request , "blog/reservation_map_1.html" , {"rooms" : room.objects.all()})
 
 
 # def showmap_2(request):
@@ -191,14 +195,14 @@ def managereservation(request):
 
     temp_role = str (Employee.objects.get(user = User.objects.get(username = u)).role)
     if (temp_role == 'teacher' or temp_role == 'staff'):        
-        return render(request , "blog/reservation_manage.html",  {"res": reservation.objects.filter(status = "pending")} )
+        return render(request , "blog/reservation_manage.html",  {"emp":staff_obj, "res": reservation.objects.filter(status = "pending")} )
     else:
         return render(request, "blog/home.html" , {})
     
 
 def getreservation(request):
     if "reservation" in request.GET:
-        res_obj = reservation.objects.get(id = int(request.GET['reservation']) )
+        res_obj = reservation.objects.get(id = int(request.GET['resno']) )
         res_obj.cancel_book()
     reservation_list = reservation.objects.get_booklist(User.objects.get(username = request.session['username']))
     return render(request, "blog/status.html" , {"reservation_list":reservation_list})
@@ -218,6 +222,9 @@ def actionReserve(action, reserve, staff_obj):
         reserve.status = 'denied'
     if reserve.staff_result  == 'accepted' and reserve.teacher_result == 'accepted':
         reserve.status = 'accepted'
+        room = reserve.room
+        room.status = "no"
+        room.save()
     reserve.save()
 
 #     if reserve.status == 'pending':

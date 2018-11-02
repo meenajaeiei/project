@@ -1,4 +1,4 @@
-function showReserveDetail(test,roomNumber , dayoftransaction , begin , end , reason , teacher , staff) {
+function showReserveDetail(roomNumber , dayoftransaction , begin , end , reason , teacher , staff , resno) {
 	document.getElementById("close-detail").style.display = "block";
 	var roomNumberID = document.getElementById("room-number");
 	var paragraph = document.getElementsByClassName("text-in-detail-box");
@@ -7,8 +7,9 @@ function showReserveDetail(test,roomNumber , dayoftransaction , begin , end , re
 	document.getElementById("date_begin").innerHTML = begin;
 	document.getElementById("date_end").innerHTML = end;
 	document.getElementById("reason").innerHTML = reason;
-	document.getElementById("reservation").value = test;
-	
+	document.getElementById("reservation").value = roomNumber;
+	document.getElementById("resno").value = resno;
+
 	if (teacher.length == 0) {
 		document.getElementById("teacher").innerHTML = "ไม่มี";
 	}
