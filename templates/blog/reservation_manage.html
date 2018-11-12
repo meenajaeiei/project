@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+
+    <h1 class="my-4">Request
+        <small>Pending</small>
+    </h1>
+
+    {% for re in res %}
+    <form action="" method="POST">
+    {% csrf_token %}
+        <!-- {% csrf_token %} -->
+        <!-- <h1 class="my-4">{{ re.room }}</h1> -->
+        <!-- <h4>
+            <li> Name : {{ re.student }} </li>
+            <li> Date : {{ re.day_of_reserve }} </li>
+            <li>Status : {{ re.status }}</li>
+        </h4>
+        <button id="acceptBtn" onclick="acceptButton('{{re.id}}')" value="{{ re.id }}" name="accept">Accept {{ re.id }}</button> 
+        <button id="deniedBtn" onclick="deniedButton('{{re.id}}')" value="{{ re.id }}" name="denied">Denied</button> -->
+
+        <!-- Page Content -->
+        <div class="row">
+            <div class="col-md-7">
+              <a>
+                <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300?text=Your+room+here+(700x300)" alt="">
+              </a>
+            </div>
+            <div class="col-md-5">
+              <h3>{{ re.room }}</h3>
+              <p>
+                ผู้ร้องขอการเช่า: {{re.student}} <br>
+                วันเวลาที่ทำการจอง: {{re.day_of_reserve}} <br>
+                ทำการจอง ตั้งแต่ {{re.duration_begin}} ถึง {{re.duration_end}} <br>
+                เหตุผลการขอจอง: {{re.reason_of_reserve}}<br>
+                การอนุมัติ
+                 <li> อาจารย์: {{re.teacher}}</li>
+                 <li>  เจ้าหน้าที่: {{re.staff}}</li>
+              </p>
+              <input type="hidden" id="resno" name="resno" value="{{re.id}}">
+              <button id="acceptBtn" onclick="acceptButton('{{re.id}}')" value="accepted" name="accepted">accept</button> 
+              <button id="deniedBtn" onclick="deniedButton('{{re.id}}')" value="denied" name="denied">Denied</button> 
+            </div>
+        </div>
+
+        <hr>
+
+    </form>
+
+    {% endfor %}
+
+</div>
+
+    <script>
+        function acceptButton(reserveId){
+            var val;
+            var action = confirm("Accepted?");
+            if (action){
+                val = reserveId + " accepted";
+                document.getElementById("acceptBtn").value = val;
+            } else {
+                val = reserveId + " cancel";
+                document.getElementById("acceptBtn").value = val;
+            }
+            
+        }
+        
+        function deniedButton(reserveId){
+            var val;
+            var action = confirm("Denied?");
+            if (action){
+                val = reserveId + " denied";
+            } else {
+                val = reserveId + " cancel";
+            }
+            document.getElementById("deniedBtn").value = val;
+        }
+    </script>
+
+{% endblock %}

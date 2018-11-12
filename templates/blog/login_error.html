@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>it reservation</title>
+    <link rel="shortcut icon" href="{% static 'img/itkmitl.jpg' %}" />
+    <link rel="stylesheet"  href="{% static 'css/login.css' %}">
+</head>
+
+<body>
+    <div name="image-left" style="box-shadow:220px 20px 50px grey;">
+        <img class="image-login" src="{% static '/img/left_bg_loginerror.jpg' %}">
+    </div>
+
+        <div class="right-panel" >
+            <h1 style="font-size: 4em; margin-top: 20%;" align="center">Oops!</h1><br>
+            <h4 align="center">Something went wrong, Please <a href="{% url "login" %}">try again</a>.</h4>
+
+</body>
+
+{% endblock %}

@@ -1,0 +1,100 @@
+{% load static %}
+
+
+
+{% block content %}
+
+<body>
+
+    <div id="floor-3-map" class="mySlides">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+            y="0px" width="1125px" height="597px" viewBox="0 0 1125 700" enable-background="new 0 0 1125 597" xml:space="preserve">
+            <g transform="translate(0.000000,597.000000) scale(0.100000,-0.100000)">
+
+                {% for room in rooms %}
+                {% if room.floor == 3 %}
+                {% if room.status == "no" %}
+                <path id="{{room.roomname}}" class="floor-1-no" d="{{room.svgpath}}"></path>
+                {% else %}
+                <path id="{{room.roomname}}" class="floor-1-yes" onclick="showDetail(this.id , '{{room.status}}')" d="{{room.svgpath}}"></path>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+
+                {% for room in r_check %}
+                {% if room.floor == 3 %}
+                <path id="{{room.roomname}}" class="floor-1-pending" onclick="showDetail(this.id , '{{room.status}}')"
+                    d="{{room.svgpath}}"></path>
+                {% endif %}
+                {% endfor %}
+
+                <path d="M8208.798,5470.869c-2.07-2.026-4.15-106.479-4.15-231.221v-226.152h82.939h81.895l3.076,119.658l3.115,118.662
+               l117.139,3.037l116.104,3.047v108.516v108.516h-197.969C8302.089,5474.931,8210.878,5472.9,8208.798,5470.869z" />
+                <path d="M8650.37,5368.437V5257.9l117.129-3.047l116.094-3.037l3.115-118.662l3.096-119.658h76.729h77.744v233.252V5480h-196.953
+               H8650.37V5368.437z" />
+
+                <path d="M8401.61,5125.048v-111.553h62.197h62.168v-309.316v-309.307H4333.115H140.249v-253.535v-253.54h409.438h409.443v-902.583
+               v-902.588H549.688H140.249v-268.74v-268.75h4016.655h4016.66v1171.328v1171.333h1306.055h1306.055v253.54v253.535H9754.315
+               H8722.929v309.307v309.316h67.393h67.354v111.553v110.537h-228.037H8401.61V5125.048L8401.61,5125.048z M2140.805,2985.214
+               v-902.588h-492.368h-492.368v902.588v902.583h492.368h492.368V2985.214z M5696.191,3446.65v-441.157h274.688h274.697v-461.43
+               v-461.436H4322.749H2399.936v461.436v461.43h445.723h445.718v441.157v441.147h1202.407h1202.407V3446.65z M8028.437,2985.214
+               v-902.588h-792.969h-792.969v902.588v902.583h792.969h792.969V2985.214z" />
+                <path d="M3322.475,3431.43v-425.938h860.342h860.352v263.677v263.682h310.952h310.977v162.261v162.261H4493.784H3322.475V3431.43z" />
+                <path d="M5074.252,3253.955v-248.462l262.251,2.036c143.042,0,245.674,3.027,228.037,5.063
+               c-25.908,3.042-34.204,9.126-34.204,24.336c0,15.22-7.246,19.282-36.27,19.282h-36.289v187.603v187.617h36.289
+               c32.119,0,36.27,3.042,36.27,25.356c0,21.299,5.181,25.356,31.099,25.356c17.627,0,31.104,5.073,31.104,10.142
+               c0,6.084-93.301,10.137-259.146,10.137h-259.141V3253.955z" />
+                <path d="M5613.256,3253.955v-248.462h25.933h25.908v248.462v248.467h-25.908h-25.933V3253.955z" />
+                <path d="M5551.079,3248.891c0-205.879,1.016-212.979,20.728-212.979c19.692,0,20.732,7.1,20.732,212.979
+               c0,205.869-1.04,212.969-20.732,212.969C5552.094,3461.86,5551.079,3454.76,5551.079,3248.891z" />
+                <path d="M5478.51,3243.813v-167.329h25.918h25.908v167.329v167.344h-25.908h-25.918V3243.813z" />
+                <path d="M2431.04,2544.062v-431.016h704.854h704.858v431.016v431.015h-704.858H2431.04V2544.062z" />
+                <path d="M3871.85,2544.062v-431.016h694.497h694.492v431.016v431.015h-694.492H3871.85V2544.062z" />
+                <path d="M5291.938,2544.062v-431.016h222.861h222.847v431.016v431.015h-222.847h-222.861V2544.062z" />
+                <path d="M5768.74,2544.062v-431.016h222.871h222.852v431.016v431.015h-222.852H5768.74V2544.062z" />
+                <path d="M6473.612,3431.43v-425.938h222.842h222.881v425.938v425.942h-222.881h-222.842V3431.43z" />
+                <path d="M8204.647,4704.179v-278.887h145.137h145.098v278.887v278.892h-145.098h-145.137V4704.179z" />
+                <path d="M8754.042,4836.015v-147.041h145.107h145.127v147.041v147.056h-145.127h-145.107V4836.015z" />
+                <path d="M8754.042,4541.918v-116.626h145.107h145.127v116.626v116.626h-145.127h-145.107V4541.918z" />
+                <path d="M150.615,2985.214v-872.168h388.706h388.716v872.168v872.158H539.321H150.615V2985.214z" />
+            </g>
+            <text transform="matrix(1.0434 0 0 1 74 510.4902)" fill="#FFFDFD" font-family="'MyriadPro-Regular'"
+                font-size="36.0404">329</text>
+            <text transform="matrix(1.0434 0 0 1 688 510.4902)" fill="#FFFDFD" font-family="'MyriadPro-Regular'"
+                font-size="36.0404">335</text>
+            <text transform="matrix(1.0434 0 0 1 207 510.4902)" fill="#FFFDFD" font-family="'MyriadPro-Regular'"
+                font-size="36.0404">330</text>
+            <text transform="matrix(1.0434 0 0 1 298 510.4902)" fill="#FFFDFD" font-family="'MyriadPro-Regular'"
+                font-size="36.0404">331</text>
+            <text transform="matrix(1.0434 0 0 1 387.185 510.4902)" fill="#FFFDFD" font-family="'MyriadPro-Regular'"
+                font-size="36.0404">332</text>
+            <text transform="matrix(1.0434 0 0 1 470.185 510.4902)" fill="#FFFDFD" font-family="'MyriadPro-Regular'"
+                font-size="36.0404">333</text>
+            <text transform="matrix(1.0434 0 0 1 559.2534 510.4902)" fill="#FFFDFD" font-family="'MyriadPro-Regular'"
+                font-size="36.0404">334</text>
+            <text transform="matrix(1.5112 0 0 1 252.5893 352.998)" fill="#FFFDFD" font-family="'MyriadPro-Regular'"
+                font-size="36.0404">----IT-SUPPORT----</text>
+            <text transform="matrix(1.0434 0 0 1 134.6743 271.604)" fill="#FFFDFD" font-family="'MyriadPro-Regular'"
+                font-size="36.0404">320</text>
+            <text transform="matrix(1.0434 0 0 1 134.6743 352.998)" fill="#FFFDFD" font-family="'MyriadPro-Regular'"
+                font-size="36.0404">321</text>
+            <text transform="matrix(1.0434 0 0 1 704.6738 271.6045)" fill="#FFFDFD" font-family="'MyriadPro-Regular'"
+                font-size="36.0404">327</text>
+            <text transform="matrix(1.0434 0 0 1 695.042 352.998)" fill="#FFFDFD" font-family="'MyriadPro-Regular'"
+                font-size="36.0404">328</text>
+            <text transform="matrix(1.0434 0 0 1 118.7168 117.604)" fill="#FFFDFD" font-family="'MyriadPro-Regular'"
+                font-size="36.0404">304</text>
+            <text transform="matrix(1.0434 0 0 1 338.8383 117.604)" fill="#FFFDFD" font-family="'MyriadPro-Regular'"
+                font-size="36.0404">306</text>
+            <text transform="matrix(1.0434 0 0 1 559.2534 117.604)" fill="#FFFDFD" font-family="'MyriadPro-Regular'"
+                font-size="36.0404">308</text>
+            <text transform="matrix(1.0434 0 0 1 743.2539 117.6045)" fill="#FFFDFD" font-family="'MyriadPro-Regular'"
+                font-size="36.0404">310</text>
+            <text transform="matrix(1.0434 0 0 1 923.2539 117.6045)" fill="#FFFDFD" font-family="'MyriadPro-Regular'"
+                font-size="36.0404">316</text>
+            <text transform="matrix(1.0434 0 0 1 1010.2539 117.6045)" fill="#FFFDFD" font-family="'MyriadPro-Regular'"
+                font-size="36.0404">317</text>
+        </svg>
+    </div>
+</body>
+{% endblock %}

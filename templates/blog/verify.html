@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>IT Reservation</title>
+
+	<link rel="shortcut icon" href="img/itkmitl.jpg" />
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+	{% include "blog/nav_side.html" %} 
+	<div name="header">
+		<img src="img/verify_bg.jpg" class="image-subheader">
+		<h1 class="text-subheader">VERIFY<br><small>your reservation.</small></h1>
+	</div>
+	<div class="verify-block">
+		<h1 style="margin-bottom: 1em; ">ข้อมูลการจองสถานที่</h1>
+		<p>ชื่อ <u id="name">นางสาวเบญจวรรณ</u> นามสกุล <u id="surname">ซิ้มพัฒนวงษ์</u></p>
+		<p>นักศึกษาของคณะเทคโนโลยีสารสนเทศ</p>
+		<p>รหัสประจำตัวนักศึกษา <u id="uid">59070093</u> รุ่น <u id="gen">14</u> ชั้นปีที่ <u id="years">3</u></p>
+		<p>ระดับ <u id="education">ปริญญาตรี</u> หลักสูตร <u id="major">เทคโนโลยีสารสนเทศ​(ภาคปกติ)</u></p>
+		<p>มีความประสงค์ขอใช้สถานที่คณะเทคโนโลยีสารสนเทศนอกเวลาทำการปกติ บริเวณ/ห้อง <u id="room">306</u></p>
+		<p>โดยมีวัตถุประสงค์เพื่อ <u id="reason">ใช้สำหรับทำแลปวิชา PCN</u></p>
+		<p>ตั้งแต่วันที่ <u id="date-start">25/12/2018</u> - <u id="date-end">25/12/2018</u></p>
+		<p>เวลา <u id="time-start">18:00</u> - <u id="time-end">20:00</u></p>
+
+		<input type="checkbox" id="acceptCondition" onclick="clickAccept()">
+		<small style="font-size: 14px;">ข้าพเจ้ารับทราบและยินดีปฏิบัติตาม<a href="" style="color:blue">ระเบียบหรือกฎข้อบังคับ</a>เกี่ยวกับการใช้อาคารและรักษาความปลอดภัย</small>
+		<br>
+		<button type="submit" id="confirmReserve" class="confirmBtn" value="comfirm">ยืนยัน</button>
+		<button type="submit" id="cancelReserve" class="cancelBtn" value="cancel">ยกเลิก</button>
+	</div>
+</body>
+</html>
