@@ -82,8 +82,8 @@ class Post(models.Model):
 class room(models.Model):
     #roomid = models.AutoField()
     roomname = models.CharField(max_length=100 , default = 'roomname')
-    isavaliable = (('yes','yes') , ('no','no') , ('pending' , 'pending'))
-    status = models.CharField(max_length = 10 , default = 'yes', choices=isavaliable)
+    isavaliable = (('available','available') , ('unavailable','unavailable') , ('pending' , 'pending'))
+    status = models.CharField(max_length = 15 , default = 'available', choices=isavaliable)
     width = models.IntegerField(default = 0)
     height = models.IntegerField(default = 0)
     slug = models.SlugField(max_length=100 , default = 'roomname')
@@ -146,7 +146,7 @@ class reservation(models.Model):
 
     def cancel_book(self):
         room_obj = self.room
-        room_obj.status = "yes"
+        room_obj.status = ""
         room_obj.save()
         self.delete()
         print("hi")

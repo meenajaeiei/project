@@ -111,7 +111,7 @@
 									<path class="stage floor-1 not-active" d="M6490 590 l0 -280 310 0 310 0 0 280 0 280 -310 0 -310 0 0 -280z"></path>
 									{% for room in rooms %}
 									{% if room.floor == 1 %}
-									{% if room.status  == "no" %}
+									{% if room.status  == "unavailable" %}
 									<path id="{{room.roomname}}" class="floor-1-no" d="{{room.svgpath}}"></path>
 									{% else %}
 									<path id="{{room.roomname}}" class="floor-1-yes" onclick="showDetail(this.id , '{{room.status}}')" d="{{room.svgpath}}"></path>
@@ -160,35 +160,28 @@
 					</div>
 
 <div class="select-floor">
-						<!-- <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="height:5%; width:80%;"> -->
 							<h2 class="slide-left" onclick="plusDivs(-1)"> < </h2>
 							<h2 class="slide-right" onclick="plusDivs(1)"> > </h2>
-
-							<!-- <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
-							<span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
-							<span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span> -->
 						</div>
 					</div>
 
 					<div id="detail-box">
 						<div id="close-detail" onclick="exit()">X<br></div>
 						<div id="room-number">Room Number</div>
-						<div class="text-in-detail-box"> Status : <div id="status">status here</div></div>
+						<div class="text-in-detail-box"> Status : <div id="status"></div></div>
 	
 						<form action="" method="POST">
 						
 						{% csrf_token %}
 							<input type="hidden" id ="demo" name="room" value=""  /> 
-							<div class="text-in-detail-box">Begin Reserve : </div>
+							<div class="text-in-detail-box">Begin Reserve: </div>
 							<input class="datetime" type="date" value="2018-01-01" name="res-date-start">
 							<input class="datetime"type="time" value="16:00" name="res-time-start">
-							<div class="text-in-detail-box">End Reserve : </div>
+							<div class="text-in-detail-box">End Reserve: </div>
 							<input class="datetime" type="date" value="2018-12-25" name="res-date-end">
 							<input class="datetime" type="time" value="17:00" name="res-time-end">
-							<div class="text-in-detail-box">Reason : </div>
-							<textarea rows="4" cols="30" id="reason" name="reason" style="display: none;">
-
-							</textarea>
+							<div class="text-in-detail-box">Reason: </div>
+							<textarea rows="4" cols="30" id="reason" name="reason" style="display: none;"></textarea>
 							<button id="reserve" type="submit"  value="">Reserve</button>
 							<input type="hidden" name="username" value="{{user.username}}" />
 

@@ -24,7 +24,7 @@ def isRoomExpire():
     res = reservation.objects.filter(status="accepted")
     for i in res:
         if timezone.now()  > i.duration_end:
-            i.room.status = "yes"
+            i.room.status = "available"
             i.save()
             i.delete()
     
@@ -230,7 +230,7 @@ def actionReserve(action, reserve, staff_obj):
     if reserve.staff_result  == 'denied' or reserve.teacher_result == 'denied':
         reserve.status = 'denied'
         room = reserve.room
-        room.status = "yes"
+        room.status = "available"
         room.save()
     if reserve.staff_result  == 'accepted' and reserve.teacher_result == 'accepted':
         reserve.status = 'accepted'
@@ -239,28 +239,5 @@ def actionReserve(action, reserve, staff_obj):
         room.save()
     reserve.save()
 
-#     if reserve.status == 'pending':
-#         if action == 'accepted':
-#             reserve.status = 'accepted-pending'
-#         elif action == 'denied':
-#             reserve.status = 'denied-pending'
-#         addWhoDoAction(role, staff_obj, reserve)
-
-#     elif reserve.status == 'accepted-pending':
-#         if (reserve.staff is None and role == 'staff') or (reserve.teacher is None and role == 'teacher'):
-#             if action == 'accepted':
-#                 reserve.status = 'accepted'
-#             elif action == 'denied':
-#                 reserve.status = 'denied'
-#             addWhoDoAction(role, staff_obj, reserve)
-#     elif reserve.status == 'denied-pending':
-#         if (reserve.staff is None and role == 'staff') or (reserve.teacher is None and role == 'teacher'):
-#             reserve.status = 'denied'
-#             addWhoDoAction(role, staff_obj, reserve)
-
-# def addWhoDoAction(role, staff_obj, reserve):
-#     if role == 'staff':
-#         reserve.staff = staff_obj
-#     elif role == 'teacher':
-#         reserve.teacher = staff_obj
-#     reserve.save()
+def manage_room(request):
+    print("LOL")
