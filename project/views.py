@@ -125,17 +125,6 @@ def showmap_1(request):
 
         reserve_room(request.POST["username"] , request.POST['room'] , strtodate(request.POST['res-date-start']+request.POST['res-time-start']) , strtodate(request.POST['res-date-end']+request.POST['res-time-end']) , request.POST['reason'] )
         return render(request, "blog/status.html" , {"reservation_list": reservation.objects.get_booklist(User.objects.get(username = request.session['username']))}  )
-        # o_room = room.objects.get(roomname = request.GET['room']) #ดึงค่าสถานะห้อง\
-        # user_obj = User.objects.get(username = request.GET['username'])
-        # user_obj = Employee.objects.get(id = user_obj.id)
-
-        # if(o_room.status  == "pending"):
-        #     print("anti - double transaction")
-        # else:
-        #     o_room.status = "pending" #ตั้งสถานะห้องเป็นpending
-        #     reservation.objects.create_book(user_obj , o_room , strtodate(request.GET['beginreservation']) , strtodate(request.GET['endreservation'])) 
-        #     #def create_book(self, student ,  room ,begin_reserve , end_reserve):
-        #     o_room.save()
     
     r_check = []
     if 'check-date-start' in request.GET and 'check-date-end' in request.GET:
