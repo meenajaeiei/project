@@ -1,8 +1,9 @@
-function showDetail(roomNumber , roomstatus) {
+function showDetail(roomNumber , roomstatus, roomnote) {
 	document.getElementById("reason").style.display = "block";
 	document.getElementById("close-detail").style.display = "block";
 	var roomNumberID = document.getElementById("room-number");
 	var statusID = document.getElementById("status");
+	var noteID = document.getElementById("room-note");
 	var datetime = document.getElementsByClassName("datetime");
 	var buttonID = document.getElementById("reserve");
 	var paragraph = document.getElementsByClassName("text-in-detail-box");
@@ -14,6 +15,7 @@ function showDetail(roomNumber , roomstatus) {
 
 	roomNumberID.innerHTML = roomNumber;
 	statusID.innerHTML = roomstatus;
+	noteID.innerHTML = roomnote;
 	
 	for(i=0;i<datetime.length; i++) {
 		datetime[i].style.display = "inline-block";
@@ -23,6 +25,7 @@ function showDetail(roomNumber , roomstatus) {
 	roomNumberID.style.display = "block";
 	statusID.style.display = "inline-block";
 	buttonID.style.display = "block";
+	noteID.style.display = "inline-block";
 	if(roomstatus == "pending")
 	{
 		document.getElementById("reason").style.display = "none";

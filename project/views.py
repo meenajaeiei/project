@@ -143,7 +143,8 @@ def showmap_1(request):
         "rooms" :  room.objects.all() , 
         "r_check": r_check })
     try:
-        return render(request , "blog/reservation_map_1.html" , {"emp" :  Employee.objects.get(user = User.objects.get(username = request.session['username'])) ,"rooms" : room.objects.all()})
+        return render(request , "blog/reservation_map_1.html" , {"emp" : Employee.objects.get(user = User.objects.get(username = request.session['username'])) ,
+                                                                "rooms" : room.objects.all()})
     except Exception as e:
         return render(request , "blog/reservation_map_1.html" , {"rooms" : room.objects.all()})
 
@@ -196,8 +197,18 @@ def managereservation(request):
         return render(request , "blog/reservation_manage.html",  {"emp":staff_obj, "res": reservation.objects.filter(status = "pending")} )
     else:
         return render(request, "blog/home.html" , {})
-    
 
+def manage_room(request):
+    if 'unavailable' in request.GET or 'available' in request.GET:
+        status = "available" if "available" in request.GET else "unavailable"
+        selected_room = room.objects.filter(roomname = request.GET[status])[0]
+        selected_room.note = request.GET["note"]
+        selected_room.status = status
+        selected_room.save()
+    return render(request, "blog/manage_room.html", {"room":room.objects.all()})
+
+
+#addition Function
 def getreservation(request):
     if "reservation" in request.GET:
         res_obj = reservation.objects.get(id = int(request.GET['resno']) )
@@ -227,6 +238,3 @@ def actionReserve(action, reserve, staff_obj):
         room.status = "pending"
         room.save()
     reserve.save()
-
-def manage_room(request):
-    print("LOL")

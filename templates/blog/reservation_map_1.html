@@ -110,11 +110,11 @@
 									<path id="g25" class="floor-1 not-active" d="M5370 640 l0 -240 230 0 230 0 0 240 0 240 -230 0 -230 0 0 -240z"></path>
 									<path class="stage floor-1 not-active" d="M6490 590 l0 -280 310 0 310 0 0 280 0 280 -310 0 -310 0 0 -280z"></path>
 									{% for room in rooms %}
-									{% if room.floor == 1 %}
-									{% if room.status  == "unavailable" %}
+										{% if room.floor == 1 %}
+										{% if room.status  == "unavailable" %}
 									<path id="{{room.roomname}}" class="floor-1-no" d="{{room.svgpath}}"></path>
 									{% else %}
-									<path id="{{room.roomname}}" class="floor-1-yes" onclick="showDetail(this.id , '{{room.status}}')" d="{{room.svgpath}}"></path>
+									<path id="{{room.roomname}}" class="floor-1-yes" onclick="showDetail(this.id , '{{room.status}}', '{{room.note}}')" d="{{room.svgpath}}"></path>
 									{% endif %}
 									{% endif %}							
 									{% endfor %}
@@ -169,6 +169,7 @@
 						<div id="close-detail" onclick="exit()">X<br></div>
 						<div id="room-number">Room Number</div>
 						<div class="text-in-detail-box"> Status : <div id="status"></div></div>
+						<div class="text-in-detail-box"> หมายเหตุ: <div id="room-note"></div></div>
 	
 						<form action="" method="POST">
 						
