@@ -21,12 +21,13 @@ def logout_view(request):
 #Post.objects.filter
 
 def isRoomExpire():
-    res = reservation.objects.filter(status="accepted")
+    res = reservation.objects.all()
     for i in res:
-        if timezone.now()  > i.duration_end:
-            i.room.status = "available"
-            i.save()
+        if timezone.now()  > i.duration_end and (i.status == "pending" or i.status == "accepted"):
+            i.room.status = "avaliable"
+            i.room.save()
             i.delete()
+            print(" reservation was expired on isRoomExpire function")
     
              
 USER_LOGGED = ""
