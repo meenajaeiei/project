@@ -1,4 +1,4 @@
-from django.db import models
+
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -130,7 +130,7 @@ class reservation(models.Model):
     
     room = models.ForeignKey(room , related_name = "room" , on_delete=models.CASCADE)
     status_list = (("pending" , "pending"), ("accepted" , "accepted"),  ("denied" , "denied") )
-    reason_of_reserve = models.CharField(max_length = 300 , default = "reason")
+    reason_of_reserve = models.CharField(max_length = 300 , default = "reason" , blank = True)
     status = models.CharField(max_length = 20 , default = 'pending', choices=status_list)
 
     teacher_result = models.CharField(max_length = 20 , default = 'pending', choices=status_list)
@@ -146,7 +146,7 @@ class reservation(models.Model):
 
     def cancel_book(self):
         room_obj = self.room
-        room_obj.status = ""
+        room_obj.status = "avaliable"
         room_obj.save()
         self.delete()
         print("hi")
