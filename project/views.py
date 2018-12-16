@@ -21,12 +21,13 @@ def logout_view(request):
 #Post.objects.filter
 
 def isRoomExpire():
-    res = reservation.objects.filter(status="accepted")
+    res = reservation.objects.all()
     for i in res:
-        if timezone.now()  > i.duration_end:
-            i.room.status = "available"
-            i.save()
+        if timezone.now()  > i.duration_end and (i.status == "pending" or i.status == "accepted"):
+            i.room.status = "avaliable"
+            i.room.save()
             i.delete()
+            print(" reservation was expired on isRoomExpire function")
     
              
 USER_LOGGED = ""
@@ -102,6 +103,7 @@ def strtodate(strtime):
 
 def reserve_room(STDusername , roomarg , period_s , period_n , reason, teacher): #period_s = beginreservation , period_n = endreservation 
     user_obj = User.objects.get(username = STDusername)
+    teacher_obj = User.objects.get(username = teacher)
     emp_obj = Employee.objects.get(user = user_obj)
     room_obj = room.objects.get(roomname = roomarg)
     teacher_obj = Employee.objects.get(user = User.objects.get(username = teacher))
@@ -117,9 +119,9 @@ def showmap_1(request):
     isRoomExpire()
     global USER_LOGGED
     print("USER_LOGGED" + USER_LOGGED)
-    #กดจอง
-    if 'res-date-start' in request.POST and 'res-time-start' in request.POST and 'res-date-end' in request.POST and 'res-time-end' in request.POST and 'username' in request.POST and 'room' in request.POST:
-        reserve_room(request.POST["username"] , request.POST['room'] , strtodate(request.POST['res-date-start']+request.POST['res-time-start']) , strtodate(request.POST['res-date-end']+request.POST['res-time-end']) , request.POST['reason'], request.POST['selectedteacher'])
+    if 'res-date-start' in request.POST and 'res-time-start' in request.POST and 'res-date-end' in request.POST and 'res-time-end' in request.POST and 'username' in request.POST and 'room' in request.POST :
+
+        reserve_room(request.POST["username"] , request.POST['room'] , strtodate(request.POST['res-date-start']+request.POST['res-time-start']) , strtodate(request.POST['res-date-end']+request.POST['res-time-end']) , request.POST['reason'], request.POST['teacher'] )
         return render(request, "blog/status.html" , {"reservation_list": reservation.objects.get_booklist(User.objects.get(username = request.session['username']))}  )
     
     r_check = []
@@ -135,16 +137,15 @@ def showmap_1(request):
         
         return render(request , "blog/reservation_map_1.html" , 
         {
-        "teacher" : Employee.objects.filter(role = "teacher"),
+
+        "teachers" : Employee.objects.filter(role = "teacher"),
         "end_time" : end_time ,
         "start_time":start_time,
         "rooms" :  room.objects.all() , 
         "r_check": r_check })
     try:
-        return render(request , "blog/reservation_map_1.html" , {"emp" : Employee.objects.get(user = User.objects.get(username = request.session['username'])) ,
-                                                                "rooms" : room.objects.all(),
-                                                                "teacher" : Employee.objects.filter(role = "teacher")}
-                                                                )
+        return render(request , "blog/reservation_map_1.html" , {"teachers" : Employee.objects.filter(role = "teacher"),"emp" : Employee.objects.get(user = User.objects.get(username = request.session['username'])) ,
+                                                                "rooms" : room.objects.all()})
     except Exception as e:
         return render(request , "blog/reservation_map_1.html" , {"rooms" : room.objects.all()})
 

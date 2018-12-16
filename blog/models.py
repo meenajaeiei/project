@@ -94,16 +94,17 @@ class room(models.Model):
         return self.roomname
 
 class BookManager(models.Manager):
-    def create_book(self, student ,  room ,begin_reserve , end_reserve , reason, teacher):
+
+    def create_book(self, student ,  room ,begin_reserve , end_reserve , reason , teacher):
         reservation = self.create(
-        student = student ,
-        room = room ,
+        student = student , #Employee.objects.get(username = "mhee") ,
+        teacher = teacher , #Employee.objects.get(username = "mhee2") ,
+        room = room , #room.objects.get(roomname = "M16"),
         status = "pending",
         duration_begin = begin_reserve,
         duration_end = end_reserve,
         day_of_reserve =  timezone.now(),
-        reason_of_reserve = reason,
-        teacher = teacher
+        reason_of_reserve = reason
         )
         # do something with the book
         return reservation
@@ -130,7 +131,7 @@ class reservation(models.Model):
     reason_of_staff = models.CharField(max_length = 300, default = "")
     room = models.ForeignKey(room , related_name = "room" , on_delete=models.CASCADE)
     status_list = (("pending" , "pending"), ("accepted" , "accepted"),  ("denied" , "denied") )
-    reason_of_reserve = models.CharField(max_length = 300 , default = "reason")
+    reason_of_reserve = models.CharField(max_length = 300 , default = "reason" , blank = True)
     status = models.CharField(max_length = 20 , default = 'pending', choices=status_list)
     teacher_result = models.CharField(max_length = 20 , default = 'pending', choices=status_list)
     staff_result = models.CharField(max_length = 20 , default = 'pending', choices=status_list)
@@ -141,7 +142,7 @@ class reservation(models.Model):
 
     def cancel_book(self):
         room_obj = self.room
-        room_obj.status = ""
+        room_obj.status = "avaliable"
         room_obj.save()
         self.delete()
         print("hi")
