@@ -1,4 +1,4 @@
-function showReserveDetail(roomNumber , dayoftransaction , begin , end , reason , teacher , staff , resno , staff_result , teacher_result) {
+function showReserveDetail(roomNumber , dayoftransaction , begin , end , reason , teacher , staff , resno , staff_result , teacher_result, teacher_reason, staff_reason) {
 	document.getElementById("close-detail").style.display = "block";
 	var roomNumberID = document.getElementById("room-number");
 	var paragraph = document.getElementsByClassName("text-in-detail-box");
@@ -26,6 +26,20 @@ function showReserveDetail(roomNumber , dayoftransaction , begin , end , reason 
 		document.getElementById("staff").innerHTML = staff;
 	}
 	
+	if (teacher_reason.length == 0) {
+		document.getElementById("teacher-approve-reason").innerHTML = "ไม่มี";
+	}
+	else{
+		document.getElementById("teacher-approve-reason").innerHTML = teacher_reason;
+	}
+
+	if (staff_reason.length == 0) {
+		document.getElementById("staff-approve-reason").innerHTML = "ไม่มี";
+	}
+	else{
+		document.getElementById("staff-approve-reason").innerHTML = staff_reason;
+	}
+
 	roomNumberID.innerHTML = roomNumber;
 	
 
