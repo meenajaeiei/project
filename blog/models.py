@@ -81,7 +81,7 @@ class Post(models.Model):
 
 class room(models.Model):
     roomname = models.CharField(max_length=100 , default = 'roomname')
-    isavaliable = (('available','available') , ('unavailable','unavailable') , ('pending' , 'pending'))
+    isavaliable = (('available','available') , ('unavailable','unavailable') , ('pending' , 'pending'), ('in progress', 'in progress'))
     status = models.CharField(max_length = 15 , default = 'available', choices=isavaliable)
     width = models.IntegerField(default = 0)
     height = models.IntegerField(default = 0)
@@ -94,16 +94,16 @@ class room(models.Model):
         return self.roomname
 
 class BookManager(models.Manager):
-    def create_book(self, student ,  room ,begin_reserve , end_reserve , reason):
+    def create_book(self, student ,  room ,begin_reserve , end_reserve , reason, teacher):
         reservation = self.create(
-        student = student , #Employee.objects.get(username = "mhee") ,
-        #teacher = teacher , #Employee.objects.get(username = "mhee2") ,
-        room = room , #room.objects.get(roomname = "M16"),
+        student = student ,
+        room = room ,
         status = "pending",
         duration_begin = begin_reserve,
         duration_end = end_reserve,
         day_of_reserve =  timezone.now(),
         reason_of_reserve = reason,
+        teacher = teacher
         )
         # do something with the book
         return reservation
@@ -125,24 +125,19 @@ class BookManager(models.Manager):
 class reservation(models.Model):
     student = models.ForeignKey(Employee, related_name = "student" , on_delete=models.CASCADE ,blank = True,null=True)
     teacher = models.ForeignKey(Employee, related_name = "teacher" , on_delete=models.CASCADE ,blank = True,null=True)
+    reason_of_teacher = models.CharField(max_length = 300, default = "")
     staff = models.ForeignKey(Employee, related_name = "staff" , on_delete=models.CASCADE ,blank = True,null=True)
-    # staff = models.CharField(max_length=100, default="-")
-    
+    reason_of_staff = models.CharField(max_length = 300, default = "")
     room = models.ForeignKey(room , related_name = "room" , on_delete=models.CASCADE)
     status_list = (("pending" , "pending"), ("accepted" , "accepted"),  ("denied" , "denied") )
     reason_of_reserve = models.CharField(max_length = 300 , default = "reason")
     status = models.CharField(max_length = 20 , default = 'pending', choices=status_list)
-
     teacher_result = models.CharField(max_length = 20 , default = 'pending', choices=status_list)
     staff_result = models.CharField(max_length = 20 , default = 'pending', choices=status_list)
-    
     day_of_reserve = models.DateTimeField(default=timezone.now)
     duration_begin =  models.DateTimeField(default=timezone.now)
     duration_end =  models.DateTimeField(default=timezone.now)
     objects = BookManager()
-
-    # def __str__(self):
-    #     return str(self.id)
 
     def cancel_book(self):
         room_obj = self.room

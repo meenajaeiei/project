@@ -20,13 +20,14 @@
             <div class="col-md-5">
               <h3>{{ re.room }}</h3>
               <p>
-                ผู้ร้องขอการเช่า: {{re.student}} <br>
-                วันเวลาที่ทำการจอง: {{re.day_of_reserve}} <br>
-                ทำการจอง ตั้งแต่ {{re.duration_begin}} ถึง {{re.duration_end}} <br>
-                เหตุผลการขอจอง: {{re.reason_of_reserve}}<br>
-                การอนุมัติ
-                 <li> อาจารย์: {{re.teacher}}</li>
-                 <li>  เจ้าหน้าที่: {{re.staff}}</li>
+                <b>ผู้ร้องขอการเช่า:</b> {{re.student}} <br></h1>
+                <b>วันเวลาที่ทำการจอง:</b> {{re.day_of_reserve}} <br>
+                <b>ทำการจอง ตั้งแต่</b> {{re.duration_begin}} <b>ถึง</b> {{re.duration_end}} <br>
+                <b>เหตุผลการขอจอง:</b> {{re.reason_of_reserve}}<br>
+                <b>การอนุมัติ</b>
+                 <li> <b>อาจารย์ที่ปรึกษา:</b> {{re.teacher}}</li>
+                 <li>  <b>เจ้าหน้าที่:</b> {{re.staff}}</li>
+                 เหตุผล: <input type="text" name="reason" placeholder="กรุณาใส่เหตุผล">
               </p>
               <input type="hidden" id="resno" name="resno" value="{{re.id}}">
               <button id="acceptBtn" onclick="acceptButton('{{re.id}}')" value="accepted" name="accepted">accept</button> 
