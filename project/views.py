@@ -52,13 +52,8 @@ def home_page(request):
             destination = "blog/home.html"
             
             context = {}
-            return render(request , destination  , context) 
-            # if emp.role == "student": 
-            #     return render(request, 'blog/reservation_map_1.html' , {"emp":emp , "rooms" : room.objects.all() })
-            # elif emp.role == "staff" or emp.role == "teacher":
-            #     return render(request , "blog/reservation_manage.html",  {"emp":emp ,"res": reservation.objects.filter(status = "pending")} )
+            return render(request , destination  , context)
         else:
-            # Return an 'invalid login' error message.
             return HttpResponse('Invalid login')
     else:
         print("please login first")
@@ -85,7 +80,6 @@ def room_detail(request):
             print("anti - double transaction")
         else:
             o_room.status = "pending" #ตั้งสถานะห้องเป็นpending
-            #reservation.objects.create_book(user_obj , o_room)
             o_room.save()
 
 

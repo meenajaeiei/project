@@ -181,7 +181,7 @@
 									<option value="{{t}}">{{t.firstname}}</option>
 								{% endfor %}
 							</datalist> -->
-							<select name="teacher" id="">
+							<select name="teacher" id="select-teacher" style="display: none;">
 								{% for t in teachers %}
 									<option value="{{t.user.username}}">{{t.firstname}}</option>
 								{% endfor %}
