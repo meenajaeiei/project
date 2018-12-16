@@ -181,8 +181,15 @@
 							<div class="text-in-detail-box">End Reserve: </div>
 							<input class="datetime" type="date" value="2018-12-25" name="res-date-end">
 							<input class="datetime" type="time" value="17:00" name="res-time-end">
-							<div class="text-in-detail-box">Reason: </div>
-							<textarea rows="4" cols="30" id="reason" name="reason" style="display: none;"></textarea>
+							<div class="text-in-detail-box" >Reason: </div>
+							<textarea required rows="4" cols="30" id="reason" name="reason" style="display: none;"></textarea>
+							<div class="text-in-detail-box" >อาจารย์ที่ขอคำร้อง: </div>
+							<select name ="teacher">
+								{% for teacher in teachers %}
+									<option   value="{{ teacher.user.username }}">{{ teacher.user.username }}</option>
+									{% endfor %} 
+							</select>
+								
 							<button id="reserve" type="submit"  value="">Reserve</button>
 							<input type="hidden" name="username" value="{{user.username}}" />
 
