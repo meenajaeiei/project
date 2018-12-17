@@ -41,7 +41,7 @@ function showDetail(roomNumber , roomstatus, roomnote) {
 
 	document.getElementById("detail-box").style.width = "40%";
 	document.getElementById("detail-box").style.height = "auto";
-	document.getElementById("detail-box").style.padding = "40px";
+	document.getElementById("detail-box").style.padding = "20px 40px";
 }
 
 function exit() {

@@ -8,27 +8,7 @@ body, html{
 	font-family: 'Kanit', sans-serif;
 	scroll-behavior: smooth;
 	transition: all 0.3s ease-in;
-	/*background-image: url("img/zig.png");*/
-	/*color: #FFF;*/
 }
-
-nav {
-	position: fixed;
-	width: 100%;
-	background-color: rgba(0,0,0,80%);
-	padding: 1em;
-	text-align: center;
-	z-index: 1;
-}
-nav a {
-	color: #FFF;
-	padding: 2em;
-}
-
-nav a:hover {
-	color: #a2a1a1;
-}
-
 
 a {
 	color: #FFF;
@@ -45,7 +25,8 @@ a:link {
 svg{ 
 	width: 80vw;
 	height: 70vh;
-	position: absolute;
+	top: 60px;
+	position: relative;
 	left: 11%;
 	margin: 0;
 }
@@ -63,11 +44,10 @@ text, tspan{
 }
 
 #welcome {
-	/*background: url("img/it_background_black.png") no-repeat;*/
 	width: 100vw;
-    height: 100vh;
-    background-size: cover;
-    color: #FFF;
+	height: 100vh;
+	background-size: cover;
+	color: #FFF;
 }
 
 
@@ -83,15 +63,13 @@ h1.header-text {
 }
 
 @keyframes textUp {
-    from {top: 50%;}
-    to {top:45%;}
+	from {top: 50%;}
+	to {top:45%;}
 }
 
 .tutorial-step {
 	background-image: linear-gradient(-90deg, #9ebabb, #6a9395, #9ebabb);
-	height: 220px;
-	margin-top: 3%;
-	margin-bottom: 3%;
+	height: 300px;
 }
 
 .step-img {
@@ -100,22 +78,22 @@ h1.header-text {
 	color: #FFF;
 	font-size: 21px;
 	margin: 20px;
+	padding-top: 3%;
 }
 
 #view-floor {
 	background-color: #292929;
-	height: 150vh;
+	height: auto;
 	padding: 5em 2em;
 }
 
 input[type=date], input[type=time] {
 	border: 0;
- 	border-radius: 3px;
+	border-radius: 3px;
 	margin: 2px;
 	padding:5px;
 	font-size: 16px;
 	display: inline-block;
-	/*position: relative;*/
 	color: #000;
 }
 
@@ -144,74 +122,33 @@ input[type=date], input[type=time] {
 	color:#FFF;
 }
 
-#checking_btn {
-	border: 0;
-	border-radius: 5px;
-	background-color: #13bb13;
-	color: #FFF;
-	margin: 5px;
-	padding: 5px 15px;
-	cursor:pointer
-}
-
-#checking_btn:hover {
-	background-color: green;
-}
-
-.map {
-	top: 15%;
-	position: relative;
-	z-index: 1;
-}
-
 .select-floor {
 	position: absolute;
 	z-index: 1;
-	width: 100%;
+	top:1500px;
+	width: 96%;
 	height:1px;
 }
 
 h2.slide-left {
 	cursor: pointer;
 	display: inline-block;
-	top: 200px;
-	position: relative;
 	clear: left;
 	float: left;
-	font-size: 5em;
+	font-size: 4em;
 	color:#FFF;
 }
 
 h2.slide-right {
 	cursor: pointer;
 	display: inline-block;
-	top: 200px;
-	position: relative;
 	clear: right;
 	float: right;
-	font-size: 5em;
+	font-size: 4em;
 	color: #FFF;
 }
 
-#detail-box {
-	top:20%;
-	left: 30%;
-	width: 0;
-	height: 0;
-	margin:5px;
-	position: relative;
-	z-index: 5;
-	background: rgba(0,0,0,80%);
-	transition: 1s;
-	color: #FFF;
-}
-
-.text-in-detail-box {
-	display: none;
-	font-size: 1.2vw;
-	margin: 5px;
-}
-
+/*-----------detail box---------*/
 #close-detail {
 	font-size: 3em;
 	color: white;
@@ -220,12 +157,37 @@ h2.slide-right {
 	right: 50px;
 	display: none;
 	cursor: pointer;
+	z-index:1;
 }
+
+#detail-box {
+	top:1250px;
+	left: 30%;
+	width: 0;
+	height: 0;
+	position: absolute;
+	z-index: 5;
+	background: rgba(0,0,0,80%);
+	transition: 1s;
+	color: #FFF;
+}
+
 
 #room-number {
 	font-size: 4vw;
+	position: relative;
+	top:-65px;
 	display: none;
 	margin: 0;
+	z-index: -1;
+}
+
+.text-in-detail-box {
+	display: none;
+	position: relative;
+	font-size: 1.2vw;
+	top:-50px;
+	margin: 5px;
 }
 
 #status {
@@ -233,23 +195,25 @@ h2.slide-right {
 	display: none;
 }
 
-#detail-box input[type=date], #detail-box input[type=time] {
+#detail-box input[type=date], #detail-box input[type=time], #detail-box select[id="select-teacher"], #detail-box textarea[id="reason"]{
+	position: relative;
+	top:-50px;
 	display: none;
 }
+
+
 button#reserve {
-	margin-top: 30px;
-	background-color: #fae39c;
+	margin: 30px 0;
 	border: 12px;
 	color: #000;
 	padding: 20px;
+	position: relative;
+	top: -50px;
 	display: none;
 	font-size: 16px;
-	cursor:pointer
+	cursor:pointer;
 }
-
-button#reserve:hover {
-	background-color: #fdd762;
-}
+/*----------end detail box css part--------*/
 
 .not-active {
 	pointer-events: none;

@@ -25,8 +25,8 @@
                  เหตุผล: <input type="text" name="reason" placeholder="กรุณาใส่เหตุผล" required>
               </p>
               <input type="hidden" id="resno" name="resno" value="{{re.id}}">
-              <button id="acceptBtn" onclick="acceptButton('{{re.id}}')" value="accepted" name="accepted">accept</button> 
-              <button id="deniedBtn" onclick="deniedButton('{{re.id}}')" value="denied" name="denied">Denied</button> 
+              <button id="acceptBtn" class="btn btn-success"onclick="acceptButton('{{re.id}}')" value="accepted" name="accepted">accept</button> 
+              <button id="deniedBtn"class="btn btn-danger" onclick="deniedButton('{{re.id}}')" value="denied" name="denied">Denied</button> 
             </div>
         </div>
 
