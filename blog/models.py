@@ -99,11 +99,11 @@ class reservation(models.Model):
     
     teacher = models.ForeignKey(Employee, related_name = "teacher" , on_delete=models.CASCADE ,blank = True,null=True)
     reason_of_teacher = models.CharField(max_length = 300, default = "")
-    teacher_approve_date = models.DateTimeField(default="Jan. 1, 1111, 1:11 a.m.")
+    teacher_approve_date = models.DateTimeField(default="1111-01-01 01:11")
     
     staff = models.ForeignKey(Employee, related_name = "staff" , on_delete=models.CASCADE ,blank = True,null=True)
     reason_of_staff = models.CharField(max_length = 300, default = "")
-    staff_approve_date = models.DateTimeField(default="Jan. 1, 1111, 1:11 a.m.")
+    staff_approve_date = models.DateTimeField(default="1111-01-01 01:11")
     
     room = models.ForeignKey(room , related_name = "room" , on_delete=models.CASCADE)
     status_list = (("pending" , "pending"), ("accepted" , "accepted"),  ("denied" , "denied") )
