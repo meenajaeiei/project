@@ -5,14 +5,16 @@
     <header>
     </header>
     <body>
-        <h1>แก้ไขสถานที่</h1>
+        <div class="container">
+
+    <h1 class="my-4">Edit Room</h1>
         {% for room in room %}
         <div>
             <form action="" method="GET">
                 {% csrf_token %}
-                <h1>Room: {{room.roomname}}</h1>
-                Status: {{room.status}} <br>
-                หมายเหตุ: <input type="text" name="note" placeholder="{{room.note}}"> <br>
+                <h3>Room: {{room.roomname}}</h3>
+                <b>Status:</b> {{room.status}} <br>
+                <b>หมายเหตุ:</b> <input type="text" name="note" placeholder="{{room.note}}"> <br>
                 <i style="font-size: small; color: red;">ถ้าห้องใช้งานได้ปกติ กรุณาใส่ "-"</i> <br>
                 <input type="radio" name="roomstatus" value="available"> Available
                 <input type="radio" name="roomstatus" value="unavailable"> Unavailable <br>
@@ -20,8 +22,9 @@
             </form>
         </div>
         <br>
+        <hr>
         {% endfor %}
-
+</div>
     </body>
 </html>
 {% endblock %}
