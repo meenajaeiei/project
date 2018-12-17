@@ -30,7 +30,8 @@
 								'{{ res.duration_begin }}' , '{{ res.duration_end }}' , '{{ res.reason_of_reserve }}'  ,
 								'{{ res.teacher.user.username }}', '{{ res.staff.user.username }}' , '{{ res.id }}' ,
 								'{{ res.staff_result }}' , '{{ res.teacher_result }}' ,
-								'{{ res.reason_of_teacher }}' , '{{ res.reason_of_staff }}'
+								'{{ res.reason_of_teacher }}' , '{{ res.reason_of_staff }}',
+								'{{res.teacher_approve_date}}', '{{res.staff_approve_date}}'
 								)">
 			<h1 class="status-room">{{ res.room.roomname }}</h1>
 			{% if res.status == "accepted" %}
@@ -53,11 +54,11 @@
 			<p class="text-in-detail-box">เหตุผลที่ขอจอง : <span id="reason">reason here</span></p>
 			<p class="text-in-detail-box">การอนุมัติ</p>
 			<!-- อนุมัติโดยอาจารย์ -->
-			<p class="text-in-detail-box"> (1) ผู้พิจารณา/อาจารย์: (<span id="teacher">approver name here</span>) ได้ทำการ > <span id="teacher_result">approver name here</span> </p>
+			<p class="text-in-detail-box"> (1) ผู้พิจารณา/อาจารย์: (<span id="teacher">approver name here</span>) ได้ทำการ > <span id="teacher_result"></span> ณ วันที่ <span id="teacher_approve_date"></span> </p>
 			<p class="text-in-detail-box"> เหตุผล: <span id ="teacher-approve-reason"></span> </p>
 
 			<!-- อนุมัติโดยงานอาคารสถานที่ -->
-			<p class="text-in-detail-box"> (2) งานอาคารสถานที่: (<span id="staff">approver name here</span>) ได้ทำการ > <span id="staff_result">approver name here</span></p>
+			<p class="text-in-detail-box"> (2) งานอาคารสถานที่: (<span id="staff">approver name here</span>) ได้ทำการ > <span id="staff_result"></span> ณ วันที่ <span id="staff_approve_date"></span></p>
 			<p class="text-in-detail-box"> เหตุผล: <span id ="staff-approve-reason"></span> </p>
 			<form action="">
   			<input type="hidden" id="reservation" name="reservation" value="3487">
