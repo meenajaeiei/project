@@ -27,7 +27,7 @@
                 <b>การอนุมัติ</b>
                  <li> <b>อาจารย์ที่ปรึกษา:</b> {{re.teacher}}</li>
                  <li>  <b>เจ้าหน้าที่:</b> {{re.staff}}</li>
-                 เหตุผล: <input type="text" name="reason" placeholder="กรุณาใส่เหตุผล">
+                 เหตุผล: <input type="text" name="reason" placeholder="กรุณาใส่เหตุผล" required>
               </p>
               <input type="hidden" id="resno" name="resno" value="{{re.id}}">
               <button id="acceptBtn" onclick="acceptButton('{{re.id}}')" value="accepted" name="accepted">accept</button> 
@@ -43,7 +43,7 @@
 
 </div>
 
-    <script>
+    <!-- <script>
         function acceptButton(reserveId){
             var val;
             var action = confirm("Accepted?");
@@ -67,6 +67,6 @@
             }
             document.getElementById("deniedBtn").value = val;
         }
-    </script>
+    </script> -->
 
 {% endblock %}

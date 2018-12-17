@@ -187,9 +187,12 @@ def managereservation(request):
         actionReserve(action, reserve, staff_obj, reason)
 
     temp_role = str (Employee.objects.get(user = User.objects.get(username = u)).role)
-    if (temp_role == 'teacher' or temp_role == 'staff'):        
-        return render(request , "blog/reservation_manage.html",  {"emp":staff_obj, 
-            "res": reservation.objects.filter(status = "pending") and (reservation.objects.filter(teacher = staff_obj) or reservation.objects.filter(staff = None))})
+    if (temp_role == 'teacher' or temp_role == 'staff'):
+        if temp_role == 'teacher':    
+            return render(request , "blog/reservation_manage.html",  {"emp":staff_obj, 
+            "res": reservation.objects.filter(status = "pending") and reservation.objects.filter(teacher = staff_obj)})
+        if temp_role == 'staff':
+            return render(request , "blog/reservation_manage.html",  {"emp":staff_obj, "res": reservation.objects.filter(status = "pending")})
     else:
         return render(request, "blog/home.html" , {})
 
