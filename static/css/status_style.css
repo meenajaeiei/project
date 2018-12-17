@@ -25,15 +25,16 @@ a:link {
 }
 
 #detail-box {
-	top:20%;
-	left: 30%;
+	left: 25%;
 	width: 0;
 	height: 0;
-	position: relative;
+	top:700px;
+	position: absolute;
 	z-index: 5;
 	background: rgba(0,0,0,80%);
 	transition: 1s;
 	color: #FFF;
+    margin-bottom: 50px;
 }
 
 .text-in-detail-box {
