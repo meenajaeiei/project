@@ -103,6 +103,7 @@ function showDetail(roomNumber , roomstatus, roomnote) {
 
 
 function exit() {
+	document.getElementById("time").innerHTML ="";
 	document.getElementById("reason").style.display = "none";
 	document.getElementById("close-detail").style.display = "none";
 	document.getElementById("room-number").style.display = "none";
