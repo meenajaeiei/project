@@ -33,18 +33,18 @@ Main components
 
 .cd-popup-trigger {
   display: block;
-  width: 170px;
-  height: 50px;
-  line-height: 50px;
-  margin: 3em auto;
-  text-align: center;
-  color: #FFF;
-  font-size: 14px;
-  font-size: 0.875rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  border-radius: 0.5em;
-  background: #3e49bb;
+    width: 90px;
+    height: 25px;
+    line-height: 25px;
+    margin: 3em auto;
+    text-align: center;
+    color: #FFF;
+    font-size: 6px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 0.5em;
+    background: #3e49bb;
   box-shadow: 0 3px 0 rgba(0, 0, 0, 0.07);
 }
 @media only screen and (min-width: 1170px) {
