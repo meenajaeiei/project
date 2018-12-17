@@ -231,7 +231,6 @@ def actionReserve(action, reserve, staff_obj, reason):
         reserve.reason_of_teacher = reason
         print(datetime.now())
         reserve.teacher_approve_date = datetime.now()
-        # reserve.teacher = staff_obj
     
     if reserve.staff_result  == 'denied' or reserve.teacher_result == 'denied':
         reserve.status = 'denied'

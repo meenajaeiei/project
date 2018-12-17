@@ -15,6 +15,10 @@ function showDetail(roomNumber , roomstatus, roomnote) {
 	}
 
 	roomNumberID.innerHTML = roomNumber;
+	// if (roomstatus == "pending"){
+	// 	statusID.innerHTML = roomstatus;
+	// }
+	// else
 	statusID.innerHTML = roomstatus;
 	noteID.innerHTML = roomnote;
 	
