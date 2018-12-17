@@ -194,12 +194,15 @@ def managereservation(request):
         return render(request, "blog/home.html" , {})
 
 def manage_room(request):
-    if 'unavailable' in request.GET or 'available' in request.GET:
-        status = "available" if "available" in request.GET else "unavailable"
-        selected_room = room.objects.filter(roomname = request.GET[status])[0]
-        selected_room.note = request.GET["note"]
-        selected_room.status = status
-        selected_room.save()
+    # print(request.GET)
+    if 'roomname' in request.GET:
+        selected_room = room.objects.get(roomname = request.GET['roomname'])
+        if 'roomstatus' in request.GET:
+            # print(request.GET['roomstatus'])
+            selected_room.status = request.GET['roomstatus']
+        if request.GET["note"] != "":
+            selected_room.note = request.GET["note"]
+        selected_room.save()        
     return render(request, "blog/manage_room.html", {"room":room.objects.all()})
 
 
