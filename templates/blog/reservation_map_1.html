@@ -113,9 +113,9 @@
 								{% endif %}							
 								{% endfor %}
 
-								{% for room in r_check %}
-								{% if room.floor == 1 %}				
-								<path id="{{room.roomname}}" class="floor-1-pending" onclick="showDetail(this.id , '{{room.status}}' ,'{{room.duration_begin}}' )" d="{{room.svgpath}}"></path>
+								{% for roo in r_check %}
+								{% if roo.room.floor == 1 %}				
+								<path id="{{roo.room.roomname}}" class="floor-1-pending" onclick="showDetailpending(this.id , '{{roo.room.status}}'  ,'{{roo.room.note}}' , '{{roo.duration_begin}}' , '{{roo.duration_end}}' )" d="{{roo.room.svgpath}}"></path>
 								{% endif %}
 								{% endfor %}
 
@@ -164,6 +164,7 @@
 				<div id="close-detail" onclick="exit()">X</div>
 				<div id="room-number">Room Number</div>
 				<div class="text-in-detail-box"> Status : <div id="status"></div></div>
+				<div class="text-in-detail-box"> <div id="time"></div></div>
 				<div class="text-in-detail-box"> หมายเหตุ: <div id="room-note"></div></div>
 
 				<form action="" method="POST" style="height: 380px;">

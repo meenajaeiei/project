@@ -136,7 +136,7 @@ def showmap_1(request):
         cc = reservation.objects.all()
         for r_obj in  cc:
             if(r_obj.duration_begin > start_time and r_obj.duration_begin < end_time and r_obj.status != 'denied'):
-                r_check.append(r_obj.room)
+                r_check.append(r_obj)
         
         return render(request , "blog/reservation_map_1.html" , 
         {
