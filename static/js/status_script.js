@@ -11,7 +11,6 @@ function showReserveDetail(roomNumber , dayoftransaction , begin , end , reason 
 	document.getElementById("resno").value = resno;
 	document.getElementById("staff_result").innerHTML = staff_result;
 	document.getElementById("teacher_result").innerHTML = teacher_result;
-	print(status)
 
 	if (teacher.length == 0) {
 		document.getElementById("teacher").innerHTML = "ไม่มี";
@@ -58,13 +57,11 @@ function showReserveDetail(roomNumber , dayoftransaction , begin , end , reason 
 		paragraph[i].style.display = "block";
 	}
 
-
-	if( status ==="pending" ){
-		for(i=0;i<cancelBtn.length; i++) {
-			cancelBtn[i].style.display = "block";
+	if(status ==="pending"){
+	for(i=0;i<cancelBtn.length; i++) {
+		cancelBtn[i].style.display = "block";
 		}
 	}
-
 	document.getElementById("detail-box").style.width = "50%";
 	document.getElementById("detail-box").style.height = "auto";
 	document.getElementById("detail-box").style.padding = "40px";
