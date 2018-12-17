@@ -11,6 +11,7 @@ urlpatterns = [
     path('login/',views.home_page, name = 'login'),
     path('', views.showmap_1, name = 'home'),
     path('logout/', views.logout_view, name='logout'),
+    path('dev/', views.dev_view, name='dev'),
     path('blog/', include('blog.urls', namespace='blog')),
     path('test/', views.test, name='test'),
     path('password_change/', views.changepass, name='password_change'),

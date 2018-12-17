@@ -6,7 +6,7 @@
 <head>
     <title>it reservation</title>
     <link rel="shortcut icon" href="{% static 'img/itkmitl.jpg' %}" />
-    <link rel="stylesheet"  href="{% static 'css/login.css' %}">
+    <link rel="stylesheet"  href="{% static 'css/login_2.css' %}">
 </head>
 
 <body>
@@ -16,7 +16,13 @@
 
         <div class="right-panel" >
             <h1 style="font-size: 4em; margin-top: 20%;" align="center">Oops!</h1><br>
-            <h4 align="center">Something went wrong, Please <a href="{% url "login" %}">try again</a>.</h4>
+            <h4 align="center">Something went wrong, Please <a href='' onclick="goBack()">try again</a>.</h4>
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
 
 </body>
 

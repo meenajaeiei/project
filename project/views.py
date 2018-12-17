@@ -18,6 +18,9 @@ def logout_view(request):
     logout(request)
     return render(request , "blog/logout_2.html" , {})
 
+def dev_view(request):
+    return render(request , "blog/home.html" , {})
+
 #Post.objects.filter
 
 def isRoomExpire():
@@ -53,8 +56,12 @@ def home_page(request):
             
             context = {}
             return render(request , destination  , context)
+
+            #สำหรับเข้าหน้าแรกมาเด้งไปหน้าการจองเลย
+            # return render(request , "blog/reservation_map_1.html" , {"teachers" : Employee.objects.filter(role = "teacher"),"emp" : Employee.objects.get(user = User.objects.get(username = request.session['username'])) ,
+                                                                # "rooms" : room.objects.all()})
         else:
-            return HttpResponse('Invalid login')
+            return render(request, 'blog/error.html', {})
     else:
         print("please login first")
         return render(request, 'blog/login_2.html', {})
