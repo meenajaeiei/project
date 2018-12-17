@@ -59,6 +59,8 @@ def home_page(request):
         print("please login first")
         return render(request, 'blog/login_2.html', {})
 
+
+
 def mainhome(request):
     return render(request, "blog/home.html" , {})
 
@@ -211,7 +213,7 @@ def manage_room(request):
 
 #addition Function
 def getreservation(request):
-    if "reservation" in request.GET:
+    if "reservation" in request.GET and "reservation" in request.GET:
         res_obj = reservation.objects.get(id = int(request.GET['resno']) )
         res_obj.cancel_book()
     reservation_list = reservation.objects.get_booklist(User.objects.get(username = request.session['username']))
