@@ -1,4 +1,5 @@
-# project
+# SE Project
+  โปรเจควิชา Software Engineering
 
 การติดตั้ง<br>
   1.สิ่งที่ต้องมี:<br>
