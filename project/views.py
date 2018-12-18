@@ -38,6 +38,13 @@ def isRoomExpire():
             print("some reservation was accepted")
             z.room.status = "reserved"
             z.room.save()
+    
+    res = reservation.objects.all()
+    for x in res:
+        if(x.room.status == 'reserved' and x.status == 'pending'):
+            print("room was reserved , your reservation was set to denied automatically.")
+            x.status = "denied"
+            x.save()
         
     
              
@@ -118,12 +125,9 @@ def reserve_room(STDusername , roomarg , period_s , period_n , reason, teacher):
     emp_obj = Employee.objects.get(user = user_obj)
     room_obj = room.objects.get(roomname = roomarg)
     teacher_obj = Employee.objects.get(user = User.objects.get(username = teacher))
-    if(room_obj.status  == "pending"):
-        print("anti - double transaction")
-    else:
-        room_obj.status = "pending" #ตั้งสถานะห้องเป็นpending
-        reservation.objects.create_book(emp_obj , room_obj , period_s , period_n , reason, teacher_obj)  #def create_book(self, student ,  room ,begin_reserve , end_reserve):
-        room_obj.save()
+    room_obj.status = "pending" #ตั้งสถานะห้องเป็นpending
+    reservation.objects.create_book(emp_obj , room_obj , period_s , period_n , reason, teacher_obj)  #def create_book(self, student ,  room ,begin_reserve , end_reserve):
+    room_obj.save()
 
 
 def showmap_1(request):

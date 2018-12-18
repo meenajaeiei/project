@@ -34,7 +34,7 @@ function showDetailpending(roomNumber , roomstatus , roomnote ,timestart , timee
 	buttonID.style.display = "block";
 	noteID.style.display = "inline-block";
 	select_teacher.style.display = "inline-block";
-	if(roomstatus === "pending" || roomstatus === 'reserved')
+	if(roomstatus === 'reserved')
 	{
 		document.getElementById("reason").style.display = "none";
 		buttonID.style.display = "none";
@@ -102,7 +102,7 @@ function showDetail(roomNumber , roomstatus, roomnote) {
 	buttonID.style.display = "block";
 	noteID.style.display = "inline-block";
 	select_teacher.style.display = "inline-block";
-	if(roomstatus === "pending" || roomstatus === 'reserved')
+	if( roomstatus === 'reserved')
 	{
 		document.getElementById("reason").style.display = "none";
 		buttonID.style.display = "none";
