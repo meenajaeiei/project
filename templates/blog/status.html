@@ -28,7 +28,7 @@
 		{% for res in reservation_list %}
 		<div class="check-status-block" onclick="showReserveDetail('{{ res.room.roomname }}', '{{ res.day_of_reserve }}' , 
 								'{{ res.duration_begin }}' , '{{ res.duration_end }}' , '{{ res.reason_of_reserve }}'  ,
-								'{{ res.teacher.user.username }}', '{{ res.staff.user.username }}' , '{{ res.id }}' ,
+								'{{ res.teacher.firstname }}', '{{ res.staff.firstname }}' , '{{ res.id }}' ,
 								'{{ res.staff_result }}' , '{{ res.teacher_result }}' ,
 								'{{ res.reason_of_teacher }}' , '{{ res.reason_of_staff }}',
 								'{{res.teacher_approve_date}}', '{{res.staff_approve_date}}' , '{{res.status}}'

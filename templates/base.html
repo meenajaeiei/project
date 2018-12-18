@@ -72,26 +72,26 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
 
-      {% if emp.role == "staff" or emp.role == "teacher" %}
+      {% if emp.role == "teacher" %}
         <li class="nav-item active">
-          <a class="nav-link" href="{% url 'reservation_manage' %}" style="padding-right: 35px;">Manage
+          <a class="nav-link" href="{% url 'reservation_manage' %}" style="padding-right: 35px;">Manage Reservation
             <span class="sr-only">(current)</span>
           </a>
-        </li>
+		</li>
+		{% elif emp.role == "staff" %}
+		<li class="nav-item active">
+        	<a class="nav-link" href="{% url 'reservation_manage' %}" style="padding-right: 55px;">Manage Reservation
+        	</a>
+      	</li>
+      	<li>
+        	<a class="nav-link" href="{% url 'manage_room' %}" style="padding-right: 35px;">Manage Room</a>
+      	</li>
       {% else %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'reservation_status' %}" style="padding-right: 30px;">Your reservation</a>
+          <a class="nav-link" href="{% url 'reservation_status' %}">Your reservation</a>
         </li>
-
       {% endif %}
-
-      {% if emp.role == "staff"%}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'manage_room' %}" style="padding-right: 30px;">Manage Room</a>
-        </li>
-
-      {% endif %}
-
+      
         {% if user.is_authenticated %}
         <li class="nav-item">
           <a class="btn btn-danger" href="{% url 'logout' %}">Logout</a>

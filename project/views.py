@@ -74,7 +74,7 @@ def home_page(request):
 
             #สำหรับเข้าหน้าแรกมาเด้งไปหน้าการจองเลย
             # return render(request , "blog/reservation_map_1.html" , {"teachers" : Employee.objects.filter(role = "teacher"),"emp" : Employee.objects.get(user = User.objects.get(username = request.session['username'])) ,
-                                                                # "rooms" : room.objects.all()})
+            #                                                     "rooms" : room.objects.all()})
         else:
             return render(request, 'blog/error.html', {})
     else:
