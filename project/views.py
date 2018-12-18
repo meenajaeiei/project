@@ -24,13 +24,21 @@ def dev_view(request):
 #Post.objects.filter
 
 def isRoomExpire():
-    res = reservation.objects.all()
+    res = reservation.objects.all() #ดูว่าreservationอันไหนหมดอายุ
     for i in res:
         if timezone.now()  > i.duration_end and (i.status == "pending" or i.status == "accepted"):
             i.room.status = "avaliable"
             i.room.save()
             i.delete()
             print(" reservation was expired on isRoomExpire function")
+    
+    res = reservation.objects.all() #ถ้าreservationถูกอนุมัติห้องต้องเป็นสถานะ reserved
+    for z in res:
+        if(z.status == 'accepted'):
+            print("some reservation was accepted")
+            z.room.status = "reserved"
+            z.room.save()
+        
     
              
 USER_LOGGED = ""

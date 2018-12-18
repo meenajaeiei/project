@@ -34,11 +34,26 @@ function showDetailpending(roomNumber , roomstatus , roomnote ,timestart , timee
 	buttonID.style.display = "block";
 	noteID.style.display = "inline-block";
 	select_teacher.style.display = "inline-block";
-	if(roomstatus == "pending")
+	if(roomstatus === "pending" || roomstatus === 'reserved')
 	{
 		document.getElementById("reason").style.display = "none";
 		buttonID.style.display = "none";
 	}
+
+	if(roomstatus === 'reserved'){
+		document.getElementById("reason").style.display = "none";
+		document.getElementById("select-teacher").style.display = "none";
+		for(i=0;i<datetime.length; i++) {
+			datetime[i].style.display = "none";
+		}
+		document.getElementById("t1").style.display = "none";
+		document.getElementById("t2").style.display = "none";
+		document.getElementById("t3").style.display = "none";
+		document.getElementById("t4").style.display = "none";
+
+		
+	}
+
 	var status = statusID.innerText;
 
 	document.getElementById("detail-box").style.width = "40%";
@@ -87,11 +102,27 @@ function showDetail(roomNumber , roomstatus, roomnote) {
 	buttonID.style.display = "block";
 	noteID.style.display = "inline-block";
 	select_teacher.style.display = "inline-block";
-	if(roomstatus == "pending")
+	if(roomstatus === "pending" || roomstatus === 'reserved')
 	{
 		document.getElementById("reason").style.display = "none";
 		buttonID.style.display = "none";
 	}
+
+
+	if(roomstatus === 'reserved'){
+		document.getElementById("reason").style.display = "none";
+		document.getElementById("select-teacher").style.display = "none";
+		for(i=0;i<datetime.length; i++) {
+			datetime[i].style.display = "none";
+		}
+		document.getElementById("t1").style.display = "none";
+		document.getElementById("t2").style.display = "none";
+		document.getElementById("t3").style.display = "none";
+		document.getElementById("t4").style.display = "none";
+
+		
+	}
+	
 	var status = statusID.innerText;
 
 	document.getElementById("detail-box").style.width = "40%";

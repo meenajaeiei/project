@@ -52,7 +52,7 @@ class Post(models.Model):
 
 class room(models.Model):
     roomname = models.CharField(max_length=100 , default = 'roomname')
-    isavaliable = (('available','available') , ('unavailable','unavailable') , ('pending' , 'pending'), ('in progress', 'in progress'))
+    isavaliable = (('available','available') , ('unavailable','unavailable') , ('pending' , 'pending'), ('reserved', 'reserved'))
     status = models.CharField(max_length = 15 , default = 'available', choices=isavaliable)
     width = models.IntegerField(default = 0)
     height = models.IntegerField(default = 0)

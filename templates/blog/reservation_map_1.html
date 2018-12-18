@@ -104,13 +104,13 @@
 								<path id="g25" class="floor-1 not-active" d="M5370 640 l0 -240 230 0 230 0 0 240 0 240 -230 0 -230 0 0 -240z"></path>
 								<path class="stage floor-1 not-active" d="M6490 590 l0 -280 310 0 310 0 0 280 0 280 -310 0 -310 0 0 -280z"></path>
 								{% for room in rooms %}
-								{% if room.floor == 1 %}
-								{% if room.status  == "unavailable" %}
-								<path id="{{room.roomname}}" class="floor-1-no" d="{{room.svgpath}}"></path>
-								{% else %}
+									{% if room.floor == 1 %}
+										{% if room.status  == "unavailable" %}
+										<path id="{{room.roomname}}" class="floor-1-no" d="{{room.svgpath}}"></path>								
+										{% else %}
 								<path id="{{room.roomname}}" class="floor-1-yes" onclick="showDetail(this.id , '{{room.status}}', '{{room.note}}')" d="{{room.svgpath}}"></path>
-								{% endif %}
-								{% endif %}							
+										{% endif %}
+									{% endif %}							
 								{% endfor %}
 
 								{% for roo in r_check %}
@@ -170,7 +170,7 @@
 				<form action="" method="POST" style="height: 380px;">
 
 					{% csrf_token %}
-					<div class="text-in-detail-box">เลือกอาจารย์ที่ปรึกษา</div>
+					<div class="text-in-detail-box" id ="t1">เลือกอาจารย์ที่ปรึกษา</div>
 							<!-- <input list="teacher" name="teacher"> <br>
 							<datalist id="teacher">
 								{% for t in teacher %}
@@ -183,13 +183,13 @@
 								{% endfor %}
 							</select>
 							<input type="hidden" id ="demo" name="room" value=""  /> 
-							<div class="text-in-detail-box">Begin Reserve: </div>
+							<div class="text-in-detail-box" id ="t2">Begin Reserve: </div>
 							<input class="datetime" type="date" value="2018-01-01" name="res-date-start">
 							<input class="datetime"type="time" value="16:00" name="res-time-start">
-							<div class="text-in-detail-box">End Reserve: </div>
+							<div class="text-in-detail-box"  id ="t3">End Reserve: </div>
 							<input class="datetime" type="date" value="2018-12-25" name="res-date-end">
 							<input class="datetime" type="time" value="17:00" name="res-time-end">
-							<div class="text-in-detail-box" >Reason: </div>
+							<div class="text-in-detail-box" id ="t4" >Reason: </div>
 							<textarea required rows="4" cols="30" id="reason" name="reason" style="display: none;"></textarea>
 							<button id="reserve" class="btn-warning btn" type="submit"  value="">Reserve</button>
 							<input type="hidden" name="username" value="{{user.username}}" />
