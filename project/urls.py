@@ -20,7 +20,8 @@ urlpatterns = [
     path('reservation_status/' , views.getreservation , name= 'reservation_status'),
     path('reservation_manage/' , views.managereservation , name = "reservation_manage"), 
     path('reservation_map_1/', views.showmap_1 , name = "reservation_map_1"),
-    path('manage_room', views.manage_room , name="manage_room")
+    path('manage_room', views.manage_room , name="manage_room"),
+    path('reservation_table', views.show_table , name="reservation_table")
   # path('reservation_map_2/', views.showmap_2 , name = "reservation_map_2"),
   # path('reservation_map_3/', views.showmap_3 , name = "reservation_map_3"),
 ]

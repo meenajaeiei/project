@@ -1,0 +1,40 @@
+<html>
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+table#t01 {
+  width: 100%;    
+  background-color: #f1f1c1;
+}
+</style>
+</head>
+<body>
+
+<h2>Styling Tables</h2>
+
+<table style="width:100%">
+  <tr> 
+    <th>ชื่อห้อง</th>
+    <th>เวลาที่ทำรายการ</th> 
+    <th>วันเวลาที่ขอจอง</th>
+    <th>สถานะคำขอ</th>
+    <th>ผู้ร้องขอ</th>
+  </tr>
+  {% for reservation in res_list %}
+  <tr>
+    <td>{{ reservation.room.roomname }}</td>
+    <td>{{ reservation.day_of_reserve }}</td>
+    <td>{{ reservation.duration_begin}} ถึง {{ reservation.duration_end}} </td>
+    <td>{{ reservation.status }}</td>
+    <td>{{ reservation.student }}</td>
+  </tr>
+  {% endfor %}
+</table>
+<br>

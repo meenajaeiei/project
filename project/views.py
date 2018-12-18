@@ -50,6 +50,17 @@ def isRoomExpire():
              
 USER_LOGGED = ""
 PASS_LOGGED = ""
+
+def show_table(request):
+    res_list = []
+    res = reservation.objects.all()
+    for i in res:
+        if(i.status == "pending" or i.status == "accepted"):
+            res_list.append(i)
+    return render(request, 'blog/reservation_table.html', {'res_list' : res_list })
+
+
+
 def home_page(request):
     if request.method == 'POST' and 'password' in request.POST:
         global USER_LOGGED
