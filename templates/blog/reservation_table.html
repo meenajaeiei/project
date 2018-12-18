@@ -1,33 +1,41 @@
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
 <html>
 <head>
-<style>
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-th, td {
-  padding: 15px;
-  text-align: left;
-}
-table#t01 {
-  width: 100%;    
-  background-color: #f1f1c1;
-}
-</style>
+  <title>it reservation</title>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="{% static "img/itkmitl.jpg" %}" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" type="text/css" href="{% static "css/status_style.css" %}">
+  <script type="text/javascript" src="{% static "js/status_script.js" %}"></script> 
 </head>
-<body>
+<body style="background-image: url({% static "/img/circle_bg.png" %})">
+  {% include "blog/nav_side.html" %} 
+  <div name="header">
+    <img src="{% static "img/verify_bg.jpg" %}" class="image-subheader">
+    <h1 class="text-subheader">STATUS<br><small>all reservation.</small></h1>
+  </div>
 
-<h2>Styling Tables</h2>
 
-<table style="width:100%">
-  <tr> 
-    <th>ชื่อห้อง</th>
-    <th>เวลาที่ทำรายการ</th> 
-    <th>วันเวลาที่ขอจอง</th>
-    <th>สถานะคำขอ</th>
-    <th>ผู้ร้องขอ</th>
-  </tr>
-  {% for reservation in res_list %}
+<div style="background:#FFF; margin:20px 50px 50px 50px;">
+  <table class="table table-striped table-hover ">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Room</th>
+      <th scope="col">Processing time</th>
+      <th scope="col">Reservaton time</th>
+      <th scope="col">Status</th>
+      <th scope="col">Reservation by</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for reservation in res_list %}
   <tr>
     <td>{{ reservation.room.roomname }}</td>
     <td>{{ reservation.day_of_reserve }}</td>
@@ -36,5 +44,13 @@ table#t01 {
     <td>{{ reservation.student }}</td>
   </tr>
   {% endfor %}
+  </tbody>
 </table>
-<br>
+</div>
+
+  
+  
+    
+  </body>
+  </html>
+  {% endblock %}

@@ -24,35 +24,39 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="{% url 'reservation_map_1' %}">Reservation</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'reservation_map_1' %}">Reservation</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
 
-      {% if emp.role == "teacher" %}
-        <li class="nav-item active">
-          <a class="nav-link" href="{% url 'reservation_manage' %}" style="padding-right: 35px;">Manage Reservation
-            <span class="sr-only">(current)</span>
-          </a>
-		</li>
-		{% elif emp.role == "staff" %}
-		<li class="nav-item active">
-        	<a class="nav-link" href="{% url 'reservation_manage' %}" style="padding-right: 55px;">Manage Reservation
-        	</a>
-      	</li>
-      	<li>
-        	<a class="nav-link" href="{% url 'manage_room' %}" style="padding-right: 35px;">Manage Room</a>
-      	</li>
-      {% else %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'reservation_status' %}">Your reservation</a>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'reservation_table' %}">Reservation Status</a>
+          </li>
+
+          {% if emp.role == "teacher" %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'reservation_manage' %}" style="padding-right: 35px;">Manage Reservation
+            </a>
+          </li>
+          {% elif emp.role == "staff" %}
+          <li class="nav-item active">
+           <a class="nav-link" href="{% url 'reservation_manage' %}" style="padding-right: 55px;">Manage Reservation
+           </a>
+         </li>
+         <li>
+           <a class="nav-link" href="{% url 'manage_room' %}" style="padding-right: 35px;">Manage Room</a>
+         </li>
+         {% else%}
+         <li class="nav-item">
+          <a class="nav-link" href="{% url 'reservation_status' %}">Your Reservation</a>
         </li>
-      {% endif %}
-      
+
+        {% endif %}
+
         {% if user.is_authenticated %}
         <li class="nav-item">
           <a class="btn btn-danger" href="{% url 'logout' %}">Logout</a>
@@ -68,8 +72,8 @@
 </nav> 
 
 
-    {% block content %}
-    {% endblock %}
+{% block content %}
+{% endblock %}
 
 
 </body>
