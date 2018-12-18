@@ -64,9 +64,9 @@
 					<input type="date" value="2018-12-25" name="check-date-end">
 					<input type="time" value="17:00" name="check-time-end">
 					<button class="btn btn-warning" type="submit" value="">check</button>
-
+					<a href="{% url "reservation_table" %}">ดูทั้งหมดที่นี่</a>
 				</div>
-
+				
 				{% if start_time != end_time %}
 				<p align="center" style="color:#FFF; top:90px; left: 25px; position: relative; width:100%; font-size: 14px;">
 					You search reservation time between <br>{{start_time}} to {{end_time}}</p>
