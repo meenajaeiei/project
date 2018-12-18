@@ -57,7 +57,7 @@ def show_table(request):
     for i in res:
         if(i.status == "pending" or i.status == "accepted"):
             res_list.append(i)
-    return render(request, 'blog/reservation_table.html', {'res_list' : res_list })
+    return render(request, 'blog/reservation_table.html', {'res_list' : res_list, "emp" : Employee.objects.get(user = User.objects.get(username = request.session['username'])) })
 
 
 
@@ -71,7 +71,6 @@ def home_page(request):
         usernamex = USER_LOGGED
         password = PASS_LOGGED
         user = authenticate(request, username=usernamex, password=password)
-        print(usernamex)
         if user is not None:
             login(request, user)
             # Redirect to a success page.
@@ -107,19 +106,13 @@ def room_detail(request):
         print(request.GET['room'])
         o_room = room.objects.get(roomname = request.GET['room']) #ดึงค่าสถานะห้อง\
         user_obj = User.objects.get(username = request.GET['username'])
-        user_obj = Employee.objects.get(id = user_obj.id)
-
-        
+        user_obj = Employee.objects.get(id = user_obj.id)   
         
         if(o_room.status  == "pending"):
             print("anti - double transaction")
         else:
             o_room.status = "pending" #ตั้งสถานะห้องเป็นpending
             o_room.save()
-
-
-
-
     return render(request , 'blog/reservation_room.html' , {'rooms' : rooms})
 
 def test(request):
@@ -145,6 +138,7 @@ def showmap_1(request):
     isRoomExpire()
     global USER_LOGGED
     print("USER_LOGGED" + USER_LOGGED)
+    print(request.session['username'])
     if 'res-date-start' in request.POST and 'res-time-start' in request.POST and 'res-date-end' in request.POST and 'res-time-end' in request.POST and 'username' in request.POST and 'room' in request.POST :
 
         reserve_room(request.POST["username"] , request.POST['room'] , strtodate(request.POST['res-date-start']+request.POST['res-time-start']) , strtodate(request.POST['res-date-end']+request.POST['res-time-end']) , request.POST['reason'], request.POST['teacher'] )
@@ -155,7 +149,6 @@ def showmap_1(request):
     if 'check-date-start' in request.GET and 'check-date-end' in request.GET:
         start_time = strtodate(request.GET['check-date-start']+request.GET['check-time-start']).replace(tzinfo = pytz.UTC)
         end_time =   strtodate(request.GET['check-date-end']+request.GET['check-time-end']).replace(tzinfo = pytz.UTC)
-        #datetime.datetime.now().strftime("%y-%m-%d--%H:%M")
         cc = reservation.objects.all()
         for r_obj in  cc:
             if(r_obj.duration_begin > start_time and r_obj.duration_begin < end_time and r_obj.status != 'denied'):
@@ -175,42 +168,9 @@ def showmap_1(request):
     except Exception as e:
         return render(request , "blog/reservation_map_1.html" , {"rooms" : room.objects.all()})
 
-
-# def showmap_2(request):
-#     if 'beginreservation' in request.GET and 'username' in request.GET and 'room' in request.GET and 'endreservation' in request.GET:
-#         reserve_room(request.GET["username"] , request.GET['room'] , request.GET['beginreservation'] , request.GET['endreservation'] )
-    
-#     return render(request , "blog/reservation_map_2.html" , {"rooms" : room.objects.filter(floor=2)})
-
-
-# def showmap_3(request):
-#     if 'res-date-start' in request.GET and 'res-time-start' in request.GET and 'res-date-end' in request.GET and 'res-time-end' in request.GET and 'username' in request.GET and 'room' in request.GET :
-#         reserve_room(request.GET["username"] , request.GET['room'] , strtodate(request.GET['res-date-start']+request.GET['res-time-start']) , strtodate(request.GET['res-date-end']+request.GET['res-time-end']) )
-#     r_check = []
-#     if 'check-date-start' in request.GET and 'check-date-end' in request.GET:
-#         start_time = strtodate(request.GET['check-date-start']+request.GET['check-time-start']).replace(tzinfo = pytz.UTC)
-#         end_time =   strtodate(request.GET['check-date-end']+request.GET['check-time-end']).replace(tzinfo = pytz.UTC)
-#         #datetime.datetime.now().strftime("%y-%m-%d--%H:%M")
-#         for r_obj in reservation.objects.all():
-#             print("we_rent on" , r_obj.duration_begin , "|| you finding start " , start_time , " end" ,end_time)
-#             if(r_obj.duration_begin > start_time and r_obj.duration_begin < end_time and r_obj.room.floor == 3):
-#                 r_check.append(r_obj.room)
-        
-
-#         return render(request , "blog/reservation_map_3.html" , 
-#         {"end_time" : end_time ,
-#         "start_time":start_time,
-#         "rooms" : room.objects.filter(floor=3) , 
-#         "r_check": r_check })
-
-#     return render(request , "blog/reservation_map_3.html" , {"rooms" : room.objects.filter(floor=3)})
-
-
 def managereservation(request):
-    
     u = request.session['username']
     staff_obj = Employee.objects.get(user = User.objects.get(username = u)) #get user object teacher/staff
-    print("FIND reason",request.POST)
     if 'accepted' in request.POST or 'denied' in request.POST:
         action = 'accepted' if 'accepted' in request.POST else 'denied'
         reserve_id = int(request.POST['resno']) #reservation id
@@ -229,16 +189,14 @@ def managereservation(request):
         return render(request, "blog/home.html" , {})
 
 def manage_room(request):
-    # print(request.GET)
     if 'roomname' in request.GET:
         selected_room = room.objects.get(roomname = request.GET['roomname'])
         if 'roomstatus' in request.GET:
-            # print(request.GET['roomstatus'])
             selected_room.status = request.GET['roomstatus']
         if request.GET["note"] != "":
             selected_room.note = request.GET["note"]
         selected_room.save()        
-    return render(request, "blog/manage_room.html", {"room":room.objects.all()})
+    return render(request, "blog/manage_room.html", {"room":room.objects.all(), "emp" : Employee.objects.get(user = User.objects.get(username = request.session['username']))})
 
 
 #addition Function
