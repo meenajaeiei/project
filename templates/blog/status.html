@@ -31,7 +31,7 @@
 								'{{ res.teacher.user.username }}', '{{ res.staff.user.username }}' , '{{ res.id }}' ,
 								'{{ res.staff_result }}' , '{{ res.teacher_result }}' ,
 								'{{ res.reason_of_teacher }}' , '{{ res.reason_of_staff }}',
-								'{{res.teacher_approve_date}}', '{{res.staff_approve_date}}'
+								'{{res.teacher_approve_date}}', '{{res.staff_approve_date}}' , '{{res.status}}'
 								)">
 			<h1 class="status-room">{{ res.room.roomname }}</h1>
 			{% if res.status == "accepted" %}
@@ -39,12 +39,12 @@
 			{% elif res.status == "denied" %}
 			<div class="status-reservation disapproved">disapproved</div>
 			{% else %}
-			<div class="status-reservation waiting">waiting</div>
+			<div class="status-reservation waiting">waiting   </div>
 			{% endif %}
 			<div class="status-detail" id="{{ res.room.roomname }}">view detail</div>
 		</div>
 		{% endfor %}
-		<div id="detail-box" style="top:-300px">
+		<div id="detail-box">
 			<p id="close-detail" onclick="exitReserveDetail()">X</p>
 			<h1 class="text-in-detail-box" style="font-size: 3em; margin-bottom: 40px;"> ข้อมูลการจองสถานที่</h1>
 			<p id="room-number">Room Number</p>
@@ -63,7 +63,7 @@
 			<form action="">
   			<input type="hidden" id="reservation" name="reservation" value="3487">
 			<input type="hidden" id="resno" name="resno" value="3487">
-  			<button type="submit"class="cancelReserve btn-danger ">ยกเลิกการจอง</button>
+  			<button type="submit" class="cancelReserve btn-danger ">ยกเลิกการจอง</button>
 			</form>
 
 

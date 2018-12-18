@@ -18,16 +18,27 @@ def logout_view(request):
     logout(request)
     return render(request , "blog/logout_2.html" , {})
 
+def dev_view(request):
+    return render(request , "blog/home.html" , {})
+
 #Post.objects.filter
 
 def isRoomExpire():
-    res = reservation.objects.all()
+    res = reservation.objects.all() #ดูว่าreservationอันไหนหมดอายุ
     for i in res:
         if timezone.now()  > i.duration_end and (i.status == "pending" or i.status == "accepted"):
             i.room.status = "avaliable"
             i.room.save()
             i.delete()
             print(" reservation was expired on isRoomExpire function")
+    
+    res = reservation.objects.all() #ถ้าreservationถูกอนุมัติห้องต้องเป็นสถานะ reserved
+    for z in res:
+        if(z.status == 'accepted'):
+            print("some reservation was accepted")
+            z.room.status = "reserved"
+            z.room.save()
+        
     
              
 USER_LOGGED = ""
@@ -53,11 +64,17 @@ def home_page(request):
             
             context = {}
             return render(request , destination  , context)
+
+            #สำหรับเข้าหน้าแรกมาเด้งไปหน้าการจองเลย
+            # return render(request , "blog/reservation_map_1.html" , {"teachers" : Employee.objects.filter(role = "teacher"),"emp" : Employee.objects.get(user = User.objects.get(username = request.session['username'])) ,
+                                                                # "rooms" : room.objects.all()})
         else:
-            return HttpResponse('Invalid login')
+            return render(request, 'blog/error.html', {})
     else:
         print("please login first")
         return render(request, 'blog/login_2.html', {})
+
+
 
 def mainhome(request):
     return render(request, "blog/home.html" , {})
@@ -127,7 +144,7 @@ def showmap_1(request):
         cc = reservation.objects.all()
         for r_obj in  cc:
             if(r_obj.duration_begin > start_time and r_obj.duration_begin < end_time and r_obj.status != 'denied'):
-                r_check.append(r_obj.room)
+                r_check.append(r_obj)
         
         return render(request , "blog/reservation_map_1.html" , 
         {
@@ -211,7 +228,7 @@ def manage_room(request):
 
 #addition Function
 def getreservation(request):
-    if "reservation" in request.GET:
+    if "reservation" in request.GET and "reservation" in request.GET:
         res_obj = reservation.objects.get(id = int(request.GET['resno']) )
         res_obj.cancel_book()
     reservation_list = reservation.objects.get_booklist(User.objects.get(username = request.session['username']))

@@ -14,7 +14,7 @@
 
                 {% for room in rooms %}
                 {% if room.floor == 2 %}
-                {% if room.status == "no" %}
+                {% if room.status == "unavaliable" %}
                 <path id="{{room.roomname}}" class="floor-1-no" d="{{room.svgpath}}"></path>
                 {% else %}
                 <path id="{{room.roomname}}" class="floor-1-yes" onclick="showDetail(this.id , '{{room.status}}')" d="{{room.svgpath}}"></path>
@@ -22,10 +22,9 @@
                 {% endif %}
                 {% endfor %}
 
-                {% for room in r_check %}
-                {% if room.floor == 2 %}
-                <path id="{{room.roomname}}" class="floor-1-pending" onclick="showDetail(this.id , '{{room.status}}')"
-                    d="{{room.svgpath}}"></path>
+                {% for roo in r_check %}
+                {% if roo.room.floor == 2 %}				
+                <path id="{{roo.room.roomname}}" class="floor-1-pending" onclick="showDetailpending(this.id , '{{roo.room.status}}'  ,'{{roo.room.note}}' , '{{roo.duration_begin}}' , '{{roo.duration_end}}' )" d="{{roo.room.svgpath}}"></path>
                 {% endif %}
                 {% endfor %}
 

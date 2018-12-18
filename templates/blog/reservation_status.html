@@ -13,8 +13,8 @@
    <li>  teacher : {{res.teacher}}</li>
       <li>  reserving date : {{res.day_of_reserve}}</li>
     {% if request.user.is_authenticated and res.status == 'pending' %}
-  <form action=""   method="GET">
-    <button type="submit" value="{{res.id}}" name = "reservation" > CANCEL </button>
+      <form action=""   method="GET">
+      <button type="submit" value="{{res.id}}" name = "reservation" > CANCEL </button>
     {% endif %}
     </h5>
 
