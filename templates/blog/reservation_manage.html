@@ -20,13 +20,15 @@
                 <b>ทำการจอง ตั้งแต่</b> {{re.duration_begin}} <b>ถึง</b> {{re.duration_end}} <br>
                 <b>เหตุผลการขอจอง:</b> {{re.reason_of_reserve}}<br>
                 <b>การอนุมัติ</b>
-                 <li> <b>อาจารย์ที่ปรึกษา:</b> {{re.teacher}}</li>
-                 <li>  <b>เจ้าหน้าที่:</b> {{re.staff}}</li>
+                 <li> <b>อาจารย์ที่ปรึกษา:</b> {{re.teacher}}</li> 
+
+                 <li>  <b>เจ้าหน้าที่:</b> {{re.staff}}</li> <span id="staff-action"></span>
+
                  เหตุผล: <input type="text" name="reason" placeholder="กรุณาใส่เหตุผล" required>
               </p>
               <input type="hidden" id="resno" name="resno" value="{{re.id}}">
-              <button id="acceptBtn" class="btn btn-success"onclick="acceptButton('{{re.id}}')" value="accepted" name="accepted">accept</button> 
-              <button id="deniedBtn"class="btn btn-danger" onclick="deniedButton('{{re.id}}')" value="denied" name="denied">Denied</button> 
+              <button id="acceptBtn" class="btn btn-success" value="accepted" name="accepted">accept</button> 
+              <button id="deniedBtn"class="btn btn-danger"  value="denied" name="denied">Denied</button> 
             </div>
         </div>
 
@@ -38,30 +40,8 @@
 
 </div>
 
-    <!-- <script>
-        function acceptButton(reserveId){
-            var val;
-            var action = confirm("Accepted?");
-            if (action){
-                val = reserveId + " accepted";
-                document.getElementById("acceptBtn").value = val;
-            } else {
-                val = reserveId + " cancel";
-                document.getElementById("acceptBtn").value = val;
-            }
-            
-        }
-        
-        function deniedButton(reserveId){
-            var val;
-            var action = confirm("Denied?");
-            if (action){
-                val = reserveId + " denied";
-            } else {
-                val = reserveId + " cancel";
-            }
-            document.getElementById("deniedBtn").value = val;
-        }
-    </script> -->
+<script>
+
+</script>
 
 {% endblock %}

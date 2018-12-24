@@ -1,19 +1,30 @@
-{% extends 'base.html' %}
-
-{% block content %}
-
-{% if user.is_authenticated %}
-
-  <h1> Hello {{user.username}}    click  <a href="{% url "logout" %}">Logout</a> </h1>
-  <h1> reservation_list Click    <a href="{% url "reservation_status" %}">Check your reservation</a> </a>
-  <h1> reservation_room (text) Click <a href="{% url "reservation_room" %}">reservation_room</a>  or reservation_room (GUI) Click <a href="{% url "reservation_map_1" %}">reserv_UI</a>
-  <h1> reservation_manage (For teacher & staff) Click <a href="{% url "reservation_manage" %}">reservation_manage</a>
-    <h1>Manage Room(For Staff) <a href="{% url "manage_room" %}">Click</a>
-{% else %}
-  <h1> Hello guest Click <a href="{% url "login" %}">Login</a> </h1>
-{% endif %}
 
 
-{% endblock %}
-
+ {% extends 'base.html' %}
+ {% load static %}
+ {% block content %}
+ <!DOCTYPE html>
+ <html>
+ <head>
+     <title>it reservation</title>
+     <link rel="shortcut icon" href="{% static 'img/itkmitl.jpg' %}" />
+     <link rel="stylesheet"  href="{% static 'css/login_2.css' %}">
+ </head>
+ 
+ <body>
+     <div name="image-left" style="box-shadow:220px 20px 50px grey;">
+         <img class="image-login" src="{% static '/img/left_bg_loginerror.jpg' %}">
+     </div>
+ 
+         <div class="right-panel" >
+             <h1 style="font-size: 4em; margin-top: 20%;" align="center">Welcome</h1><br>
+             <h4 align="center">Hello {{user.username}} </h4><br>
+             <a href="{% url 'reservation_map_1' %}"><button class="btn btn-primary" style="position:relative; left:160px;" > Reverse the room</button></a>
+             </div>
+             
+ 
+ </body>
+ 
+ {% endblock %}
+ 
 

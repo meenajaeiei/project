@@ -177,6 +177,7 @@ def managereservation(request):
         reserve = reservation.objects.get(id = reserve_id) #get reservation object that user selected
         reason = request.POST['reason']
         actionReserve(action, reserve, staff_obj, reason)
+        
 
     temp_role = str (Employee.objects.get(user = User.objects.get(username = u)).role)
     if (temp_role == 'teacher' or temp_role == 'staff'):
